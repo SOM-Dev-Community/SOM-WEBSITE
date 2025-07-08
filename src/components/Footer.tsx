@@ -1,57 +1,96 @@
-import React from "react";
-import "../Styles/Footer.css";
-// import somLogo from "../assets/som-logo.png";
-import avatar1 from "../assets/event1.avif";
-import avatar2 from "../assets/event2.avif";
-import avatar3 from "../assets/event3.avif";
-import avatar4 from "../assets/event4.avif";
 
-const Footer = () => (
-  <footer className="footer">
-    <div className="footer-newsletter">
-      <h2 style={{fontSize: '32px'}}>Join Our mailing List</h2>
-      <p style={{fontSize: '15px'}}>
-        Join our mailing list to be the first to know about our services, special programs, <br/>testimonies, and ways to grow in faith together.
-      </p>
-      <form className="footer-form">
-        <input type="email" placeholder="Enter email" required />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-    <div className="footer-main">
-      <div className="footer-col">
-        <h4>ABOUT US</h4>
-        <p style={{fontSize: '13px', lineHeight: '22px'}}>
-          The place where you discover <br/> your purpose, passion, and <br/> power to live out the God-life.
-        </p>
-      </div>
-      <div className="footer-col">
-        <h4>QUICKLINKS</h4>
-        <ul>
-          <li style={{fontSize: '13px', lineHeight: '25px'}}>Blog</li>
-          <li style={{fontSize: '13px', lineHeight: '25px'}}>Explore</li>
-          <li style={{fontSize: '13px', lineHeight: '25px'}}>Contact Us</li>
-          <li style={{fontSize: '13px', lineHeight: '25px'}}>Live Events</li>
-          <li style={{fontSize: '13px', lineHeight: '25px'}}>Preachers Kids' Network</li>
-        </ul>
-      </div>
-      <div className="footer-col">
-        <h4>CONTACT US</h4>
-        <p style={{fontSize: '13px'}}>+234 000 000 000</p>
-        <p style={{fontSize: '13px'}}>@loveworldsonsofministry.org</p>
-      </div>
-    </div>
-    <div className="footer-bottom">
-      {/* <img src={somLogo} alt="SOM Logo" className="footer-logo"></img> */}
-      <span>© 2025 loveworldsonsofministry . All Rights Reserved.</span>
-      <div className="footer-avatars">
-        <img src={avatar1} alt="avatar" />
-        <img src={avatar2} alt="avatar" />
-        <img src={avatar3} alt="avatar" />
-        <img src={avatar4} alt="avatar" />
-      </div>
-    </div>
-  </footer>
-);
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Facebook, Twitter, Instagram, Youtube, Linkedin } from 'lucide-react';
 
-export default Footer;
+export const Footer = () => {
+  const socialIcons = [
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Youtube, href: '#', label: 'YouTube' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn' }
+  ];
+
+  return (
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* About Us */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">ABOUT US</h3>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              The place where you discover your purpose, passion, and power to live out the God-life.
+            </p>
+            <div className="text-2xl font-bold text-amber-600">
+              SOM
+            </div>
+          </div>
+          
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">QUICKLINKS</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/blog" className="text-gray-300 hover:text-white transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/explore" className="text-gray-300 hover:text-white transition-colors">
+                  Explore
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/events" className="text-gray-300 hover:text-white transition-colors">
+                  Live Events
+                </Link>
+              </li>
+              <li>
+                <Link to="/preachers" className="text-gray-300 hover:text-white transition-colors">
+                  Preachers Kids' Network
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Contact Us */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">CONTACT US</h3>
+            <div className="space-y-2 text-gray-300">
+              <p>+234 000 000 000</p>
+              <p>@loveworldsonsofministry.org</p>
+            </div>
+            
+            {/* Social Media */}
+            <div className="flex space-x-4 mt-6">
+              {socialIcons.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    className="bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition-colors"
+                    aria-label={social.label}
+                  >
+                    <IconComponent className="h-5 w-5" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <p>© 2025 loveworldsonsofministry - All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};

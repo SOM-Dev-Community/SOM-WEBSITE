@@ -1,0 +1,72 @@
+import React from 'react';
+import { Button } from '@/components/ui/button';
+
+export const ProductGrid = () => {
+  const products = [
+    {
+      title: 'Discover the Best Resources for Your Spiritual Journey',
+      description: 'Our array of spiritual products, including insights and revelations...',
+      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=400&auto=format&fit=crop',
+      buttonText: 'Learn More'
+    },
+    {
+      title: 'SOMLA: Your Gateway to Spiritual Growth and Learning',
+      description: 'Word ministries focused on the teachings of Jesus...',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop',
+      buttonText: 'Sign Up'
+    },
+    {
+      title: 'SOM TV: Inspiring Content for Your Spiritual Journey',
+      description: 'Watch inspiring content that enriches your spiritual experience...',
+      image: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=400&auto=format&fit=crop',
+      buttonText: 'Watch'
+    },
+    {
+      title: '4:12 Podcast: Your Gateway to learning and entertainment',
+      description: 'Start inspiring prayers in various spoken and gathered churches...',
+      image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=400&auto=format&fit=crop',
+      buttonText: 'Listen'
+    },
+    {
+      title: "Preacher's Kid Magazine",
+      description: 'An innovative and progressive brand, with excellence and power in our approach and attitude to life',
+      image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
+      buttonText: 'Learn more'
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Explore Our Exciting Range of SOM
+            Products Tailored for You
+          </h2>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product, index) => (
+            <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+              <div 
+                className="h-48 bg-cover bg-center"
+                style={{ backgroundImage: `url(${product.image})` }}
+              ></div>
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  {product.title}
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm">
+                  {product.description}
+                </p>
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+                  {product.buttonText}
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};

@@ -1,68 +1,95 @@
-import React, { useState } from "react";
-import EventCard from "./EventCard";
-import "../Styles/EventCard.css";
-import event1 from "../assets/event1.avif";
-import event2 from "../assets/event2.avif";
-import event3 from "../assets/event3.avif";
+import React from 'react';
+import { Button } from '@/components/ui/button';
 
-const eventsData = [
-  {
-    image: event1,
-    title: "Leadership Summit",
-    date: "Fri 09 Feb 2024",
-    location: "Online",
-    description: "Join us for a transformative online experience with industry leaders and inspiring speakers."
-  },
-  {
-    image: event2,
-    title: "Family Retreat",
-    date: "Sat 10 Feb 2024",
-    location: "Local",
-    description: "Reconnect with family and friends at our annual retreat filled with fun and fellowship."
-  },
-  {
-    image: event3,
-    title: "Youth Conference",
-    date: "Sun 11 Feb 2024",
-    location: "Virtual",
-    description: "Empower the next generation at our dynamic virtual youth conference with engaging speakers and activities."
-  }
-];
-
-const filters = ["View all", "Workshops", "Conferences", "Webinars", "Retreats"];
-
-const EventsSection = () => {
-  const [activeFilter, setActiveFilter] = useState("View all");
-
-  // For demonstration, all events are shown regardless of filter.
-  // You can add filtering logic if you want.
+export const EventsSection = () => {
   return (
-    <section className="events-section">
-      <div className="events-header">
-        <div className="events-subtitle">Events</div>
-        <h1 className="events-title">Upcoming</h1>
-        <p className="events-desc">
-          Join us for our exciting upcoming events designed to inspire and engage our community.
-        </p>
-      </div>
-      <div className="events-filters">
-        {filters.map((filter) => (
-          <button
-            key={filter}
-            className={`events-filter-btn${activeFilter === filter ? " active" : ""}`}
-            onClick={() => setActiveFilter(filter)}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
-      <div className="events-list">
-        {eventsData.map((event, idx) => (
-          <EventCard key={idx} {...event} />
-        ))}
+    <section className="py-20 bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+            Events
+          </h2>
+          <h3 className="text-3xl lg:text-4xl font-bold text-white">
+            Upcoming
+          </h3>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mt-4">
+            Join us for our upcoming live streams and events designed to inspire and equip our community.
+          </p>
+        </div>
+        
+        <div className="flex justify-center mb-8">
+          <div className="flex space-x-4">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
+              Upcoming
+            </Button>
+            <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800 px-6 py-2 rounded-md">
+              On-Demand
+            </Button>
+            <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800 px-6 py-2 rounded-md">
+              Workshops
+            </Button>
+            <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800 px-6 py-2 rounded-md">
+              Premium
+            </Button>
+          </div>
+        </div>
+        
+        <div className="space-y-6">
+          <div className="bg-gray-800 rounded-lg p-6 flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div 
+                className="w-16 h-16 rounded-lg bg-cover bg-center"
+                style={{
+                  backgroundImage: 'url("https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop")'
+                }}
+              ></div>
+              <div>
+                <h4 className="text-xl font-bold">Leadership Summit</h4>
+                <p className="text-gray-300">Join us for a powerful evening with God's word and fellowship</p>
+              </div>
+            </div>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
+              Save My Spot
+            </Button>
+          </div>
+          
+          <div className="bg-gray-800 rounded-lg p-6 flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div 
+                className="w-16 h-16 rounded-lg bg-cover bg-center"
+                style={{
+                  backgroundImage: 'url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop")'
+                }}
+              ></div>
+              <div>
+                <h4 className="text-xl font-bold">Family Retreat</h4>
+                <p className="text-gray-300">Join us for a powerful evening with God's word and fellowship</p>
+              </div>
+            </div>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
+              Save My Spot
+            </Button>
+          </div>
+          
+          <div className="bg-gray-800 rounded-lg p-6 flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div 
+                className="w-16 h-16 rounded-lg bg-cover bg-center"
+                style={{
+                  backgroundImage: 'url("https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop")'
+                }}
+              ></div>
+              <div>
+                <h4 className="text-xl font-bold">Youth Conference</h4>
+                <p className="text-gray-300">Inspire the next generation as dynamic traditional gatherings</p>
+              </div>
+            </div>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
+              Save My Spot
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
-
-export default EventsSection;
