@@ -11,7 +11,7 @@ const About = () => {
       name: 'Pastor Sarah Johnson',
       role: 'Leading SOM church for millennials',
       description: 'Professional SOM guidance for millennials and the next generation.',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b9a2c4ad?q=80&w=200&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
     },
     {
       name: 'Pastor Michael Chen',

@@ -31,8 +31,7 @@ export const FeaturedContent = () => {
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2">
-                  Revival Journey and Life changing 
-                  testimonial to inspire your walk
+                 Read about how we are making a difference in the lives of many.
                 </h3>
                 <div className="flex items-center space-x-4 text-sm text-gray-500">
                   <span>Sarah Johnson</span>

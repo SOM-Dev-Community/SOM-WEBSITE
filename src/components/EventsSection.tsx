@@ -22,13 +22,13 @@ export const EventsSection = () => {
             <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
               Upcoming
             </Button>
-            <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800 px-6 py-2 rounded-md">
+            <Button variant="outline" className="border-gray-600 text-gray-800 hover:bg-blue-700 hover:text-white px-6 py-2 rounded-md">
               On-Demand
             </Button>
-            <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800 px-6 py-2 rounded-md">
+            <Button variant="outline" className="border-gray-600 text-gray-800 hover:bg-blue-700 hover:text-white px-6 py-2 rounded-md">
               Workshops
             </Button>
-            <Button variant="outline" className="border-gray-600 text-white hover:bg-gray-800 px-6 py-2 rounded-md">
+            <Button variant="outline" className="border-gray-600 text-gray-800 hover:bg-blue-700 hover:text-white px-6 py-2 rounded-md">
               Premium
             </Button>
           </div>

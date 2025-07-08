@@ -36,7 +36,7 @@ export const Hero = () => {
           <Button 
             variant="outline" 
             size="lg"
-            className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-md text-lg font-semibold"
+            className="border-2 border-white text-gray-900 hover:bg-white hover:text-gray-900 px-8 py-4 rounded-md text-lg font-semibold"
           >
             Watch Video
           </Button>

@@ -75,7 +75,7 @@ const Blog = () => {
               <div className="flex items-center space-x-4 mb-6">
                 <div className="flex items-center space-x-2">
                   <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b9a2c4ad?q=80&w=40&auto=format&fit=crop" 
+                    src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
                     alt="Sarah Johnson"
                     className="w-8 h-8 rounded-full"
                   />
