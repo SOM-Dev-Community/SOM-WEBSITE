@@ -1,0 +1,146 @@
+.footer {
+    background: #181818;
+    color: #fff;
+    padding: 48px 0 0 0;
+    font-family: 'Inter', Arial, sans-serif;
+  }
+  
+  .footer-newsletter {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  
+  .footer-newsletter h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  
+  .footer-newsletter p {
+    color: #ccc;
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+  }
+  
+  .footer-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .footer-form input[type="email"] {
+    padding: 14px 18px;
+    border-radius: 8px;
+    border: none;
+    background: #232323;
+    color: #fff;
+    font-size: 1rem;
+    width: 70%;
+  }
+  
+  .footer-form button {
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: none;
+    background: #6366f1;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .footer-form button:hover {
+    background: #4f46e5;
+  }
+  
+  .footer-main {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin: 56px 0 36px 0;
+    flex-wrap: wrap;
+  }
+  
+  .footer-col {
+    min-width: 200px;
+    max-width: 300px;
+  }
+  
+  .footer-col h4 {
+    font-size: 1.08rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+  
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-col ul li {
+    margin-bottom: 8px;
+    color: #ccc;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .footer-col ul li:hover {
+    color: #fff;
+  }
+  
+  .footer-col p {
+    color: #ccc;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid #232323;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 6vw 0 6vw;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-logo {
+    height: 40px;
+  }
+  
+  .footer-avatars {
+    display: flex;
+    gap: -8px;
+  }
+  
+  .footer-avatars img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 3px solid #232323;
+    margin-left: -16px;
+    background: #fff;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 900px) {
+    .footer-main {
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 0 0 0;
+    }
+  }
+  
