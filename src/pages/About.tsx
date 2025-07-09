@@ -11,19 +11,19 @@ const About = () => {
       name: 'Pastor Sarah Johnson',
       role: 'Leading SOM church for millennials',
       description: 'Professional SOM guidance for millennials and the next generation.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
+      image: 'src/assets/person1.JPG'
     },
     {
       name: 'Pastor Michael Chen',
       role: 'Pastor Michael Chen',
       description: 'General Superintendent of evangelism, missions, and outreach for all SOM.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
+      image: 'src/assets/person2.JPG'
     },
     {
       name: 'Pastor Emily Rodriguez',
       role: 'Pastor Emily Rodriguez',
       description: 'Engaging theological advancement and engaging with contemporary millennials.',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop'
+      image: 'src/assets/person3.JPG'
     }
   ];
 
@@ -47,17 +47,17 @@ const About = () => {
       <section 
         className="relative py-32"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=6000&auto=format&fit=crop")',
+          backgroundImage: 'url("src/assets/som.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h1 className="text-5xl lg:text-5xl font-bold text-white mb-6">
             About Us
           </h1>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+          <p className="text-l text-gray-200 max-w-3xl mx-auto">
             Equipping our young believers and building truly transformational communities
           </p>
         </div>
