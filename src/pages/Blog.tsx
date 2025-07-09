@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Newsletter } from '../components/Newsletter';
 import { Button } from '@/components/ui/button';
+import europe from '../assets/europe.jpg'
 
 const Blog = () => {
   const blogPosts = [
@@ -50,7 +51,7 @@ const Blog = () => {
             <div 
               className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]"
               style={{
-                backgroundImage: 'url("https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=6000&auto=format&fit=crop")',
+                backgroundImage: `url(${europe})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
@@ -65,11 +66,11 @@ const Blog = () => {
               </div>
               
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                The Future of Sustainable Business: A New Perspective
+                SOM Europe Region Day of Evangelism
               </h2>
               
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Exploring how modern businesses are adapting to meet environmental challenges while maintaining profitability and social impact.
+                During this time of fellowship, the brethren spent time in prayer before hitting the streets for evangelism; spreading the gospel of our Lord Jesus through our messenger angel throughout every nook and cranny of the city. Consequently, this spirit inspired outreach raked souls into the kingdom of our Lord Jesus Christ. Glory to God! 
               </p>
               
               <div className="flex items-center space-x-4 mb-6">

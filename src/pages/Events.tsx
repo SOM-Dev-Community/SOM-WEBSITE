@@ -4,6 +4,7 @@ import { Footer } from '../components/Footer';
 import { Newsletter } from '../components/Newsletter';
 import { Button } from '@/components/ui/button';
 import { Clock } from 'lucide-react';
+import {heroImage, image1, image2, image3, image4, image5, image6, image7, image8} from '../assets/galleryPicturesExports';
 
 const Events = () => {
   const upcomingEvents = [
@@ -37,14 +38,14 @@ const Events = () => {
   ];
 
   const pastEvents = [
-    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop'
+    image1,
+    image2,
+    image3,
+    image4,
+    image5,
+    image6,
+    image7,
+    image8
   ];
 
   return (
@@ -55,7 +56,7 @@ const Events = () => {
       <section 
         className="relative py-32"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=6000&auto=format&fit=crop")',
+          backgroundImage: `url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
