@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '@/assets/logo-sm.png';
 import { Facebook, Twitter, Instagram, Youtube, Linkedin } from 'lucide-react';
 
 export const Footer = () => {
@@ -22,14 +23,14 @@ export const Footer = () => {
             <p className="text-gray-300 leading-relaxed mb-4">
               The place where you discover your purpose, passion, and power to live out the God-life.
             </p>
-            <div className="text-2xl font-bold text-amber-600">
-              SOM
-            </div>
+            <Link to="/" className="flex items-center">
+              <img src={logo} alt="SOM Logo" className="h-20 w-auto" />
+            </Link>
           </div>
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">QUICKLINKS</h3>
+            <h3 className="text-xl font-bold mb-4">QUICK LINKS</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/blog" className="text-gray-300 hover:text-white transition-colors">
@@ -73,12 +74,12 @@ export const Footer = () => {
                 const IconComponent = social.icon;
                 return (
                   <a
-                    key={social.label}
-                    href={social.href}
-                    className="bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition-colors"
-                    aria-label={social.label}
+                    // key={social.label}
+                    // href={social.href}
+                    // className="bg-gray-800 hover:bg-gray-700 p-2 rounded-full transition-colors"
+                    // aria-label={social.label}
                   >
-                    <IconComponent className="h-5 w-5" />
+                    {/* <IconComponent className="h-5 w-5" /> */}
                   </a>
                 );
               })}
