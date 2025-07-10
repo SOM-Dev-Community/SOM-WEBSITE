@@ -6,7 +6,7 @@ export const Hero = () => {
     <section 
       className="relative min-h-screen flex items-center justify-center"
       style={{
-        backgroundImage: 'url("src/assets/banner-2.jpg")',
+        backgroundImage: 'url("assets/banner-2.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}

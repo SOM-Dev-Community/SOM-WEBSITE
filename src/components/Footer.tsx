@@ -65,7 +65,7 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4">CONTACT US</h3>
             <div className="space-y-2 text-gray-300">
               <p>+234 000 000 000</p>
-              <p>@loveworldsonsofministry.org</p>
+              <p>info@loveworldsonsofministry.org</p>
             </div>
             
             {/* Social Media */}
