@@ -36,7 +36,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,10 +45,10 @@ const Blog = () => {
               SOM IMPACT BLOG
             </h1>
           </div>
-          
+
           {/* Featured Article */}
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div 
+            <div
               className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]"
               style={{
                 backgroundImage: `url(${europe})`,
@@ -56,7 +56,7 @@ const Blog = () => {
                 backgroundPosition: 'center'
               }}
             ></div>
-            
+
             <div>
               <div className="flex items-center space-x-4 mb-4">
                 <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -64,18 +64,18 @@ const Blog = () => {
                 </span>
                 <span className="text-gray-500 text-sm">March 15, 2025</span>
               </div>
-              
+
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
                 SOM Europe Region Day of Evangelism
               </h2>
-              
+
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 During this time of fellowship, the brethren spent time in prayer before hitting the streets for evangelism; spreading the gospel of our Lord Jesus through our messenger angel throughout every nook and cranny of the city. Consequently, this spirit inspired outreach raked souls into the kingdom of our Lord Jesus Christ. Glory to God! 
               </p>
-              
+
               <div className="flex items-center space-x-4 mb-6">
                 <div className="flex items-center space-x-2">
-                  <img 
+                  <img
                     src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
                     alt="Sarah Johnson"
                     className="w-8 h-8 rounded-full"
@@ -86,7 +86,7 @@ const Blog = () => {
                   </div>
                 </div>
               </div>
-              
+
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md">
                 Read More →
               </Button>
@@ -98,12 +98,10 @@ const Blog = () => {
       {/* Explore Topics */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Explore Topics
-            </h2>
-            
-            <div className="flex space-x-4">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-12 space-y-4 sm:space-y-0">
+            <h2 className="text-3xl font-bold text-gray-900">Explore Topics</h2>
+
+            <div className="flex flex-wrap gap-2 sm:gap-4">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
                 All Posts
               </Button>
@@ -118,32 +116,33 @@ const Blog = () => {
               </Button>
             </div>
           </div>
-          
+
+
           <div className="grid md:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-                <div 
+                <div
                   className="h-48 bg-cover bg-center"
                   style={{ backgroundImage: `url(${post.image})` }}
                 ></div>
-                
+
                 <div className="p-6">
                   <div className="text-blue-600 text-sm font-semibold mb-2">
                     {post.category}
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {post.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                     {post.description}
                   </p>
-                  
+
                   <div className="flex items-center space-x-2 text-sm text-gray-500">
                     <div className="flex items-center space-x-2">
-                      <img 
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=32&auto=format&fit=crop" 
+                      <img
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=32&auto=format&fit=crop"
                         alt={post.author}
                         className="w-6 h-6 rounded-full"
                       />
@@ -156,7 +155,7 @@ const Blog = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-12">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md">
               Load More Articles
