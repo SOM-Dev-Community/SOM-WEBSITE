@@ -47,7 +47,7 @@ const About = () => {
       <section 
         className="relative py-32"
         style={{
-          backgroundImage: 'url("src/assets/som.webp")',
+          backgroundImage: 'url("assets/som.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
