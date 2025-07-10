@@ -19,19 +19,19 @@ const PreachersKidsNetwork = () => {
       name: 'Sam Christian',
       role: 'PK, Ohio',
       content: 'Being part of SOM has been instrumental in my spiritual journey and development as a young minister.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
+      image: 'src/assets/person1.JPG'
     },
     {
       name: 'Pastor Michael Chen',
       role: 'PK Director',
       content: 'It\'s always refreshing to meet youth ready to make a difference in their communities.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
+      image: 'src/assets/person2.JPG'
     },
     {
       name: 'Pastor Emily Rodriguez',
       role: 'Special Coordinator',
       content: 'Engaging the next generation through biblical teachings is our top priority.',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop'
+      image: 'src/assets/person3.JPG'
     }
   ];
 
@@ -102,7 +102,7 @@ const PreachersKidsNetwork = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-bold mb-8">
-              Testimony Section
+              Preahers Kid's Network
             </h1>
           </div>
           
