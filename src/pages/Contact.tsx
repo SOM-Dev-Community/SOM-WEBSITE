@@ -41,7 +41,7 @@ const Contact = () => {
       <section 
         className="relative py-32"
         style={{
-          backgroundImage: 'url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=6000&auto=format&fit=crop")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
