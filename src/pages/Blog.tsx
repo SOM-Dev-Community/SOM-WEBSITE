@@ -81,7 +81,7 @@ const Blog = () => {
                     className="w-8 h-8 rounded-full"
                   />
                   <div>
-                    <p className="font-semibold text-gray-900">Sarah Johnson</p>
+                    <p className="font-semibold text-gray-900">Pastor Jerry</p>
                     <p className="text-sm text-gray-500">Chief Editor</p>
                   </div>
                 </div>
