@@ -37,15 +37,15 @@ export const EventsSection = () => {
 
         <div className="space-y-6">
           {[{
-            title: "Leadership Summit",
+            title: "SOMC 2025",
             desc: "Join us for a powerful evening with God's word and fellowship",
             image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop"
           }, {
-            title: "Family Retreat",
+            title: " August Global Communion Service",
             desc: "Join us for a powerful evening with God's word and fellowship",
             image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop"
           }, {
-            title: "Youth Conference",
+            title: "Healing Streams Live Healing Service",
             desc: "Inspire the next generation as dynamic traditional gatherings",
             image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop"
           }].map(({ title, desc, image }) => (

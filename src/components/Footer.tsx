@@ -19,9 +19,12 @@ export const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* About Us */}
           <div>
-            <h3 className="text-xl font-bold mb-4">ABOUT US</h3>
+            <h3 className="text-xl font-bold mb-4">Who We Are</h3>
             <p className="text-gray-300 leading-relaxed mb-4">
-              The place where you discover your purpose, passion, and power to live out the God-life.
+              Loveworld Sons of Ministry.<br></br>
+              The Loveworld Sons of Ministry is an organization, birthed by our man of God, Reverend Dr. Chris Oyakhilome DSc. DD, by the inspiration of the Holy Spirit and is a product of a global ministry called Christ Embassy.
+              The Loveworld Sons of Ministry is a global family, made up of Pastors’ children in Christ Embassy and in other ministries from all around the world. It is a mandate of the Spirit for young preachers’ children all around the world, with the intent of bringing them to the knowledge of who they are in Christ and their vital role in ministry and the spread of the gospel.
+              The SOM family stands to encourage and inspire every member in love, showing them that truly, we are a ministry soaked in Gods Word from inception and a product of the commitment and dedication of our Parents to the ministry of our Lord Jesus.
             </p>
             <Link to="/" className="flex items-center">
               <img src={logo} alt="SOM Logo" className="h-20 w-auto" />
