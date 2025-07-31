@@ -23,7 +23,8 @@ export const Footer = () => {
             <p className="text-gray-300 leading-relaxed mb-4">
               Loveworld Sons of Ministry.<br></br>
               Loveworld Sons of Ministry
-Founded by Rev. Dr. Chris Oyakhilome, SOM is a global Christ Embassy family uniting pastors’ children to embrace their identity in Christ and spread the gospel.
+Founded by Rev. Dr. Chris Oyakhilome, SOM is a global Christ Embassy network uniting pastors’ children to embrace their identity in Christ and share the gospel.
+
             </p>
             <Link to="/" className="flex items-center">
               <img src={logo} alt="SOM Logo" className="h-20 w-auto" />
