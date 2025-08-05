@@ -1,46 +1,54 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
   return (
-    <section 
-      className="relative min-h-screen flex items-center justify-center"
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
       style={{
         backgroundImage: 'url("assets/banner-2.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
       }}
     >
-      <div className="absolute inset-0 bg-black/60"></div>
-      
-      <div className="relative z-10 max-w-4xl mx-auto px-4 text-left text-white">
-        <h1 className="text-5xl md:text-4xl font-bold mb-6 leading-tight">
-          Discover Your Path
-          <br />
-          with SOM Today!
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90 backdrop-blur-sm" />
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-6xl px-6 sm:px-10 text-white text-center animate-fade-in-up">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
+          <span className="block animate-slide-in-left">LOVEWORLD SONS</span>
+          <span className="block animate-slide-in-right delay-150">OF MINISTRY</span>
         </h1>
-        
-        <p className="text-xl md:text-l mb-8 max-w-3xl leading-relaxed">
-          Empowering a new generation of ministry leaders through comprehensive 
-          biblical education and transformative spiritual growth experiences.
+
+        <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed text-white/90 drop-shadow-md animate-fade-in delay-300">
+          Raising Minister's Children For The Expansion Of The Gospel.
         </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-start">
-          <Button 
-            size="lg" 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-md text-lg font-semibold"
+
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-5 animate-fade-in delay-500">
+          <Button
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-xl transition-all duration-300 hover:scale-105"
           >
             Get Started
           </Button>
-          
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-2 border-white text-gray-900 hover:bg-white hover:text-gray-900 px-8 py-4 rounded-md text-lg font-semibold"
-          >
-            Watch Video
-          </Button>
+
+          <a href="https://youtu.be/BgThdE78jx8" target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white text-white hover:bg-white hover:text-blue-700 px-8 py-4 text-lg font-semibold rounded-xl shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Watch Video
+            </Button>
+          </a>
         </div>
+      </div>
+
+      {/* Scroll Indicator or Events Anchor */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in-up delay-700">
+        <a href="#events" className="text-white/80 hover:text-white text-sm tracking-wider">
+          ↓ Scroll to Events
+        </a>
       </div>
     </section>
   );

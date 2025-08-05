@@ -21,10 +21,9 @@ export const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Who We Are</h3>
             <p className="text-gray-300 leading-relaxed mb-4">
-              Loveworld Sons of Ministry.<br></br>
-              Loveworld Sons of Ministry
-Founded by Rev. Dr. Chris Oyakhilome, SOM is a global Christ Embassy network uniting pastors’ children to embrace their identity in Christ and share the gospel.
-
+              
+              <strong>Loveworld SOM</strong><br></br>
+Founded by Rev. Dr. Chris Oyakhilome, uniting pastors’ children to know Christ and share the gospel.
             </p>
             <Link to="/" className="flex items-center">
               <img src={logo} alt="SOM Logo" className="h-20 w-auto" />
@@ -92,7 +91,7 @@ Founded by Rev. Dr. Chris Oyakhilome, SOM is a global Christ Embassy network uni
         
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>© 2025 loveworldsonsofministry - All Rights Reserved.</p>
+          <em><p>© 2025 loveworld sons of ministry - All Rights Reserved.</p></em>
         </div>
       </div>
     </footer>
