@@ -5,6 +5,13 @@ import { Newsletter } from '../components/Newsletter';
 import { Button } from '@/components/ui/button';
 import { Clock } from 'lucide-react';
 
+import image1 from '@/assets/one.jpg';
+import image2 from '@/assets/two.jpg';
+import image3 from '@/assets/three.jpg';
+import image4 from '@/assets/four.jpg';
+import image5 from '@/assets/five.jpg';
+import image6 from '@/assets/six.jpg';
+
 const Events = () => {
   const upcomingEvents = [
     {
@@ -39,10 +46,22 @@ const Events = () => {
   return (
     <>
       <Header />
+
+      {/* Page Title Section */}
+      <section className="bg-gradient-to-r from-blue-50 via-white to-blue-50 py-20 px-6 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl font-extrabold text-blue-900 mb-4 tracking-tight">Experience the Spirit</h1>
+          <p className="text-xl text-blue-700 max-w-2xl mx-auto">
+            Be a part of upcoming global events, and relive the highlights of past gatherings with other believers.
+          </p>
+        </div>
+      </section>
+
+      {/* Upcoming Events Section */}
       <section className="bg-white text-blue-900 py-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-5xl font-extrabold mb-4 tracking-tight">Upcoming Events</h2>
-          <p className="text-xl mb-12 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 tracking-tight">Upcoming Events</h2>
+          <p className="text-lg mb-12 max-w-2xl mx-auto">
             Join millions of believers around the world for spirit-filled, life-transforming moments.
           </p>
 
@@ -73,6 +92,29 @@ const Events = () => {
           </div>
         </div>
       </section>
+
+      {/* Moments Captured / Event Highlights */}
+      <section className="bg-gray-50 py-20 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-blue-900 mb-6">Moments Captured</h2>
+          <p className="text-blue-700 text-lg mb-12 max-w-2xl mx-auto">
+            Relive the beautiful highlights from our past events filled with joy, worship, and fellowship.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {[image1, image2, image3, image4, image5, image6].map((img, index) => (
+              <div key={index} className="overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src={img}
+                  alt={`Event highlight ${index + 1}`}
+                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Newsletter />
       <Footer />
     </>
