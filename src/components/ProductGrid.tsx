@@ -6,31 +6,31 @@ export const ProductGrid = () => {
     {
       title: 'Discover the Best Resources for Your Spiritual Journey',
       description: 'Our array of spiritual products, including insights and revelations...',
-      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=400&auto=format&fit=crop',
+      image: 'src/assets/Worship.JPG',
       buttonText: 'Learn More'
     },
     {
       title: 'SOMLA: Your Gateway to Spiritual Growth and Learning',
       description: 'Word ministries focused on the teachings of Jesus...',
-      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop',
+      image: 'src/assets/SOMLA.jpg',
       buttonText: 'Sign Up'
     },
     {
       title: 'SOM TV: Inspiring Content for Your Spiritual Journey',
       description: 'Watch inspiring content that enriches your spiritual experience...',
-      image: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=400&auto=format&fit=crop',
+      image: 'src/assets/Evang.JPG',
       buttonText: 'Watch'
     },
     {
       title: '4:12 Podcast: Your Gateway to learning and entertainment',
       description: 'Start inspiring prayers in various spoken and gathered churches...',
-      image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=400&auto=format&fit=crop',
+      image: 'src/assets/set.JPG',
       buttonText: 'Listen'
     },
     {
       title: "Preacher's Kid Magazine",
       description: 'An innovative and progressive brand, with excellence and power in our approach and attitude to life',
-      image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
+      image: 'src/assets/PKF.png',
       buttonText: 'Learn more'
     }
   ];

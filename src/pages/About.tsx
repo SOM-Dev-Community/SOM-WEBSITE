@@ -8,35 +8,32 @@ import { Play } from 'lucide-react';
 const About = () => {
   const teamMembers = [
     {
-      name: 'Pastor Sarah Johnson',
-      role: 'Leading SOM church for millennials',
-      description: 'Professional SOM guidance for millennials and the next generation.',
-      image: '/person1.JPG',
+      name: 'Pastor Sandra Meduteni',
+      role: 'Director of SOM',
+      image: 'src/assets/Director.JPG',
     },
     {
-      name: 'Pastor Michael Chen',
-      role: 'Pastor Michael Chen',
-      description: 'General Superintendent of evangelism, missions, and outreach for all SOM.',
-      image: '/person2.JPG',
+      name: 'Pastor Chris Oyakhilome',
+      role: 'President of Loveworld Nation',
+      image: 'src/assets/President.JPG',
     },
     {
-      name: 'Pastor Emily Rodriguez',
-      role: 'Pastor Emily Rodriguez',
-      description: 'Engaging theological advancement and engaging with contemporary millennials.',
-      image: '/person3.JPG',
+      name: 'Pastor Ebose',
+      role: 'SOM Coordinator',
+      image: 'src/assets/PEA.JPG',
     },
   ];
 
   const activities = [
-    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop',
+    'src/assets/PKS3.jpg',
+    'src/assets/PKS1.jpg',
+    'src/assets/PKS2.jpg',
+    'src/assets/B1.JPG',
+    'src/assets/B2.JPG',
+    'src/assets/B3.JPG',
+    'src/assets/WSA1.JPG',
+    'src/assets/WSA2.JPG',
+    'src/assets/WSA3.JPG',
   ];
 
   return (
@@ -46,7 +43,7 @@ const About = () => {
       {/* Hero Section */}
       <section
         className="relative py-32 bg-cover bg-center"
-        style={{ backgroundImage: 'url("assets/banner-2.jpg")' }}
+        style={{ backgroundImage: 'url("src/assets/front.JPG")' }}
       >
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
@@ -63,7 +60,7 @@ const About = () => {
           <div
             className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9]"
             style={{
-              backgroundImage: 'url("https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=6000&auto=format&fit=crop")',
+              backgroundImage: 'url("src/assets/back.JPG")',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -109,16 +106,19 @@ const About = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <div key={index} className="text-center">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-lg">
+                <div
+                  className={`mx-auto mb-4 rounded-full overflow-hidden shadow-lg ${
+                  index === 1 ? 'w-40 h-40' : 'w-32 h-32'
+                  }`}
+                >
                   <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                 <p className="text-blue-600 font-medium mb-1">{member.role}</p>
-                <p className="text-sm text-gray-600">{member.description}</p>
               </div>
             ))}
           </div>
