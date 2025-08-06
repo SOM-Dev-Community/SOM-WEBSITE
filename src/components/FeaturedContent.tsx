@@ -62,7 +62,7 @@ export const FeaturedContent = () => {
 
               {/* Play Button */}
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <button className="bg-white/20 backdrop-blur-sm hover:bg-white/30 p-6 rounded-full transition-all duration-300 group-hover:scale-110">
+                <button type='button' title='Play' className="bg-white/20 backdrop-blur-sm hover:bg-white/30 p-6 rounded-full transition-all duration-300 group-hover:scale-110">
                   <Play
                     className="w-12 h-12 text-white transition-transform"
                     fill="white"

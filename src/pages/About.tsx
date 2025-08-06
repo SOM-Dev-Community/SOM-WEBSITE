@@ -45,14 +45,14 @@ const About = () => {
       
       {/* Hero Section */}
       <section 
-        className="relative py-32"
+        className="relative py-32 min-h-[60vh]"
         style={{
           backgroundImage: 'url("assets/som.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl lg:text-5xl font-bold text-white mb-6">
             About Us
@@ -61,7 +61,7 @@ const About = () => {
             Equipping our young believers and building truly transformational communities
           </p>
         </div>
-      </section>
+      </section>  
 
       {/* Experience SOM Video Section */}
       <section className="py-20 bg-gray-50">
@@ -77,7 +77,7 @@ const About = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             
             <div className="absolute inset-0 flex items-center justify-center">
-              <button className="bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-300 rounded-full p-8 group">
+              <button title='play' type='button' className="bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-300 rounded-full p-8 group">
                 <Play className="h-16 w-16 text-white group-hover:scale-110 transition-transform" fill="white" />
               </button>
             </div>

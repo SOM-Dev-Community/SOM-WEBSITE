@@ -45,23 +45,28 @@ export const ProductGrid = () => {
           </h2>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product, index) => (
-            <div key={index} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <div 
+            <div
+              key={index}
+              className="flex flex-col bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow w-full h-full"
+            >
+              <div
                 className="h-48 bg-cover bg-center"
                 style={{ backgroundImage: `url(${product.image})` }}
               ></div>
-              <div className="p-6">
+              <div className="flex flex-col flex-1 p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {product.title}
                 </h3>
                 <p className="text-gray-600 mb-4 text-sm">
                   {product.description}
                 </p>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
-                  {product.buttonText}
-                </Button>
+                <div className="mt-auto">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+                    {product.buttonText}
+                  </Button>
+                </div>
               </div>
             </div>
           ))}

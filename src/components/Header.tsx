@@ -1,117 +1,85 @@
-
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import logo from '@/assets/logo-sm.png';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo-sm.png";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
+  const navLinks = [
+    { link: "/", label: "Home" },
+    { link: "/about", label: "About Us" },
+    { link: "/preachers", label: "Preachers Kids Network" },
+    { link: "/explore", label: "Explore" },
+    { link: "/blog", label: "Blog" },
+    { link: "/events", label: "Live Events" },
+  ];
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full md:w-11/12 shadow-xl sm:rounded-3xl border border-white/30 bg-gradient-to-br from-white/30 via-white/10 to-white/5 backdrop-blur-2xl sm:mt-5 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-              <img src={logo} alt="SOM Logo" className="h-20 w-auto" />
+              <img
+                src={logo}
+                alt="SOM Logo"
+                className="h-14 w-auto drop-shadow-lg rounded-xl"
+              />
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <Link to="/" className="text-black hover:text-blue-600 transition-colors">
-              Home
-            </Link>
-            <Link to="/about" className="text-black hover:text-blue-600 transition-colors">
-              About Us
-            </Link>
-            <Link to="/preachers" className="text-black hover:text-blue-600 transition-colors">
-              Preachers Kids Network
-            </Link>
-            <Link to="/explore" className="text-black hover:text-blue-600 transition-colors">
-              Explore
-            </Link>
-            <Link to="/blog" className="text-black hover:text-blue-600 transition-colors">
-              Blog
-            </Link>
-            <Link to="/events" className="text-black hover:text-blue-600 transition-colors">
-              Live Events
-            </Link>
+          <nav className="hidden lg:flex space-x-6">
+            {navLinks.map(({ link, label }) => (
+              <Link
+                key={link}
+                to={link}
+                className="text-blue-400 font-semibold hover:text-blue-600 transition-colors px-2 py-1 rounded-lg hover:bg-blue-50/40"
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
 
           {/* Contact Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link to="/contact">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full">
+              <Button className="bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white px-6 py-2 rounded-full shadow-md font-semibold transition-all duration-200">
                 Contact Us
               </Button>
             </Link>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={toggleMenu}
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-blue-700 hover:text-blue-900 transition-colors p-2 rounded-lg"
+              aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white shadow-lg z-40">
+          <div className="lg:hidden absolute top-20 left-0 right-0 bg-gradient-to-br from-white/80 via-white/60 to-white/30 backdrop-blur-xl shadow-2xl rounded-3xl border-t border-white/30 z-40 animate-fade-in">
             <nav className="py-4 px-4 space-y-2">
-              <Link
-                to="/"
-                className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                About Us
-              </Link>
-              <Link
-                to="/preachers"
-                className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Preachers Kids Network
-              </Link>
-              <Link
-                to="/explore"
-                className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Explore
-              </Link>
-              <Link
-                to="/blog"
-                className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Blog
-              </Link>
-              <Link
-                to="/events"
-                className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Live Events
-              </Link>
+              {navLinks.map(({ link, label }) => (
+                <Link
+                  key={link}
+                  to={link}
+                  className="block py-2 px-3 text-gray-700 font-semibold rounded-lg hover:bg-blue-50/40 hover:text-blue-600 transition-colors"
+                >
+                  {label}
+                </Link>
+              ))}
               <div className="pt-4">
                 <Link to="/contact" onClick={toggleMenu}>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-full">
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-full shadow font-semibold transition-all duration-200">
                     Contact Us
                   </Button>
                 </Link>

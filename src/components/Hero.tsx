@@ -11,7 +11,7 @@ export const Hero = () => {
       }}
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/5 to-black/90 backdrop-blur-0" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl px-6 sm:px-10 text-white text-center animate-fade-in-up">
@@ -36,7 +36,7 @@ export const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-blue-700 px-8 py-4 text-lg font-semibold rounded-xl shadow-xl transition-all duration-300 hover:scale-105"
+              className="border-white text-blue-700 hover:bg-white hover:text-blue-700 px-8 py-4 text-lg font-semibold rounded-xl shadow-xl transition-all duration-300 hover:scale-105"
             >
               Watch Video
             </Button>
@@ -46,8 +46,9 @@ export const Hero = () => {
 
       {/* Scroll Indicator or Events Anchor */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in-up delay-700">
-        <a href="#events" className="text-white/80 hover:text-white text-sm tracking-wider">
-          ↓ Scroll to Events
+        <a href="#events" className="text-white/80 hover:text-white text-sm tracking-wider flex items-center gap-2">
+          <span className="inline-block animate-bounce delay-75">↓</span>
+          <span>Scroll to Events</span>
         </a>
       </div>
     </section>
