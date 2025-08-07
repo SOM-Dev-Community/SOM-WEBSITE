@@ -3,7 +3,6 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Newsletter } from '../components/Newsletter';
 import { Button } from '@/components/ui/button';
-import europe from '../assets/europe.jpg';
 
 const Blog = () => {
   const blogPosts = [
@@ -15,7 +14,7 @@ const Blog = () => {
       date: 'March 10, 2025',
       category: 'News Update',
       image:
-        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
+        'https://i.postimg.cc/CMCS1ryz/WSA3.jpg',
     },
     {
       title: 'Innovation Summit Highlights',
@@ -25,7 +24,7 @@ const Blog = () => {
       date: 'March 5, 2025',
       category: 'Event Recap',
       image:
-        'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop',
+        'https://i.postimg.cc/vZ0mmqVW/PKS1.jpg',
     },
     {
       title: 'Changemaker Series: Emma White',
@@ -35,7 +34,7 @@ const Blog = () => {
       date: 'March 1, 2025',
       category: 'Interview',
       image:
-        'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop',
+        'https://i.postimg.cc/NjsMBq5s/PKF.png',
     },
   ];
 
@@ -56,7 +55,7 @@ const Blog = () => {
             <div
               className="rounded-2xl overflow-hidden shadow-xl aspect-[4/3]"
               style={{
-                backgroundImage: `url(${europe})`,
+                backgroundImage: `url("https://i.postimg.cc/9fxwvXbH/europe.jpg")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}

@@ -7,19 +7,19 @@ export const EventsSection = () => {
       title: "SOMC 2025",
       desc: "Join us for a powerful evening with God's word and fellowship.",
       image:
-        "src/assets/DSF3080.JPG",
+        "https://i.postimg.cc/DZHJwCRC/DSF3080.jpg",
     },
     {
       title: "August Global Communion Service",
       desc: "A divine moment to fellowship in the Spirit and partake in communion together.",
       image:
-        "src/assets/images.jpeg",
+        "https://i.postimg.cc/HnbxsTwx/images.jpg",
     },
     {
       title: "Healing Streams Live Healing Service",
       desc: "Experience miracles and divine healing with Pastor Chris — invite others too.",
       image:
-        "src/assets/HSLHS.jpeg",
+        "https://i.postimg.cc/76Fhk5Td/HSLHS.jpg",
     },
   ];
 

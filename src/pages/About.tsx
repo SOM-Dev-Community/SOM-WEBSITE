@@ -10,30 +10,30 @@ const About = () => {
     {
       name: 'Pastor Sandra Meduteni',
       role: 'Director of SOM',
-      image: 'src/assets/Director.JPG',
+      image: 'https://i.postimg.cc/Cxg88Q5X/Director.jpg',
     },
     {
       name: 'Pastor Chris Oyakhilome',
       role: 'President of Loveworld Nation',
-      image: 'src/assets/President.JPG',
+      image: 'https://i.postimg.cc/gkDzMS4f/President.jpg',
     },
     {
       name: 'Pastor Ebose',
       role: 'SOM Coordinator',
-      image: 'src/assets/PEA.JPG',
+      image: 'https://i.postimg.cc/7YM6FYPt/PEA.jpg',
     },
   ];
 
   const activities = [
-    'src/assets/PKS3.jpg',
-    'src/assets/PKS1.jpg',
-    'src/assets/PKS2.jpg',
-    'src/assets/B1.JPG',
-    'src/assets/B2.JPG',
-    'src/assets/B3.JPG',
-    'src/assets/WSA1.JPG',
-    'src/assets/WSA2.JPG',
-    'src/assets/WSA3.JPG',
+    'https://i.postimg.cc/G2y3qbSQ/PKS3.jpg',
+    'https://i.postimg.cc/vZ0mmqVW/PKS1.jpg',
+    'https://i.postimg.cc/1z43VGGb/PKS2.jpg',
+    'https://i.postimg.cc/pVmKMj3G/B1.jpg',
+    'https://i.postimg.cc/SxfMffzs/B2.jpg',
+    'https://i.postimg.cc/NfTT5csR/B3.jpg',
+    'https://i.postimg.cc/Y077RYFr/WSA1.jpg',
+    'https://i.postimg.cc/8P1DrdDw/WSA2.jpg',
+    'https://i.postimg.cc/CMCS1ryz/WSA3.jpg',
   ];
 
   return (
@@ -43,7 +43,7 @@ const About = () => {
       {/* Hero Section */}
       <section
         className="relative py-32 bg-cover bg-center"
-        style={{ backgroundImage: 'url("src/assets/front.JPG")' }}
+        style={{ backgroundImage: 'url("https://i.postimg.cc/q7YMsNQq/front.jpg")' }}
       >
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
@@ -60,7 +60,7 @@ const About = () => {
           <div
             className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9]"
             style={{
-              backgroundImage: 'url("src/assets/back.JPG")',
+              backgroundImage: 'url("https://i.postimg.cc/pdVnG5DB/back.jpg")',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}

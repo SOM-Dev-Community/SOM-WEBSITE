@@ -7,7 +7,7 @@ export const Hero = () => {
       id="hero"
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
       style={{
-        backgroundImage: 'url("src/assets/FOH.JPG")',
+        backgroundImage: 'url("https://i.postimg.cc/cHgC2R6f/FOH.jpg")',
       }}
     >
       {/* Gradient Overlay */}

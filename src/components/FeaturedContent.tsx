@@ -52,7 +52,7 @@ export const FeaturedContent = () => {
               className="relative overflow-hidden rounded-3xl shadow-2xl group aspect-video"
               style={{
                 backgroundImage:
-                  'url("src/assets/six.jpg")',
+                  'url("https://i.postimg.cc/rwZ8TDBj/six.jpg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
