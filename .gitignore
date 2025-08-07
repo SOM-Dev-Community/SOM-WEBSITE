@@ -10,4 +10,7 @@ yarn-error.log
 *.log
 *.swp
 *.swo
+*.jpg
+*.jpeg
+*.png
 *.bak       
