@@ -7,7 +7,7 @@ export const EventsSection = () => {
       title: "SOMC 2025",
       desc: "Join us for a powerful evening with God's word and fellowship.",
       image:
-        "https://i.postimg.cc/DZHJwCRC/DSF3080.jpg",
+        "src/assets/logo-sm.png",
     },
     {
       title: "August Global Communion Service",
@@ -44,11 +44,10 @@ export const EventsSection = () => {
           {["Upcoming", "On-Demand", "Workshops", "Premium"].map((tab, idx) => (
             <Button
               key={tab}
-              className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 ${
-                idx === 0
+              className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 ${idx === 0
                   ? "bg-blue-600 hover:bg-blue-700 text-white"
                   : " bg-transparent text-white hover:bg-gray-800"
-              }`}
+                }`}
             >
               {tab}
             </Button>

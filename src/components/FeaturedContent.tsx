@@ -48,35 +48,17 @@ export const FeaturedContent = () => {
 
           {/* Video Section */}
           <div className="relative animate-fade-in-up delay-200">
-            <div
-              className="relative overflow-hidden rounded-3xl shadow-2xl group aspect-video"
-              style={{
-                backgroundImage:
-                  'url("https://i.postimg.cc/rwZ8TDBj/six.jpg")',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-0 transition-opacity duration-300 group-hover:opacity-90" />
-
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <button type='button' title='Play' className="bg-white/20 backdrop-blur-sm hover:bg-white/30 p-6 rounded-full transition-all duration-300 group-hover:scale-110">
-                  <Play
-                    className="w-12 h-12 text-white transition-transform"
-                    fill="white"
-                  />
-                </button>
-              </div>
-
-              {/* Text Overlay */}
-              <div className="absolute bottom-6 left-6 z-10 text-white drop-shadow-md">
-                <h3 className="text-2xl font-bold mb-1">Experience SOM</h3>
-                <p className="text-white/90 text-sm sm:text-base max-w-sm">
-                  Watch how our Sons of Ministry are transformed through impactful encounters.
-                </p>
-              </div>
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl aspect-video flex items-center justify-center bg-black">
+              <iframe
+                src="https://player.vimeo.com/video/1100719005?h=1a533c78b1"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="SOM Vimeo Video"
+                className="w-full h-full rounded-3xl"
+              ></iframe>
             </div>
           </div>
         </div>

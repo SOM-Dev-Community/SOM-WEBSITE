@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
@@ -46,10 +47,10 @@ export const Hero = () => {
 
       {/* Scroll Indicator or Events Anchor */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in-up delay-700">
-        <a href="#events" className="text-white/80 hover:text-white text-sm tracking-wider flex items-center gap-2">
+        <Link to="#events" className="text-white/80 hover:text-white text-sm tracking-wider flex items-center gap-2">
           <span className="inline-block animate-bounce delay-75">↓</span>
           <span>Scroll to Events</span>
-        </a>
+        </Link>
       </div>
     </section>
   );

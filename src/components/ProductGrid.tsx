@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 export const ProductGrid = () => {
   const products = [
@@ -13,7 +14,8 @@ export const ProductGrid = () => {
       title: 'SOMLA: Your Gateway to Spiritual Growth and Learning',
       description: 'Word ministries focused on the teachings of Jesus...',
       image: 'https://i.postimg.cc/nVqcmcmV/SOMLA.jpg',
-      buttonText: 'Sign Up'
+      buttonText: 'Sign Up',
+      Link: 'https://somla.loveworldsonsofministry.org/'
     },
     {
       title: 'SOM TV: Inspiring Content for Your Spiritual Journey',
@@ -44,7 +46,7 @@ export const ProductGrid = () => {
             Products Tailored for You
           </h2>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product, index) => (
             <div
@@ -63,9 +65,21 @@ export const ProductGrid = () => {
                   {product.description}
                 </p>
                 <div className="mt-auto">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
-                    {product.buttonText}
-                  </Button>
+                  {product.Link ? (
+                    <a
+                      href={product.Link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+                        {product.buttonText}
+                      </Button>
+                    </a>
+                  ) : (
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+                      {product.buttonText}
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

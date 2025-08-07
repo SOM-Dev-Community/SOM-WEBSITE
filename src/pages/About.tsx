@@ -57,26 +57,17 @@ const About = () => {
       {/* Experience SOM */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <div
-            className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9]"
-            style={{
-              backgroundImage: 'url("https://i.postimg.cc/pdVnG5DB/back.jpg")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button title='play' type='button' className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-8 transition-all duration-300 group">
-                <Play className="h-16 w-16 text-white group-hover:scale-110 transition-transform" fill="white" />
-              </button>
-            </div>
-            <div className="absolute bottom-8 left-8 text-white">
-              <h3 className="text-2xl font-semibold mb-1">Experience SOM</h3>
-              <p className="text-lg text-white/90">
-                Watch a transformation of what has made and forms of Ministry a work.
-              </p>
-            </div>
+          <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9] flex items-center justify-center bg-black">
+            <iframe
+              src="https://player.vimeo.com/video/1100718405?h=b886da83be"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title="Experience SOM Vimeo Video"
+              className="w-full h-full rounded-2xl"
+            ></iframe>
           </div>
         </div>
       </section>
