@@ -32,7 +32,7 @@ const Magazine = () => {
               <p className="text-gray-700 text-sm mb-2">16. March 2022</p>
               <div className="rounded-2xl overflow-hidden shadow-lg mb-6">
                 <img
-                  src="src/assets/MAG1.jpg"
+                  src="https://i.postimg.cc/dQ8C5WGm/MAG1.jpg"
                   alt="SOM Magazine 2022"
                   className="w-full h-fulll object-cover"
                 />
@@ -53,7 +53,7 @@ const Magazine = () => {
               <p className="text-gray-700 text-sm mb-2">16. March 2023</p>
               <div className="rounded-2xl overflow-hidden shadow-lg mb-6">
                 <img
-                  src="src/assets/MAG2.jpg"
+                  src="https://i.postimg.cc/fRb0TDpB/MAG2.jpg"
                   alt="SOM Magazine 2023"
                   className="w-full h-full object-cover"
                 />
@@ -73,7 +73,7 @@ const Magazine = () => {
               <p className="text-gray-700 text-sm mb-2">16. March 2024</p>
               <div className="rounded-2xl overflow-hidden shadow-lg mb-6">
                 <img
-                  src="src/assets/MAG3.jpg"
+                  src="https://i.postimg.cc/JzdHsSWm/MAG3.jpg"
                   alt="SOM Magazine 2024"
                   className="w-full h-full object-cover"
                 />
