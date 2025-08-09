@@ -130,9 +130,15 @@ const About = () => {
               <Button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-md">
                 App Store
               </Button>
-              <Button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-md">
-                Play Store
-              </Button>
+              <a
+                href="https://web.lwappstore.com/share/lW-sA-D70-KC946"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-md">
+                  Loveworld App store
+                </Button>
+              </a>
             </div>
           </div>
           <div className="flex justify-center">

@@ -12,7 +12,7 @@ export const Hero = () => {
       }}
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/5 to-black/90 backdrop-blur-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/5 to-black/90 backdrop-blur-0 blur-0" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl px-6 sm:px-10 text-white text-center animate-fade-in-up">
