@@ -13,8 +13,8 @@ const About = () => {
       image: 'https://i.postimg.cc/gkDzMS4f/President.jpg',
     },
     {
-      name: 'Pastor Sandra Meduteni',
-      role: 'SOM Co-ordinator',
+      name: 'Pastor Sandra Oyakhilome Meduteni',
+      role: 'SOM Co-Ordinator',
       image: 'https://i.postimg.cc/Cxg88Q5X/Director.jpg',
     },
   ];
