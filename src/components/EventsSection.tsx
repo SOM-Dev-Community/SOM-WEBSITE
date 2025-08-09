@@ -50,12 +50,13 @@ export const EventsSection = () => {
       title: "SOMLA",
       desc: "Join us in the Sons of Ministry Leadership Academy to enhance your leadership skills.",
       image: "https://i.postimg.cc/nVqcmcmV/SOMLA.jpg",
-      category: "Premium"
+      category: "Premium",
+      Link: "https://somla.loveworldsonsofministry.org/"
     }
   ];
 
-  const tabs = ["Upcoming", "On-Demand", "Workshops", "Premium"];
-  const filteredEvents = eventData.filter(e => e.category === activeTab);
+  const tabs = ["View All", "Upcoming", "On-Demand", "Workshops", "Premium"];
+  const filteredEvents = activeTab === "View All" ? eventData : eventData.filter(e => e.category === activeTab);
 
   return (
     <section className="py-24 bg-black text-white relative overflow-hidden">
@@ -94,7 +95,7 @@ export const EventsSection = () => {
           {filteredEvents.length === 0 ? (
             <div className="text-center text-gray-400">No events found for this category.</div>
           ) : (
-            filteredEvents.map(({ title, desc, image }, idx) => (
+            filteredEvents.map(({ title, desc, image, Link }, idx) => (
               <div
                 key={idx}
                 className="flex flex-col md:flex-row bg-gray-900 border border-white/10 rounded-3xl overflow-hidden shadow-lg hover:shadow-blue-900/40 transition-shadow duration-300"
@@ -108,9 +109,21 @@ export const EventsSection = () => {
                     <h3 className="text-2xl font-bold mb-2">{title}</h3>
                     <p className="text-gray-300 mb-6 lg:w-2/3">{desc}</p>
                   </div>
-                  <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0 md:self-center">
-                    Save My Spot
-                  </Button>
+                  {Link ? (
+                    <a
+                      href={Link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0 md:self-center">
+                        Save My Spot
+                      </Button>
+                    </a>
+                  ) : (
+                    <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0 md:self-center">
+                      Save My Spot
+                    </Button>
+                  )}
                 </div>
               </div>
             ))

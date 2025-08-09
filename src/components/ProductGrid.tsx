@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const ProductGrid = () => {
@@ -65,7 +66,19 @@ export const ProductGrid = () => {
                   {product.description}
                 </p>
                 <div className="mt-auto">
-                  {product.Link ? (
+                  {product.title.toLowerCase().includes('magazine') && product.buttonText.toLowerCase().includes('learn more') ? (
+                    <Link to="/Magazine">
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+                        {product.buttonText}
+                      </Button>
+                    </Link>
+                  ) : product.buttonText.toLowerCase().includes('learn more') ? (
+                    <a href="/LearnMore" target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+                        {product.buttonText}
+                      </Button>
+                    </a>
+                  ) : product.Link ? (
                     <a
                       href={product.Link}
                       target="_blank"
