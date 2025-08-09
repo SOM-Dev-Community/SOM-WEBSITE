@@ -148,9 +148,9 @@ const About = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="w-64 h-96 bg-white rounded-3xl p-4 shadow-2xl flex items-center justify-center">
+            <div className="w-64 h-96 bg-none rounded-3xl p-4 flex items-center justify-center">
               <img
-                  src="https://i.postimg.cc/8P46SjK7/Phone-View.jpg"
+                  src="https://i.postimg.cc/fLMbR0kR/Phone-View-removebg-preview.png"
                   alt="SOM Magazine 2022"
                   className="w-full h-fulll object-cover"
                 />
