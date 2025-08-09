@@ -8,14 +8,14 @@ import { Play } from 'lucide-react';
 const About = () => {
   const teamMembers = [
     {
-      name: 'Pastor Sandra Meduteni',
-      role: 'SOM Co-ordinator',
-      image: 'https://i.postimg.cc/Cxg88Q5X/Director.jpg',
-    },
-    {
       name: 'Pastor Chris Oyakhilome',
       role: 'President of Loveworld Nation',
       image: 'https://i.postimg.cc/gkDzMS4f/President.jpg',
+    },
+    {
+      name: 'Pastor Sandra Meduteni',
+      role: 'SOM Co-ordinator',
+      image: 'https://i.postimg.cc/Cxg88Q5X/Director.jpg',
     },
   ];
 
@@ -87,26 +87,33 @@ const About = () => {
 
       {/* Leadership Team */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-5xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Our Leadership Team</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="text-center">
-                <div
-                  className={`mx-auto mb-4 rounded-full overflow-hidden shadow-lg ${
-                  index === 1 ? 'w-40 h-40' : 'w-32 h-32'
-                  }`}
-                >
-                  <img
-                  src={member.image}
-                  alt={member.name}
+          <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
+            {/* President */}
+            <div className="flex flex-col items-center flex-1">
+              <div className="w-56 h-56 rounded-full overflow-hidden shadow-2xl mb-6 border-4 border-blue-600">
+                <img
+                  src={teamMembers[0].image}
+                  alt={teamMembers[0].name}
                   className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                <p className="text-blue-600 font-medium mb-1">{member.role}</p>
+                />
               </div>
-            ))}
+              <h3 className="text-2xl font-bold mb-2">{teamMembers[0].name}</h3>
+              <p className="text-blue-600 font-medium mb-1 text-lg">{teamMembers[0].role}</p>
+            </div>
+            {/* Coordinator */}
+            <div className="flex flex-col items-center flex-1">
+              <div className="w-36 h-36 rounded-full overflow-hidden shadow-xl mb-4 border-2 border-gray-300">
+                <img
+                  src={teamMembers[1].image}
+                  alt={teamMembers[1].name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-semibold mb-1">{teamMembers[1].name}</h3>
+              <p className="text-blue-600 font-medium mb-1">{teamMembers[1].role}</p>
+            </div>
           </div>
         </div>
       </section>
