@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo-sm.png";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +23,7 @@ export const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img
-                src={logo}
+                src="https://i.postimg.cc/1RYxYN01/logo-sm.png"
                 alt="SOM Logo"
                 className="h-14 w-auto drop-shadow-lg rounded-xl"
               />

@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '@/assets/logo-sm.png';
 
 export const Footer = () => {
   return (
@@ -17,7 +16,7 @@ export const Footer = () => {
               Founded by Rev. Dr. Chris Oyakhilome, uniting pastors’ children to know Christ and share the gospel.
             </p>
             <Link to="/" className="flex items-center">
-              <img src={logo} alt="SOM Logo" className="h-20 w-auto" />
+              <img src="https://i.postimg.cc/1RYxYN01/logo-sm.png" alt="SOM Logo" className="h-20 w-auto" />
             </Link>
           </div>
 

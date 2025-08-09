@@ -19,7 +19,7 @@ export const EventsSection = () => {
     },{
       title: "SOMC 2025",
       desc: "Join us for a powerful evening with God's word and fellowship.",
-      image: "src/assets/logo-sm.png",
+      image: "https://i.postimg.cc/1RYxYN01/logo-sm.png",
       category: "On-Demand",
     },
     {
