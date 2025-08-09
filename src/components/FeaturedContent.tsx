@@ -19,7 +19,7 @@ export const FeaturedContent = () => {
             </h2>
 
             <p className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl">
-              Stay updated with <strong className="text-blue-700">Revival Magazine</strong> as we explore deep spiritual truths, life-changing testimonies, and powerful articles that shape our ministry journey.
+              Stay updated with life Transforming Magazines as we explore deep spiritual truths, life-changing testimonies, and powerful articles that shape our ministry journey.
             </p>
 
             {/* Featured Article Card */}
