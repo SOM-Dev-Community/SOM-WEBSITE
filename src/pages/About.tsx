@@ -127,9 +127,15 @@ const About = () => {
               Stay connected with our spiritual content and testimonials anytime, anywhere.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href='https://apps.apple.com/gb/app/som-community/id6474561995'
+                target='_blank'
+                rel='noopener noreferrer'
+                >
               <Button className="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-md">
                 App Store
               </Button>
+              </a>
               <a
                 href="https://web.lwappstore.com/share/lW-sA-D70-KC946"
                 target="_blank"

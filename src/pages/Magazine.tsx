@@ -17,7 +17,7 @@ const Magazine = () => {
           </div>
           <div className="rounded-2xl overflow-hidden shadow-lg">
             <img
-              src="src/assets/B2.JPG"
+              src="https://i.postimg.cc/SxfMffzs/B2.jpg"
               alt="SOM Magazine Cover"
               className="w-[1400px] h-[350px] object-cover"
             />
