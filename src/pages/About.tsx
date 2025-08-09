@@ -8,35 +8,32 @@ import { Play } from 'lucide-react';
 const About = () => {
   const teamMembers = [
     {
-      name: 'Pastor Sarah Johnson',
-      role: 'Leading SOM church for millennials',
-      description: 'Professional SOM guidance for millennials and the next generation.',
-      image: '/person1.JPG',
+      name: 'Pastor Sandra Meduteni',
+      role: 'Director of SOM',
+      image: 'https://i.postimg.cc/Cxg88Q5X/Director.jpg',
     },
     {
-      name: 'Pastor Michael Chen',
-      role: 'Pastor Michael Chen',
-      description: 'General Superintendent of evangelism, missions, and outreach for all SOM.',
-      image: '/person2.JPG',
+      name: 'Pastor Chris Oyakhilome',
+      role: 'President of Loveworld Nation',
+      image: 'https://i.postimg.cc/gkDzMS4f/President.jpg',
     },
     {
-      name: 'Pastor Emily Rodriguez',
-      role: 'Pastor Emily Rodriguez',
-      description: 'Engaging theological advancement and engaging with contemporary millennials.',
-      image: '/person3.JPG',
+      name: 'Pastor Ebose',
+      role: 'SOM Coordinator',
+      image: 'https://i.postimg.cc/7YM6FYPt/PEA.jpg',
     },
   ];
 
   const activities = [
-    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1466442929976-97f336a657be?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop',
+    'https://i.postimg.cc/G2y3qbSQ/PKS3.jpg',
+    'https://i.postimg.cc/vZ0mmqVW/PKS1.jpg',
+    'https://i.postimg.cc/1z43VGGb/PKS2.jpg',
+    'https://i.postimg.cc/pVmKMj3G/B1.jpg',
+    'https://i.postimg.cc/SxfMffzs/B2.jpg',
+    'https://i.postimg.cc/NfTT5csR/B3.jpg',
+    'https://i.postimg.cc/Y077RYFr/WSA1.jpg',
+    'https://i.postimg.cc/8P1DrdDw/WSA2.jpg',
+    'https://i.postimg.cc/CMCS1ryz/WSA3.jpg',
   ];
 
   return (
@@ -46,7 +43,7 @@ const About = () => {
       {/* Hero Section */}
       <section
         className="relative py-32 bg-cover bg-center"
-        style={{ backgroundImage: 'url("assets/banner-2.jpg")' }}
+        style={{ backgroundImage: 'url("https://i.postimg.cc/q7YMsNQq/front.jpg")' }}
       >
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
@@ -60,26 +57,17 @@ const About = () => {
       {/* Experience SOM */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <div
-            className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9]"
-            style={{
-              backgroundImage: 'url("https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=6000&auto=format&fit=crop")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button title='play' type='button' className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-8 transition-all duration-300 group">
-                <Play className="h-16 w-16 text-white group-hover:scale-110 transition-transform" fill="white" />
-              </button>
-            </div>
-            <div className="absolute bottom-8 left-8 text-white">
-              <h3 className="text-2xl font-semibold mb-1">Experience SOM</h3>
-              <p className="text-lg text-white/90">
-                Watch a transformation of what has made and forms of Ministry a work.
-              </p>
-            </div>
+          <div className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9] flex items-center justify-center bg-black">
+            <iframe
+              src="https://player.vimeo.com/video/1100718405?h=b886da83be"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title="Experience SOM Vimeo Video"
+              className="w-full h-full rounded-2xl"
+            ></iframe>
           </div>
         </div>
       </section>
@@ -109,16 +97,19 @@ const About = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <div key={index} className="text-center">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-lg">
+                <div
+                  className={`mx-auto mb-4 rounded-full overflow-hidden shadow-lg ${
+                  index === 1 ? 'w-40 h-40' : 'w-32 h-32'
+                  }`}
+                >
                   <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                 <p className="text-blue-600 font-medium mb-1">{member.role}</p>
-                <p className="text-sm text-gray-600">{member.description}</p>
               </div>
             ))}
           </div>

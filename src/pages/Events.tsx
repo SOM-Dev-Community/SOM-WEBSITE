@@ -48,11 +48,11 @@ const Events = () => {
       <Header />
 
       {/* Page Title Section */}
-      <section className="bg-gradient-to-r from-blue-50 via-white to-blue-50 py-20 px-6 text-center">
+      <section className="bg-gradient-to-r from-blue-50 via-white to-blue-50 py-20 px-6 text-center mt-10">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-extrabold text-blue-900 mb-4 tracking-tight">Experience the Spirit</h1>
           <p className="text-xl text-blue-700 max-w-2xl mx-auto">
-            Be a part of upcoming global events, and relive the highlights of past gatherings with other believers.
+        Be a part of upcoming global events, and relive the highlights of past gatherings with other believers.
           </p>
         </div>
       </section>

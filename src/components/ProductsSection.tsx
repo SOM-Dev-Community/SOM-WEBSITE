@@ -47,32 +47,32 @@ export const ProductsSection = () => {
             Explore Our Products
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover our suite of powerful tools and content designed to 
+            Discover our suite of powerful tools and content designed to
             enrich your spiritual journey.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product, index) => {
             const IconComponent = product.icon;
             return (
-              <div 
+              <div
                 key={product.title}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100"
               >
                 <div className={`${product.bgColor} rounded-2xl p-4 mb-6 inline-block`}>
                   <IconComponent className={`h-8 w-8 text-transparent bg-clip-text bg-gradient-to-r ${product.color}`} />
                 </div>
-                
+
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {product.title}
                 </h3>
-                
+
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {product.description}
                 </p>
-                
-                <Button 
+
+                <Button
                   className={`w-full ${product.buttonColor} text-white py-3 rounded-full font-semibold shadow-md hover:shadow-lg transition-all group`}
                 >
                   Learn More

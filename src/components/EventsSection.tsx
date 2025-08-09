@@ -7,19 +7,19 @@ export const EventsSection = () => {
       title: "SOMC 2025",
       desc: "Join us for a powerful evening with God's word and fellowship.",
       image:
-        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=400&auto=format&fit=crop",
+        "src/assets/logo-sm.png",
     },
     {
       title: "August Global Communion Service",
       desc: "A divine moment to fellowship in the Spirit and partake in communion together.",
       image:
-        "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop",
+        "https://i.postimg.cc/HnbxsTwx/images.jpg",
     },
     {
       title: "Healing Streams Live Healing Service",
       desc: "Experience miracles and divine healing with Pastor Chris — invite others too.",
       image:
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop",
+        "https://i.postimg.cc/76Fhk5Td/HSLHS.jpg",
     },
   ];
 
@@ -44,11 +44,10 @@ export const EventsSection = () => {
           {["Upcoming", "On-Demand", "Workshops", "Premium"].map((tab, idx) => (
             <Button
               key={tab}
-              className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 ${
-                idx === 0
+              className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 ${idx === 0
                   ? "bg-blue-600 hover:bg-blue-700 text-white"
                   : " bg-transparent text-white hover:bg-gray-800"
-              }`}
+                }`}
             >
               {tab}
             </Button>

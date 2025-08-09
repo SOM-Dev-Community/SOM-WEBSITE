@@ -3,7 +3,6 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Newsletter } from '../components/Newsletter';
 import { Button } from '@/components/ui/button';
-import europe from '../assets/europe.jpg';
 import { Link } from 'react-router-dom';
 
 const blogPosts = [
@@ -15,7 +14,7 @@ const blogPosts = [
     author: 'Pastor Gloria',
     date: 'April 20, 2025',
     category: 'Conference',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&auto=format&fit=crop',
+    image: 'https://i.postimg.cc/vZ0mmqVW/PKS1.jpg',
   },
   {
     title: 'Rhapsody of Realities Distribution',
@@ -25,7 +24,7 @@ const blogPosts = [
     author: 'Brother Emmanuel',
     date: 'April 10, 2025',
     category: 'Outreach',
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=400&auto=format&fit=crop',
+    image: 'https://i.postimg.cc/9fxwvXbH/europe.jpg',
   },
   {
     title: 'Eternal Life Confessions',
@@ -35,7 +34,7 @@ const blogPosts = [
     author: 'Sister Anita',
     date: 'April 5, 2025',
     category: 'Faith Lifestyle',
-    image: 'https://images.unsplash.com/photo-1534126511673-b6899657816a?q=80&w=400&auto=format&fit=crop',
+    image: 'https://i.postimg.cc/mkWLnKvG/pastor1.jpg',
   },
 ];
 
@@ -58,7 +57,7 @@ const Blog = () => {
             <div
               className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]"
               style={{
-                backgroundImage: `url(${europe})`,
+                backgroundImage: 'url("https://i.postimg.cc/9fxwvXbH/europe.jpg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}

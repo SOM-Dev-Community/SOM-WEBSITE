@@ -17,7 +17,7 @@ export const Header = () => {
     { link: "/events", label: "Live Events" },
   ];
   return (
-    <header className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full md:w-11/12 shadow-xl sm:rounded-3xl border border-white/30 bg-gradient-to-br from-white/30 via-white/10 to-white/5 backdrop-blur-2xl sm:mt-5 transition-all duration-300">
+    <header className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full md:w-11/12 shadow-xl sm:rounded-3xl border border-white/0 bg-gradient-to-br from-white/30 via-white/10 to-white/5 backdrop-blur-2xl sm:mt-5 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
