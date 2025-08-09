@@ -12,6 +12,7 @@ import Explore from "./pages/Explore";
 import Events from "./pages/Events";
 import PreachersKidsNetwork from "./pages/PreachersKidsNetwork";
 import NotFound from "./pages/NotFound";
+import Magazine from "./pages/Magazine";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/explore" element={<Explore />} />
           <Route path="/events" element={<Events />} />
           <Route path="/preachers" element={<PreachersKidsNetwork />} />
+          <Route path="/Magazine" element={<Magazine />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -9,18 +9,13 @@ const About = () => {
   const teamMembers = [
     {
       name: 'Pastor Sandra Meduteni',
-      role: 'Director of SOM',
+      role: 'SOM Co-ordinator',
       image: 'https://i.postimg.cc/Cxg88Q5X/Director.jpg',
     },
     {
       name: 'Pastor Chris Oyakhilome',
       role: 'President of Loveworld Nation',
       image: 'https://i.postimg.cc/gkDzMS4f/President.jpg',
-    },
-    {
-      name: 'Pastor Ebose',
-      role: 'SOM Coordinator',
-      image: 'https://i.postimg.cc/7YM6FYPt/PEA.jpg',
     },
   ];
 
@@ -135,7 +130,11 @@ const About = () => {
           </div>
           <div className="flex justify-center">
             <div className="w-64 h-96 bg-white rounded-3xl p-4 shadow-2xl flex items-center justify-center">
-              <span className="text-gray-400">Mobile App Preview</span>
+              <img
+                  src="src/assets/PhoneView.jpeg"
+                  alt="SOM Magazine 2022"
+                  className="w-full h-fulll object-cover"
+                />
             </div>
           </div>
         </div>
