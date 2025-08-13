@@ -49,7 +49,7 @@ export const Hero = () => {
             Get Started
           </Button>
 
-          <a href="https://vimeo.com/1100718405/b886da83be" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.kingsch.at/p/cUJHTzd" target="_blank" rel="noopener noreferrer">
             <Button
               variant="outline"
               size="lg"
