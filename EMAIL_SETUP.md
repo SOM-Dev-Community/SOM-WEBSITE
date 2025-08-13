@@ -115,3 +115,4 @@ If you prefer other email services, you can also use:
 - Nodemailer (requires backend)
 
 For production use, consider setting up a backend API to handle email sending more securely.
+

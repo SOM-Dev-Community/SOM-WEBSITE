@@ -63,3 +63,4 @@ const templateId = 'template_abc123'; // Your actual template ID
 
 ## Alternative: Temporary Test Mode
 If you want to test without setting up EmailJS right now, I can modify the component to just show a success message without actually sending emails. Let me know if you'd prefer this option!
+
