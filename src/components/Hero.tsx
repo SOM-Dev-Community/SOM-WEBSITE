@@ -1,8 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
+
+  const navigate = useNavigate();
+
+  const GetStarted = () => {
+    navigate('/Contact');
+  };
+
+  const scrollToEvents = () => {
+    const eventsSection = document.getElementById('events');
+    if (eventsSection) {
+      eventsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -27,13 +42,14 @@ export const Hero = () => {
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-5 animate-fade-in delay-500">
           <Button
+          onClick={GetStarted}
             size="lg"
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-xl transition-all duration-300 hover:scale-105"
           >
             Get Started
           </Button>
 
-          <a href="https://youtu.be/BgThdE78jx8" target="_blank" rel="noopener noreferrer">
+          <a href="https://vimeo.com/1100718405/b886da83be" target="_blank" rel="noopener noreferrer">
             <Button
               variant="outline"
               size="lg"
@@ -47,10 +63,13 @@ export const Hero = () => {
 
       {/* Scroll Indicator or Events Anchor */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-fade-in-up delay-700">
-        <Link to="#events" className="text-white/80 hover:text-white text-sm tracking-wider flex items-center gap-2">
+        <button 
+          onClick={scrollToEvents}
+          className="text-white/80 hover:text-white text-sm tracking-wider flex items-center gap-2 transition-colors duration-300"
+        >
           <span className="inline-block animate-bounce delay-75">↓</span>
           <span>Scroll to Events</span>
-        </Link>
+        </button>
       </div>
     </section>
   );

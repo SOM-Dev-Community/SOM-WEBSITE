@@ -1,8 +1,15 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const FeaturedContent = () => {
+  const navigate = useNavigate();
+
+  const handleReadMore = () => {
+    navigate('/About');
+  };
+
   return (
     <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -41,7 +48,10 @@ export const FeaturedContent = () => {
               </div>
             </div>
 
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold shadow transition hover:scale-105">
+            <Button 
+              onClick={handleReadMore}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold shadow transition hover:scale-105"
+            >
               Read More
             </Button>
           </div>

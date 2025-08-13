@@ -59,7 +59,7 @@ export const EventsSection = () => {
   const filteredEvents = activeTab === "View All" ? eventData : eventData.filter(e => e.category === activeTab);
 
   return (
-    <section className="py-24 bg-black text-white relative overflow-hidden">
+    <section id="events" className="py-24 bg-black text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black/60 to-black/90 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 animate-fade-in lg:w-9/12">
