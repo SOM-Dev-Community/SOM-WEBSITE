@@ -10,12 +10,14 @@ export const EventsSection = () => {
       desc: "A divine moment to fellowship in the Spirit and partake in communion together.",
       image: "https://i.postimg.cc/HnbxsTwx/images.jpg",
       category: "Upcoming",
+      Link: "https://ceflix.org/videos/watch/1885810/august-global-communion-service-with-pastor-chris-[full-rebroadcast]"
     },
     {
       title: "Healing Streams Live Healing Service",
       desc: "Experience miracles and divine healing with Pastor Chris — invite others too.",
       image: "https://i.postimg.cc/76Fhk5Td/HSLHS.jpg",
       category: "Upcoming",
+      Link: "https://healingstreams.tv/live"
     },{
       title: "SOMC 2025",
       desc: "Join us for a powerful evening with God's word and fellowship.",
@@ -116,12 +118,12 @@ export const EventsSection = () => {
                       rel="noopener noreferrer"
                     >
                       <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0 md:self-center">
-                        Save My Spot
+                        Learn More
                       </Button>
                     </a>
                   ) : (
                     <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0 md:self-center">
-                      Save My Spot
+                      Learn More
                     </Button>
                   )}
                 </div>
