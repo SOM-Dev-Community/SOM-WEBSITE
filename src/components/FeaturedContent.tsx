@@ -41,7 +41,7 @@ export const FeaturedContent = () => {
                 </h3>
 
                 <div className="text-sm text-gray-500 flex items-center space-x-2">
-                  <span>By Sarah Johnson</span>
+                  <span>By Pastor Jerry</span>
                   <span>•</span>
                   <span>5 min read</span>
                 </div>

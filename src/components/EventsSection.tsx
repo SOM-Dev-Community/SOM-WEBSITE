@@ -23,6 +23,7 @@ export const EventsSection = () => {
       desc: "Join us for a powerful evening with God's word and fellowship.",
       image: "https://i.postimg.cc/1RYxYN01/logo-sm.png",
       category: "On-Demand",
+      Link: "https://www.kingsch.at/p/cUJHTzd"
     },
     {
       title : "Preachers Kids Summit",

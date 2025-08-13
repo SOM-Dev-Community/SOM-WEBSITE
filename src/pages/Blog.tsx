@@ -80,7 +80,7 @@ const Blog = () => {
               <div className="flex items-center gap-3 mb-6">
                 <img
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
-                  alt="Sarah Johnson"
+                  alt="Pastor Jerry"
                   className="w-10 h-10 rounded-full"
                 />
                 <div>

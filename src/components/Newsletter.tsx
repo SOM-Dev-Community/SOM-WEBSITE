@@ -2,15 +2,82 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail } from 'lucide-react';
+import { Mail, CheckCircle, AlertCircle, User } from 'lucide-react';
 
 export const Newsletter = () => {
-  const [email, setEmail] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', email);
-    setEmail('');
+    
+    if (!formData.name || !formData.email) {
+      setSubmitStatus('error');
+      setMessage('Please fill in both name and email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setMessage('');
+
+    try {
+      // API endpoint - change this to your backend URL
+      const API_URL = process.env.NODE_ENV === 'production' 
+        ? 'https://your-backend-domain.com' 
+        : 'http://localhost:5001';
+
+      const response = await fetch(`${API_URL}/api/newsletter/subscribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success');
+        setMessage(data.message || 'Thank you for subscribing! Check your email for a welcome message.');
+        setFormData({ name: '', email: '' });
+      } else {
+        throw new Error(data.message || 'Failed to subscribe');
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      
+      if (error instanceof Error) {
+        setSubmitStatus('error');
+        setMessage(error.message || 'Sorry, there was an error processing your subscription. Please try again.');
+      } else {
+        setSubmitStatus('error');
+        setMessage('Network error. Please check your connection and try again.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const resetStatus = () => {
+    setSubmitStatus('idle');
+    setMessage('');
   };
 
   return (
@@ -36,21 +103,64 @@ export const Newsletter = () => {
           testimonies, and ways to grow in faith together.
         </p>
 
+        {/* Status Message */}
+        {submitStatus !== 'idle' && (
+          <div className={`max-w-md mx-auto mb-6 p-4 rounded-lg flex items-center gap-3 ${
+            submitStatus === 'success' 
+              ? 'bg-green-500/20 border border-green-500/30 text-green-200' 
+              : 'bg-red-500/20 border border-red-500/30 text-red-200'
+          }`}>
+            {submitStatus === 'success' ? (
+              <CheckCircle className="h-5 w-5 text-green-400" />
+            ) : (
+              <AlertCircle className="h-5 w-5 text-red-400" />
+            )}
+            <span className="text-sm">{message}</span>
+            <button 
+              onClick={resetStatus}
+              className="ml-auto text-xs opacity-70 hover:opacity-100"
+            >
+              ×
+            </button>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Input
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-4 py-3 rounded-full border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder:text-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            />
+          <div className="flex flex-col gap-4">
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="pl-10 px-4 py-3 rounded-full border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder:text-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+            
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="pl-10 px-4 py-3 rounded-full border-white/20 bg-white/10 backdrop-blur-sm text-white placeholder:text-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+            
             <Button
               type="submit"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all whitespace-nowrap"
+              disabled={isSubmitting}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit
+              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
             </Button>
           </div>
         </form>
