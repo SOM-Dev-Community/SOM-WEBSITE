@@ -5,12 +5,12 @@ import { Newsletter } from '../components/Newsletter';
 import { Button } from '@/components/ui/button';
 import { Clock } from 'lucide-react';
 
-import image1 from '@/assets/one.jpg';
-import image2 from '@/assets/two.jpg';
-import image3 from '@/assets/three.jpg';
-import image4 from '@/assets/four.jpg';
-import image5 from '@/assets/five.jpg';
-import image6 from '@/assets/six.jpg';
+import image1 from '@/assets/PKS2.jpg';
+import image2 from '@/assets/WSA3.jpg';
+import image3 from '@/assets/PKS1.jpg';
+import image4 from '@/assets/WSA2.jpg';
+import image5 from '@/assets/B1.jpg';
+import image6 from '@/assets/B2.jpg';
 
 const Events = () => {
   const upcomingEvents = [
