@@ -133,7 +133,7 @@ export const Hero = () => {
 
       {/* Scroll Indicator or Events Anchor */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 w-full flex justify-center items-center"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 2 }}
