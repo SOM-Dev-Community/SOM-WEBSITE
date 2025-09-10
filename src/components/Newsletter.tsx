@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail, CheckCircle, AlertCircle, User } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const Newsletter = () => {
   const [formData, setFormData] = useState({
@@ -81,35 +82,70 @@ export const Newsletter = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
+    <motion.section
+      className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ amount: 0.2 }}
+      transition={{ duration: 1 }}
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+      <motion.div
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+        initial={{ y: 40, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ amount: 0.5 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <motion.div
+          className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6"
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ amount: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <Mail className="mr-2 h-4 w-4" />
           Newsletter
-        </div>
+        </motion.div>
 
-        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+        <motion.h2
+          className="text-4xl lg:text-5xl font-bold text-white mb-6"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ amount: 0.7 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           Join Our Mailing List
-        </h2>
+        </motion.h2>
 
-        <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+        <motion.p
+          className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ amount: 0.7 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           Join our mailing list to be the first to know about our services, special programs,
           testimonies, and ways to grow in faith together.
-        </p>
+        </motion.p>
 
         {/* Status Message */}
         {submitStatus !== 'idle' && (
-          <div className={`max-w-md mx-auto mb-6 p-4 rounded-lg flex items-center gap-3 ${
-            submitStatus === 'success' 
-              ? 'bg-green-500/20 border border-green-500/30 text-green-200' 
-              : 'bg-red-500/20 border border-red-500/30 text-red-200'
-          }`}>
+          <motion.div
+            className={`max-w-md mx-auto mb-6 p-4 rounded-lg flex items-center gap-3 ${
+              submitStatus === 'success' 
+                ? 'bg-green-500/20 border border-green-500/30 text-green-200' 
+                : 'bg-red-500/20 border border-red-500/30 text-red-200'
+            }`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             {submitStatus === 'success' ? (
               <CheckCircle className="h-5 w-5 text-green-400" />
             ) : (
@@ -122,12 +158,25 @@ export const Newsletter = () => {
             >
               ×
             </button>
-          </div>
+          </motion.div>
         )}
 
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+        <motion.form
+          onSubmit={handleSubmit}
+          className="max-w-md mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ amount: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+        >
           <div className="flex flex-col gap-4">
-            <div className="relative">
+            <motion.div
+              className="relative"
+              initial={{ x: -30, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ amount: 0.7 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 type="text"
@@ -139,9 +188,15 @@ export const Newsletter = () => {
                 required
                 disabled={isSubmitting}
               />
-            </div>
+            </motion.div>
             
-            <div className="relative">
+            <motion.div
+              className="relative"
+              initial={{ x: 30, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ amount: 0.7 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 type="email"
@@ -153,18 +208,25 @@ export const Newsletter = () => {
                 required
                 disabled={isSubmitting}
               />
-            </div>
+            </motion.div>
             
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ amount: 0.7 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
-              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-            </Button>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+              </Button>
+            </motion.div>
           </div>
-        </form>
-      </div>
-    </section>
+        </motion.form>
+      </motion.div>
+    </motion.section>
   );
 };

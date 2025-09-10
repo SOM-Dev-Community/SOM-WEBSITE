@@ -23,7 +23,7 @@ export const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img
-                src="https://i.postimg.cc/1RYxYN01/logo-sm.png"
+                src="https://i.postimg.cc/SQPp9f9c/logo-sm.png"
                 alt="SOM Logo"
                 className="h-14 w-auto drop-shadow-lg rounded-xl"
               />

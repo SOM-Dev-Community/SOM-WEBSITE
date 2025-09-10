@@ -14,6 +14,7 @@ import PreachersKidsNetwork from "./pages/PreachersKidsNetwork";
 import NotFound from "./pages/NotFound";
 import Magazine from "./pages/Magazine";
 import ScrollToTop from "./components/ScrollToTop";
+import Impact from "./pages/Impact";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/events" element={<Events />} />
           <Route path="/preachers" element={<PreachersKidsNetwork />} />
           <Route path="/Magazine" element={<Magazine />} />
+          <Route path="/impact" element={<Impact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

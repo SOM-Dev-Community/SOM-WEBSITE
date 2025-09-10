@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const ProductGrid = () => {
   const products = [
@@ -39,25 +40,52 @@ export const ProductGrid = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <motion.section
+      className="py-20 bg-white"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ amount: 0.2 }}
+      transition={{ duration: 1 }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ amount: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Explore Our Exciting Range of SOM
             Products Tailored for You
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           {products.map((product, index) => (
-            <div
+            <motion.div
               key={index}
               className="flex flex-col bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow w-full h-full"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.04, boxShadow: '0 0 32px 0 #3b82f6' }}
+              viewport={{ amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.1 * index, type: 'spring', stiffness: 120 }}
             >
-              <div
+              <motion.div
                 className="h-48 bg-cover bg-center"
                 style={{ backgroundImage: `url(${product.image})` }}
-              ></div>
+                initial={{ scale: 1.05, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.2 * index, type: 'spring', stiffness: 120 }}
+                viewport={{ amount: 0.2 }}
+              ></motion.div>
               <div className="flex flex-col flex-1 p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   {product.title}
@@ -95,10 +123,10 @@ export const ProductGrid = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
