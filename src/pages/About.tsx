@@ -32,7 +32,7 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen bg-white text-gray-800 overflow-x-hidden">
       <Header />
 
       {/* Hero Section */}

@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer";
 
 const Magazine = () => {
   return (
-    <div className="min-h-screen bg-[#4B2AAD] flex flex-col">
+    <div className="min-h-screen bg-[#4B2AAD] flex flex-col overflow-x-hidden">
       {/* Header */}
       <Header />
       <main className="flex-1">

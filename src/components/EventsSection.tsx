@@ -68,7 +68,7 @@ export const EventsSection = () => {
       className="py-24 bg-black text-white relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ amount: 0.2 }}
+  viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1 }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black/60 to-black/90 pointer-events-none" />
@@ -77,14 +77,14 @@ export const EventsSection = () => {
         className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 lg:w-9/12"
         initial={{ y: 60, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ amount: 0.3 }}
+  viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.9, type: 'spring', stiffness: 60 }}
       >
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.p
@@ -120,7 +120,7 @@ export const EventsSection = () => {
           className="flex flex-wrap justify-center gap-4 mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.7 }}
+          viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.7, delay: 0.6 }}
         >
           {tabs.map((tab, i) => (
@@ -128,7 +128,7 @@ export const EventsSection = () => {
               key={tab}
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.5, delay: 0.1 * i }}
               style={{ display: 'inline-block' }}
             >
@@ -150,7 +150,7 @@ export const EventsSection = () => {
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-1"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           {filteredEvents.length === 0 ? (
@@ -163,7 +163,7 @@ export const EventsSection = () => {
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.03, boxShadow: '0 0 32px 0 #3b82f6' }}
-                viewport={{ amount: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.1 * idx, type: 'spring', stiffness: 120 }}
               >
                 <div

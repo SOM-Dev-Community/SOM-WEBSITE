@@ -27,14 +27,16 @@ export const Hero = () => {
         backgroundImage: 'url("https://i.postimg.cc/ZnW0rnbq/banner-2.jpg")',
       }}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1.2 }}
     >
       {/* Gradient Overlay with animated shimmer */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/5 to-black/90 backdrop-blur-0 "
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.5, delay: 0.2 }}
       />
 
@@ -42,7 +44,8 @@ export const Hero = () => {
       <motion.div
         className="relative z-10 w-full max-w-6xl px-6 sm:px-10 text-white text-center"
         initial={{ y: 60, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1, delay: 0.5, type: "spring", stiffness: 60 }}
       >
         <motion.h1
@@ -57,6 +60,7 @@ export const Hero = () => {
               },
             },
           }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.span
             className="block"
@@ -79,7 +83,8 @@ export const Hero = () => {
         <motion.p
           className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed text-white/90 drop-shadow-md"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1, delay: 1 }}
         >
           Raising Minister's Children For The Expansion Of The Gospel.
@@ -98,6 +103,7 @@ export const Hero = () => {
               },
             },
           }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div
             whileHover={{ scale: 1.08, rotate: -2 }}
@@ -135,7 +141,8 @@ export const Hero = () => {
       <motion.div
         className="absolute bottom-8 w-full flex justify-center items-center"
         initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1, delay: 2 }}
       >
         <motion.button

@@ -7,7 +7,7 @@ import impactImage from '../assets/PKS2.jpg';
 
 const Impact = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col overflow-x-hidden">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}

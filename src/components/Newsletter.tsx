@@ -86,7 +86,7 @@ export const Newsletter = () => {
       className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ amount: 0.2 }}
+  viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1 }}
     >
       {/* Background Pattern */}
@@ -99,14 +99,14 @@ export const Newsletter = () => {
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
         initial={{ y: 40, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ amount: 0.5 }}
+  viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <motion.div
           className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6"
           initial={{ scale: 0.8, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ amount: 0.7 }}
+          viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <Mail className="mr-2 h-4 w-4" />
@@ -117,7 +117,7 @@ export const Newsletter = () => {
           className="text-4xl lg:text-5xl font-bold text-white mb-6"
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ amount: 0.7 }}
+          viewport={{once: true, amount: 0.7 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           Join Our Mailing List
@@ -127,7 +127,7 @@ export const Newsletter = () => {
           className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed"
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ amount: 0.7 }}
+          viewport={{once: true, amount: 0.7 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           Join our mailing list to be the first to know about our services, special programs,
@@ -166,7 +166,7 @@ export const Newsletter = () => {
           className="max-w-md mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.7 }}
+          viewport={{once: true, amount: 0.7 }}
           transition={{ duration: 0.7, delay: 0.5 }}
         >
           <div className="flex flex-col gap-4">
@@ -174,7 +174,7 @@ export const Newsletter = () => {
               className="relative"
               initial={{ x: -30, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -194,7 +194,7 @@ export const Newsletter = () => {
               className="relative"
               initial={{ x: 30, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -213,7 +213,7 @@ export const Newsletter = () => {
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
               <Button

@@ -44,7 +44,7 @@ export const ProductGrid = () => {
       className="py-20 bg-white"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ amount: 0.2 }}
+  viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export const ProductGrid = () => {
           className="text-center mb-16"
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ amount: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -65,7 +65,7 @@ export const ProductGrid = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ amount: 0.2 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           {products.map((product, index) => (
@@ -75,7 +75,7 @@ export const ProductGrid = () => {
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.04, boxShadow: '0 0 32px 0 #3b82f6' }}
-              viewport={{ amount: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, delay: 0.1 * index, type: 'spring', stiffness: 120 }}
             >
               <motion.div
@@ -84,7 +84,7 @@ export const ProductGrid = () => {
                 initial={{ scale: 1.05, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 * index, type: 'spring', stiffness: 120 }}
-                viewport={{ amount: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
               ></motion.div>
               <div className="flex flex-col flex-1 p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">

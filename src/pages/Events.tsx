@@ -44,7 +44,7 @@ const Events = () => {
   ];
 
   return (
-    <>
+    < section className="min-h-screen bg-white overflow-x-hidden">
       <Header />
 
       {/* Page Title Section */}
@@ -117,7 +117,7 @@ const Events = () => {
 
       <Newsletter />
       <Footer />
-    </>
+    </section>
   );
 };
 
