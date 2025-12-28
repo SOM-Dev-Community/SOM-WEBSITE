@@ -76,7 +76,6 @@ export const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 80 }}
           >
-            {/* Optionally add a subtitle or effect here */}
           </motion.span>
         </motion.h1>
 
