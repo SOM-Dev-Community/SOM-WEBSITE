@@ -124,7 +124,7 @@ export const Hero = () => {
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <a href="https://www.kingsch.at/p/cUJHTzd" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.kingsch.at/p/VzhtcVA" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="outline"
                 size="lg"
