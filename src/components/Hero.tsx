@@ -24,7 +24,7 @@ export const Hero = () => {
       id="hero"
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
       style={{
-        backgroundImage: 'url("https://i.postimg.cc/ZnW0rnbq/banner-2.jpg")',
+        backgroundImage: 'url("https://res.cloudinary.com/dopaigblc/image/upload/v1766912976/banner-2_iljm9k.jpg")',
       }}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
