@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+
+media-live-button[mediatimeislive] {
+  --media-live-button-indicator-color: red;
+}
+
+  media-controller[mediastreamtype=live] media-time-range {
+    display: none;
+  }

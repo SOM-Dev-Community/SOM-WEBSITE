@@ -13,6 +13,10 @@ import image4 from '@/assets/WSA2.jpg';
 import image5 from '@/assets/B1.jpg';
 import image6 from '@/assets/B2.jpg';
 
+import { hls } from '@/lib/scripts/hls';
+import BroadcastPlayer from '@/components/broadcast_player';
+
+
 const Events = () => {
   const upcomingEvents = [
     {
@@ -72,10 +76,16 @@ const Events = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1, delay: 0.5, type: 'spring', bounce: 0.7 }}
           >
-        Be a part of upcoming global events, and relive the highlights of past gatherings with other believers.
+            Be a part of upcoming global events, and relive the highlights of past gatherings with other believers.
           </motion.p>
         </div>
       </motion.section>
+
+      <section className='py-12 border-3 max-w-6xl mx-auto px-6'>
+        <div className='w-full aspect-video rounded-2xl overflow-hidden shadow-lg'>
+          <BroadcastPlayer />
+        </div>
+      </section>
 
       {/* Upcoming Events Section */}
       <motion.section className="bg-white text-blue-900 py-20 px-6"
