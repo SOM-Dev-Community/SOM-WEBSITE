@@ -43,9 +43,11 @@
 
 
 media-live-button[mediatimeislive] {
-  --media-live-button-indicator-color: red;
+  --media-live-button-indicator-color: green;
+  --media-live-button-icon-color: green;
 }
 
   media-controller[mediastreamtype=live] media-time-range {
     display: none;
   }
+  

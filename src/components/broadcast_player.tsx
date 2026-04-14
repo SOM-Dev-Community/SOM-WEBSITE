@@ -1,87 +1,65 @@
-import ReactPlayer from "react-player";
+import type { CSSProperties } from "react";
+import HlsVideo from "hls-video-element/react";
 import {
     MediaController,
     MediaControlBar,
-    MediaTimeRange,
     MediaTimeDisplay,
     MediaVolumeRange,
-    MediaPlaybackRateButton,
     MediaPlayButton,
-    MediaSeekBackwardButton,
-    MediaSeekForwardButton,
     MediaMuteButton,
     MediaFullscreenButton,
     MediaLiveButton,
     MediaLoadingIndicator,
+    MediaTimeRange,
 } from "media-chrome/react";
+import BroadcastLoaderIcon from "./broadcast_loader_icon";
 
-const live_source = "https://cdn-out1-los1.ceflixcdn.com/pcdltvapp/pcdltv/chunklist.m3u8  "
+const liveSource =
+    "https://cdn-out1-los1.ceflixcdn.com/pcdltvapp/pcdltv/chunklist.m3u8";
+
+const controllerStyle: CSSProperties = {
+    width: "100%",
+    height: "100%",
+    aspectRatio: "16 / 9",
+    background:
+        "radial-gradient(circle at top, rgba(147, 197, 253, 0.28), rgba(15, 23, 42, 0.96) 58%)",
+};
 
 
 export default function BroadcastPlayer() {
     return (
         <MediaController
-            style={{
-                width: "100%",
-                aspectRatio: "16/9",
-            }}
+            style={controllerStyle}
+            defaultStreamType="live"
         >
-            <ReactPlayer
+            <HlsVideo
                 slot="media"
-                src={live_source}
-                controls={false}
+                src={liveSource}
+                preload="auto"
+                autoplay
+                playsInline
+                crossOrigin=""
+                defaultMuted
+                muted
                 style={{
                     width: "100%",
                     height: "100%",
                 }}
-            ></ReactPlayer>
+            />
             <MediaLoadingIndicator
                 id="broadcast_controls"
                 slot="centered-chrome"
-                loadingDelay={1000}
+                loadingDelay={400}
+                noAutohide={true}
             >
-                {/* <svg slot="icon" viewBox="-12 -15 48 60">
-                    <path d="M0 0h4v10H0z">
-                        <animateTransform
-                            attributeType="xml"
-                            attributeName="transform"
-                            type="translate"
-                            values="0 0; 0 20; 0 0"
-                            begin="0"
-                            dur="0.6s"
-                            repeatCount="indefinite"
-                        />
-                    </path>
-                    <path d="M10 0h4v10h-4z">
-                        <animateTransform
-                            attributeType="xml"
-                            attributeName="transform"
-                            type="translate"
-                            values="0 0; 0 20; 0 0"
-                            begin="0.2s"
-                            dur="0.6s"
-                            repeatCount="indefinite"
-                        />
-                    </path>
-                    <path d="M20 0h4v10h-4z">
-                        <animateTransform
-                            attributeType="xml"
-                            attributeName="transform"
-                            type="translate"
-                            values="0 0; 0 20; 0 0"
-                            begin="0.4s"
-                            dur="0.6s"
-                            repeatCount="indefinite"
-                        />
-                    </path>
-                </svg> */}
+                <BroadcastLoaderIcon />
             </MediaLoadingIndicator>
-            <MediaControlBar id="broadcast_controls">
+            <MediaControlBar style={{ width: "100%" }} id="broadcast_controls">
                 <MediaPlayButton />
-                <MediaTimeRange />
-                <MediaTimeDisplay />
                 <MediaMuteButton />
                 <MediaVolumeRange />
+                <MediaTimeRange aria-disabled />
+                <MediaTimeDisplay />
                 <MediaLiveButton />
                 <MediaFullscreenButton />
             </MediaControlBar>

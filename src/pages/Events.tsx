@@ -13,7 +13,6 @@ import image4 from '@/assets/WSA2.jpg';
 import image5 from '@/assets/B1.jpg';
 import image6 from '@/assets/B2.jpg';
 
-import { hls } from '@/lib/scripts/hls';
 import BroadcastPlayer from '@/components/broadcast_player';
 
 
