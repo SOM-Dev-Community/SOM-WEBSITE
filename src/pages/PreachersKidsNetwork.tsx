@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { Newsletter } from '../components/Newsletter';
+import { Header } from '../components/layout/Header';
+import { Footer } from '../components/layout/Footer';
+import { Newsletter } from '../components/pages/home/sections/Newsletter';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 

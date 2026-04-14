@@ -1,7 +1,7 @@
 import React from 'react';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { Newsletter } from '../components/Newsletter';
+import { Header } from '../components/layout/Header';
+import { Footer } from '../components/layout/Footer';
+import { Newsletter } from '../components/pages/home/sections/Newsletter';
 
 import impactImage from '../assets/PKS2.jpg';
 

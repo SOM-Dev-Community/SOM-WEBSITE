@@ -1,7 +1,7 @@
 import React from "react";
-import { Header } from "../components/Header";
-import { Newsletter } from "../components/Newsletter";
-import { Footer } from "../components/Footer";
+import { Header } from "../components/layout/Header";
+import { Newsletter } from "../components/pages/home/sections/Newsletter";
+import { Footer } from "../components/layout/Footer";
 
 const Magazine = () => {
   return (
