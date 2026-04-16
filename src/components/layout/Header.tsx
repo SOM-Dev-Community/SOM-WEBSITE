@@ -1,92 +1,273 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, NavLink, NavLinkProps, useLocation } from "react-router-dom";
+import { ArrowRight, Menu, TvMinimalPlay, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export const Header = ({ type }: { type?: "default" | "transparent" }) => {
+type HeaderProps = {
+  type?: "default" | "transparent";
+  position?: "fixed" | "absolute" | "relative";
+  scrollEnabled?: boolean;
+};
+
+const navLinks = [
+  { link: "/", label: "Home" },
+  { link: "/about", label: "About Us" },
+  { link: "/preachers", label: "Preachers Network" },
+  { link: "/explore", label: "Explore" },
+  { link: "/blog", label: "Blog" },
+  // { link: "/events", label: "Live Events" },
+];
+
+export const Header = ({ type = "default", position = "fixed", scrollEnabled = true }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const navLinks = [
-    { link: "/", label: "Home" },
-    { link: "/about", label: "About Us" },
-    { link: "/preachers", label: "Preachers Kids Network" },
-    { link: "/explore", label: "Explore" },
-    { link: "/blog", label: "Blog" },
-    { link: "/events", label: "Live Events" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+
+    if (scrollEnabled) {
+      handleScroll();
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    }
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  const isOverlayStyle = type === "default" && !isScrolled && !isMenuOpen;
+
   return (
-    <header className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full md:w-11/12 shadow-xl sm:rounded-3xl border border-white/0 bg-gradient-to-br from-white/30 via-white/10 to-white/5 backdrop-blur-2xl sm:mt-5 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center">
-              <img
-                src="https://i.postimg.cc/SQPp9f9c/logo-sm.png"
-                alt="SOM Logo"
-                className="h-14 w-auto drop-shadow-lg rounded-xl"
-              />
-            </Link>
-          </div>
+    <>
+      {isMenuOpen ? (
+        <Button
+          type="button"
+          aria-label="Close menu overlay"
+          className="fixed inset-0 z-40 lg:hidden"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      ) : null}
 
-          <nav className="hidden lg:flex space-x-6">
-            {navLinks.map(({ link, label }) => (
-              <Link
-                key={link}
-                to={link}
-                className="text-blue-400 font-semibold hover:text-blue-600 transition-colors px-2 py-1 rounded-lg hover:bg-blue-50/40"
-              >
-                {label}
+      <header className={cn("inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8", position)}>
+        <div className="mx-auto max-w-7xl">
+          <div
+            className={cn(
+              "relative",
+            )}
+          >
+            <div className="relative flex h-20 items-center justify-between gap-4 px-4 sm:px-6">
+              <Link to="/" className="group flex min-w-0 items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 shadow-[0_10px_24px_rgba(37,99,235,0.18)] ring-1 ring-blue-100/80 transition-transform duration-300 group-hover:scale-[1.03]">
+                  <img
+                    src="https://i.postimg.cc/SQPp9f9c/logo-sm.png"
+                    alt="SOM Logo"
+                    className="h-9 w-auto"
+                  />
+                </div>
+
+                <div className="hidden min-w-0 sm:block">
+                  <p
+                    className={cn(
+                      "text-[0.65rem] font-semibold uppercase tracking-[0.28em]",
+                      isOverlayStyle ? "text-white/70" : "text-blue-600/75",
+                    )}
+                  >
+                    Loveworld
+                  </p>
+                  <p
+                    className={cn(
+                      "truncate text-sm font-semibold",
+                      isOverlayStyle ? "text-white" : "text-slate-900",
+                    )}
+                  >
+                    Sons of Ministry
+                  </p>
+                </div>
               </Link>
-            ))}
-          </nav>
+              <NavLinks isOverlayStyle={isOverlayStyle} />
 
-          {/* Contact Button */}
-          <div className="hidden lg:block">
-            <Link to="/contact">
-              <Button className="bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white px-6 py-2 rounded-full shadow-md font-semibold transition-all duration-200">
-                Contact Us
-              </Button>
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-blue-700 hover:text-blue-900 transition-colors p-2 rounded-lg"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-20 left-0 right-0 bg-gradient-to-br from-white/80 via-white/60 to-white/30 backdrop-blur-xl shadow-2xl rounded-3xl border-t border-white/30 z-40 animate-fade-in">
-            <nav className="py-4 px-4 space-y-2">
-              {navLinks.map(({ link, label }) => (
-                <Link
-                  key={link}
-                  to={link}
-                  className="block py-2 px-3 text-gray-700 font-semibold rounded-lg hover:bg-blue-50/40 hover:text-blue-600 transition-colors"
+              <div className="hidden lg:block">
+                <Button
+                  asChild
+                  className="h-11 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-sky-400 px-5 text-white shadow-[0_14px_30px_rgba(37,99,235,0.26)] hover:from-blue-700 hover:via-blue-600 hover:to-sky-500"
                 >
-                  {label}
-                </Link>
-              ))}
-              <div className="pt-4">
-                <Link to="/contact" onClick={toggleMenu}>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white py-2 rounded-full shadow font-semibold transition-all duration-200">
-                    Contact Us
-                  </Button>
-                </Link>
+                  <Link to="/events">
+                    Watch Live
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
               </div>
-            </nav>
+
+              <Button
+                type="button"
+                onClick={() => setIsMenuOpen((open) => !open)}
+                className={cn(
+                  "inline-flex h-11 w-11 items-center justify-center rounded-2xl border transition-all duration-200 lg:hidden",
+                  isOverlayStyle
+                    ? "border-white/20 bg-white/12 text-white hover:bg-white/18"
+                    : "border-slate-200 bg-slate-50 text-slate-800 hover:bg-white",
+                )}
+                aria-expanded={isMenuOpen}
+                aria-label="Toggle navigation menu"
+              >
+                {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              </Button>
+            </div>
           </div>
+
+          {isMenuOpen ? (
+            <div className="relative z-50 mt-3 rounded-[28px] border border-white/70 bg-white/94 p-3 shadow-[0_24px_60px_rgba(15,23,42,0.18)] backdrop-blur-2xl lg:hidden">
+              <nav className="space-y-1">
+                {navLinks.map(({ link, label }) => (
+                  <NavLink
+                    key={link}
+                    to={link}
+                    end={link === "/"}
+                    className={({ isActive }) =>
+                      cn(
+                        "block rounded-2xl px-4 py-3 text-sm font-semibold transition-colors duration-200",
+                        isActive
+                          ? "bg-blue-600 text-white shadow-[0_12px_24px_rgba(37,99,235,0.22)]"
+                          : "text-slate-700 hover:bg-blue-50 hover:text-blue-700",
+                      )
+                    }
+                  >
+                    {label}
+                  </NavLink>
+                ))}
+              </nav>
+
+              <div className="mt-3 border-t border-slate-200/80 pt-3">
+                <Button
+                  asChild
+                  className="h-11 w-full rounded-2xl bg-gradient-to-r from-blue-600 via-blue-500 to-sky-400 text-white shadow-[0_14px_30px_rgba(37,99,235,0.22)] hover:from-blue-700 hover:via-blue-600 hover:to-sky-500"
+                >
+                  <Link to="/events">
+                    <TvMinimalPlay className="size-4" />
+                    Watch Live
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </header>
+    </>
+  );
+};
+
+const Cursor = ({ position, isOverlayStyle }: { position: Position; isOverlayStyle: boolean }) => {
+  return (
+    <motion.span
+      animate={{
+        ...position,
+      }}
+      className={cn(
+        "absolute z-0 rounded-full py-4",
+        isOverlayStyle ? "bg-white/10 shadow-[0_12px_24px_rgba(255,255,255,0.1)]" : "bg-blue-50 shadow-[0_12px_24px_rgba(37,99,235,0.1)]",
+      )}
+    />
+  );
+};
+
+const NavLinks = ({ isOverlayStyle }: { isOverlayStyle: boolean }) => {
+  const [position, setPosition] = useState({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
+
+
+  return (
+    <nav
+      onMouseLeave={() => {
+        setPosition((pv) => ({
+          ...pv,
+          opacity: 0,
+        }));
+      }}
+      className={cn("hidden relative p-1 overflow-hidden lg:flex lg:items-center lg:gap-1 rounded-[28px] border transition-all duration-300",
+        isOverlayStyle
+          ? "border-white/20 bg-white/10 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur-xl"
+          : "border-white/70 bg-white/92 shadow-[0_20px_55px_rgba(15,23,42,0.18)] backdrop-blur-2xl",
+
+      )}
+    >
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0",
+          isOverlayStyle
+            ? "bg-[linear-gradient(135deg,rgba(255,255,255,0.22),rgba(255,255,255,0.04)_45%,rgba(96,165,250,0.12))]"
+            : "bg-[linear-gradient(135deg,rgba(255,255,255,0.9),rgba(239,246,255,0.92)_40%,rgba(219,234,254,0.7))]",
         )}
-      </div>
-    </header>
+      />
+      {navLinks.map(({ link, label }) => (
+        <NavLinkTab
+          key={link}
+          to={link}
+          end={link === "/"}
+          isOverlayStyle={isOverlayStyle}
+          setPosition={setPosition}
+        >
+          {label}
+        </NavLinkTab>
+      ))}
+      <Cursor position={position} isOverlayStyle={isOverlayStyle} />
+    </nav>
+  )
+}
+
+type Position = {
+  left: number;
+  width: number;
+  opacity: number;
+};
+
+type NavLinkTabProps = NavLinkProps & {
+  children: React.ReactNode;
+  setPosition: React.Dispatch<React.SetStateAction<Position>>;
+  isOverlayStyle: boolean;
+};
+
+export const NavLinkTab = ({
+  children,
+  setPosition,
+  isOverlayStyle,
+  ...props
+}: NavLinkTabProps) => {
+  return (
+    <NavLink
+      {...props}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget;
+
+        const { width } = el.getBoundingClientRect();
+
+        setPosition({
+          left: el.offsetLeft,
+          width,
+          opacity: 1,
+        });
+      }}
+      className={({ isActive }) =>
+        cn(
+          "rounded-full z-10 relative px-4 py-2 text-sm font-semibold transition-all duration-200",
+          isActive
+            ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.32)]"
+            : isOverlayStyle
+              ? "text-white/80 hover:text-white"
+              : "text-slate-700 hover:text-blue-700"
+        )
+      }
+    >
+      {children}
+    </NavLink>
   );
 };
