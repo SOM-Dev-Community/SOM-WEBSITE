@@ -20,6 +20,10 @@ const navLinks = [
   // { link: "/events", label: "Live Events" },
 ];
 
+export const dark_glassmorphism = "border-white/20 bg-white/10 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur-xl";
+export const light_glassmorphism = "border-white/70 bg-white/80 shadow-[0_20px_55px_rgba(15,23,42,0.18)] backdrop-blur-2xl";
+
+
 export const Header = ({ type = "default", position = "fixed", scrollEnabled = true }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -121,13 +125,12 @@ export const Header = ({ type = "default", position = "fixed", scrollEnabled = t
               </Button>
             </div>
           </div>
-
           {isMenuOpen ? (
             <div
               className={cn("relative z-20 mt-3 rounded-2xl p-1 overflow-hidden border backdrop-blur-2xl lg:hidden",
                 isOverlayStyle
                   ? "border-white/20 bg-white/10 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur-xl"
-                  : "border-white/70 bg-white/92 shadow-[0_20px_55px_rgba(15,23,42,0.18)] backdrop-blur-2xl",
+                  : "border-white/70 bg-white/90 shadow-[0_20px_55px_rgba(15,23,42,0.18)] backdrop-blur-2xl",
 
               )}>
               <div
@@ -222,12 +225,13 @@ const NavLinks = ({ isOverlayStyle }: { isOverlayStyle: boolean }) => {
           opacity: 0,
         }));
       }}
-      className={cn("hidden relative p-1 overflow-hidden lg:flex lg:items-center lg:gap-1 rounded-[28px] border transition-all duration-300",
-        isOverlayStyle
-          ? "border-white/20 bg-white/10 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur-xl"
-          : "border-white/70 bg-white/92 shadow-[0_20px_55px_rgba(15,23,42,0.18)] backdrop-blur-2xl",
+      className={
+        cn("hidden relative p-1 overflow-hidden lg:flex lg:items-center lg:gap-1 rounded-[28px] border transition-all duration-300",
+          isOverlayStyle
+            ? "border-white/20 bg-white/10 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur-xl"
+            : "border-white/70 bg-white/80 shadow-[0_20px_55px_rgba(15,23,42,0.18)] backdrop-blur-2xl",
 
-      )}
+        )}
     >
       <div
         className={cn(
@@ -237,19 +241,21 @@ const NavLinks = ({ isOverlayStyle }: { isOverlayStyle: boolean }) => {
             : "bg-[linear-gradient(135deg,rgba(255,255,255,0.9),rgba(239,246,255,0.92)_40%,rgba(219,234,254,0.7))]",
         )}
       />
-      {navLinks.map(({ link, label }) => (
-        <NavLinkTab
-          key={link}
-          to={link}
-          end={link === "/"}
-          isOverlayStyle={isOverlayStyle}
-          setPosition={setPosition}
-        >
-          {label}
-        </NavLinkTab>
-      ))}
+      {
+        navLinks.map(({ link, label }) => (
+          <NavLinkTab
+            key={link}
+            to={link}
+            end={link === "/"}
+            isOverlayStyle={isOverlayStyle}
+            setPosition={setPosition}
+          >
+            {label}
+          </NavLinkTab>
+        ))
+      }
       <Cursor position={position} isOverlayStyle={isOverlayStyle} />
-    </nav>
+    </nav >
   )
 }
 

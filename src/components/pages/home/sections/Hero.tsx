@@ -18,18 +18,19 @@ export const Hero = () => {
       eventsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  
 
   return (
-    <motion.section
+    <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
       style={{
         backgroundImage: 'url("https://res.cloudinary.com/dopaigblc/image/upload/v1766912976/banner-2_iljm9k.jpg")',
       }}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 1.2 }}
+      // initial={{ opacity: 0 }}
+      // whileInView={{ opacity: 1 }}
+      // viewport={{ once: true, amount: 0.2 }}
+      // transition={{ duration: 1.2 }}
     >
       {/* Gradient Overlay with animated shimmer */}
       <motion.div
@@ -160,6 +161,6 @@ export const Hero = () => {
           <span>Scroll to Events</span>
         </motion.button>
       </motion.div>
-    </motion.section>
+    </section>
   );
 };
