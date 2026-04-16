@@ -1,4 +1,3 @@
-import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Hero } from './sections/Hero';
 import { FeaturedContent } from './sections/FeaturedContent';
@@ -10,7 +9,7 @@ import { Footer } from '@/components/layout/Footer';
 const HomePage = () => {
     return (
         <div className="min-h-screen bg-white overflow-x-hidden">
-            <Header />
+            <Header position='absolute' scrollEnabled={false} />
             <Hero />
             <FeaturedContent />
             <EventsSection />
