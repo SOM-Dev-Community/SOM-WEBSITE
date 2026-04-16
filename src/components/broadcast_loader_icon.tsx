@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { motion, Variants } from "framer-motion";
-import { light_glassmorphism } from "./layout/Header";
+import { light_glassmorphism } from "./layout/header/constants";
 
 
 const variants: Variants = {

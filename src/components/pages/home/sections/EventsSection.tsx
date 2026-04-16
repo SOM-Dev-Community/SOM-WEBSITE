@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { light_glassmorphism } from "@/components/layout/Header";
+import { light_glassmorphism } from "@/components/layout/header/constants";
 import { SlidingChipTabs } from "@/components/ui/sliding-chip-tabs";
 
 export const EventsSection = () => {

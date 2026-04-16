@@ -14,7 +14,9 @@ import {
 } from "media-chrome/react";
 import BroadcastLoaderIcon from "./broadcast_loader_icon";
 import { cn } from "@/lib/utils";
-import { dark_glassmorphism, light_glassmorphism } from "./layout/Header";
+import {
+  dark_glassmorphism,
+} from "./layout/header/constants";
 
 const liveSource =
     "https://cdn-out1-los1.ceflixcdn.com/pcdltvapp/pcdltv/chunklist.m3u8";
