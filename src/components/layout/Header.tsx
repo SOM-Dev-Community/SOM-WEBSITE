@@ -99,8 +99,8 @@ export const Header = ({ type = "default", position = "fixed", scrollEnabled = t
                   className="h-11 rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-sky-400 px-5 text-white shadow-[0_14px_30px_rgba(37,99,235,0.26)] hover:from-blue-700 hover:via-blue-600 hover:to-sky-500"
                 >
                   <Link to="/events">
+                    <TvMinimalPlay className="size-4" />
                     Watch Live
-                    <ArrowRight className="size-4" />
                   </Link>
                 </Button>
               </div>
@@ -123,7 +123,21 @@ export const Header = ({ type = "default", position = "fixed", scrollEnabled = t
           </div>
 
           {isMenuOpen ? (
-            <div className="relative z-50 mt-3 rounded-[28px] border border-white/70 bg-white/94 p-3 shadow-[0_24px_60px_rgba(15,23,42,0.18)] backdrop-blur-2xl lg:hidden">
+            <div
+              className={cn("relative z-20 mt-3 rounded-2xl p-1 overflow-hidden border backdrop-blur-2xl lg:hidden",
+                isOverlayStyle
+                  ? "border-white/20 bg-white/10 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur-xl"
+                  : "border-white/70 bg-white/92 shadow-[0_20px_55px_rgba(15,23,42,0.18)] backdrop-blur-2xl",
+
+              )}>
+              <div
+                className={cn(
+                  "pointer-events-none absolute inset-0 -z-10",
+                  isOverlayStyle
+                    ? "bg-[linear-gradient(135deg,rgba(255,255,255,0.22),rgba(255,255,255,0.04)_45%,rgba(96,165,250,0.12))]"
+                    : "bg-[linear-gradient(135deg,rgba(255,255,255,0.9),rgba(239,246,255,0.92)_40%,rgba(219,234,254,0.7))]",
+                )}
+              />
               <nav className="space-y-1">
                 {navLinks.map(({ link, label }) => (
                   <NavLink
@@ -135,7 +149,9 @@ export const Header = ({ type = "default", position = "fixed", scrollEnabled = t
                         "block rounded-2xl px-4 py-3 text-sm font-semibold transition-colors duration-200",
                         isActive
                           ? "bg-blue-600 text-white shadow-[0_12px_24px_rgba(37,99,235,0.22)]"
-                          : "text-slate-700 hover:bg-blue-50 hover:text-blue-700",
+                          : isOverlayStyle
+                            ? "text-white/80 hover:text-white hover:bg-white/10"
+                            : "text-slate-700 hover:text-blue-700 hover:bg-blue-50"
                       )
                     }
                   >
@@ -177,6 +193,19 @@ const Cursor = ({ position, isOverlayStyle }: { position: Position; isOverlaySty
   );
 };
 
+const ActiveChip = ({ active, isOverlayStyle }: { active: boolean; isOverlayStyle: boolean }) => {
+  return (
+    <motion.span
+      layoutId="active-chip"
+      className={cn(
+        "absolute z-10 inset-0 rounded-full transition-all duration-300",
+        active
+          ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.32)]"
+          : "bg-transparent",
+      )}
+    />
+  );
+}
 const NavLinks = ({ isOverlayStyle }: { isOverlayStyle: boolean }) => {
   const [position, setPosition] = useState({
     left: 0,
@@ -202,7 +231,7 @@ const NavLinks = ({ isOverlayStyle }: { isOverlayStyle: boolean }) => {
     >
       <div
         className={cn(
-          "pointer-events-none absolute inset-0",
+          "pointer-events-none absolute inset-0 z-0",
           isOverlayStyle
             ? "bg-[linear-gradient(135deg,rgba(255,255,255,0.22),rgba(255,255,255,0.04)_45%,rgba(96,165,250,0.12))]"
             : "bg-[linear-gradient(135deg,rgba(255,255,255,0.9),rgba(239,246,255,0.92)_40%,rgba(219,234,254,0.7))]",
@@ -234,11 +263,13 @@ type NavLinkTabProps = NavLinkProps & {
   children: React.ReactNode;
   setPosition: React.Dispatch<React.SetStateAction<Position>>;
   isOverlayStyle: boolean;
+  isActive?: boolean;
 };
 
 export const NavLinkTab = ({
   children,
   setPosition,
+  isActive,
   isOverlayStyle,
   ...props
 }: NavLinkTabProps) => {
@@ -247,9 +278,7 @@ export const NavLinkTab = ({
       {...props}
       onMouseEnter={(e) => {
         const el = e.currentTarget;
-
         const { width } = el.getBoundingClientRect();
-
         setPosition({
           left: el.offsetLeft,
           width,
@@ -260,14 +289,21 @@ export const NavLinkTab = ({
         cn(
           "rounded-full z-10 relative px-4 py-2 text-sm font-semibold transition-all duration-200",
           isActive
-            ? "bg-blue-600 text-white shadow-[0_10px_24px_rgba(37,99,235,0.32)]"
+            ? "text-white shadow-[0_10px_24px_rgba(37,99,235,0.32)]"
             : isOverlayStyle
               ? "text-white/80 hover:text-white"
               : "text-slate-700 hover:text-blue-700"
         )
       }
     >
-      {children}
+      {(props) => (
+        <>
+          <span className="relative z-20">
+            {children}
+          </span>
+          <ActiveChip active={props.isActive} isOverlayStyle={isOverlayStyle} />
+        </>
+      )}
     </NavLink>
   );
 };
