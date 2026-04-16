@@ -1,11 +1,14 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { light_glassmorphism } from "@/components/layout/Header";
+import { SlidingChipTabs } from "@/components/ui/sliding-chip-tabs";
 
 export const EventsSection = () => {
   const [activeTab, setActiveTab] = React.useState("Upcoming");
   const eventData = [
-    
+
     {
       title: "August Global Communion Service",
       desc: "A divine moment to fellowship in the Spirit and partake in communion together.",
@@ -19,7 +22,7 @@ export const EventsSection = () => {
       image: "https://i.postimg.cc/76Fhk5Td/HSLHS.jpg",
       category: "Upcoming",
       Link: "https://healingstreams.tv/live"
-    },{
+    }, {
       title: "SOMC 2025",
       desc: "Join us for a powerful evening with God's word and fellowship.",
       image: "https://i.postimg.cc/SQPp9f9c/logo-sm.png",
@@ -27,9 +30,9 @@ export const EventsSection = () => {
       Link: "https://www.kingsch.at/p/cUJHTzd"
     },
     {
-      title : "Preachers Kids Summit",
-      desc : "A special event for the children of ministers to grow in faith and fellowship.",
-      image : "https://i.postimg.cc/vZ0mmqVW/PKS1.jpg",
+      title: "Preachers Kids Summit",
+      desc: "A special event for the children of ministers to grow in faith and fellowship.",
+      image: "https://i.postimg.cc/vZ0mmqVW/PKS1.jpg",
       category: "On-Demand"
     },
     {
@@ -68,16 +71,18 @@ export const EventsSection = () => {
       className="py-24 bg-black text-white relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-  viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1 }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black/60 to-black/90 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#5400782e_1px,transparent_1px),linear-gradient(to_bottom,#5400782e_1px,transparent_1px)] bg-[size:23px_17px] "></div>
+      <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,255,255,0)_40%,rgba(6,9,104,1)_100%)]"></div>
 
       <motion.div
         className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 lg:w-9/12"
         initial={{ y: 60, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-  viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.9, type: 'spring', stiffness: 60 }}
       >
         <motion.div
@@ -117,32 +122,27 @@ export const EventsSection = () => {
 
         {/* Filter Buttons */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="mb-12 flex justify-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.7, delay: 0.6 }}
         >
-          {tabs.map((tab, i) => (
-            <motion.div
-              key={tab}
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
-              style={{ display: 'inline-block' }}
-            >
-              <Button
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2 rounded-md font-semibold transition-all duration-300 ${activeTab === tab
-                  ? "bg-blue-600 hover:bg-blue-700 text-white"
-                  : " bg-transparent text-white hover:bg-gray-800"
-                }`}
-              >
-                {tab}
-              </Button>
-            </motion.div>
-          ))}
+          <SlidingChipTabs
+            items={tabs.map((tab) => ({
+              value: tab,
+              label: tab,
+            }))}
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="gap-4"
+            tabClassName="px-6 py-2 font-semibold duration-300"
+            activeTabClassName="text-white"
+            inactiveTabClassName="bg-transparent text-white hover:bg-gray-800"
+            cursorClassName="h-full bg-gray-800"
+            chipLayoutId="events-active-chip"
+            chipClassName="bg-blue-600 shadow-[inset_3px_4px_5px_0px_rgba(84,0,120,0.1),inset_-2px_-2px_5px_0px_rgba(0,0,0,0.45)]"
+          />
         </motion.div>
 
         {/* Event Cards */}
@@ -159,7 +159,7 @@ export const EventsSection = () => {
             filteredEvents.map(({ title, desc, image, Link }, idx) => (
               <motion.div
                 key={idx}
-                className="flex flex-col md:flex-row bg-gray-900 border border-white/10 rounded-3xl overflow-hidden shadow-lg hover:shadow-blue-900/40 transition-shadow duration-300"
+                className={cn(light_glassmorphism, "flex flex-col md:flex-row bg-gray-900/40 border border-white/10 rounded-3xl overflow-hidden shadow-lg hover:shadow-blue-900/40 transition-shadow duration-300")}
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.03, boxShadow: '0 0 32px 0 #3b82f6' }}
