@@ -1,160 +1,230 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+import { Button } from "@/components/ui/button";
+import HeroHoneycombGallery from "./hero/HeroHoneycombGallery";
+
+const heroHighlights = ["Prayer", "Training", "Community"];
 
 export const Hero = () => {
-
   const navigate = useNavigate();
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
 
-  const GetStarted = () => {
-    navigate('/Contact');
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.22]);
+  const backgroundOpacity = useTransform(scrollYProgress, [0, 1], [0.95, 0.45]);
+  const meshY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const glowY = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const secondaryGlowY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -54]);
+  const indicatorY = useTransform(scrollYProgress, [0, 1], [0, 30]);
+
+  const handleGetStarted = () => {
+    navigate("/Contact");
   };
 
   const scrollToEvents = () => {
-    const eventsSection = document.getElementById('events');
+    const eventsSection = document.getElementById("events");
+
     if (eventsSection) {
-      eventsSection.scrollIntoView({ behavior: 'smooth' });
+      eventsSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
 
   return (
     <section
+      ref={heroRef}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
-      style={{
-        backgroundImage: 'url("https://res.cloudinary.com/dopaigblc/image/upload/v1766912976/banner-2_iljm9k.jpg")',
-      }}
-      // initial={{ opacity: 0 }}
-      // whileInView={{ opacity: 1 }}
-      // viewport={{ once: true, amount: 0.2 }}
-      // transition={{ duration: 1.2 }}
+      className="relative isolate min-h-screen overflow-hidden bg-slate-950 text-white"
     >
-      {/* Gradient Overlay with animated shimmer */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/5 to-black/90 backdrop-blur-0 "
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1.5, delay: 0.2 }}
-      />
-
-      {/* Content */}
-      <motion.div
-        className="relative z-10 w-full max-w-6xl px-6 sm:px-10 text-white text-center"
-        initial={{ y: 60, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1, delay: 0.5, type: "spring", stiffness: 60 }}
+        style={{
+          y: backgroundY,
+          scale: backgroundScale,
+          opacity: backgroundOpacity,
+        }}
+        className="absolute inset-[-8%] bg-cover bg-center"
       >
-        <motion.h1
-          className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.15,
-              },
-            },
-          }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.span
-            className="block"
-            initial={{ x: -120, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, type: "spring", stiffness: 80 }}
-          >
-            LOVEWORLD SONS OF MINISTRY
-          </motion.span>
-          <motion.span
-            className="block"
-            initial={{ x: 120, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 80 }}
-          >
-          </motion.span>
-        </motion.h1>
-
-        <motion.p
-          className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-10 leading-relaxed text-white/90 drop-shadow-md"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
-          Raising Minister's Children For The Expansion Of The Gospel.
-        </motion.p>
-
-        <motion.div
-          className="flex flex-col sm:flex-row justify-center items-center gap-5"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.2,
-                delayChildren: 1.2,
-              },
-            },
-          }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <motion.div
-            whileHover={{ scale: 1.08, rotate: -2 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <Button
-              onClick={GetStarted}
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              Get Started
-            </Button>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.08, rotate: 2 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <a href="https://www.kingsch.at/p/VzhtcVA" target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white text-blue-700 hover:bg-white hover:text-blue-700 px-8 py-4 text-lg font-semibold rounded-xl shadow-xl transition-all duration-300 hover:scale-105"
-              >
-                Watch Video
-              </Button>
-            </a>
-          </motion.div>
-        </motion.div>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url("/assets/banner-2.jpg")' }}
+        />
       </motion.div>
 
-      {/* Scroll Indicator or Events Anchor */}
       <motion.div
-        className="absolute bottom-8 w-full flex justify-center items-center"
-        initial={{ opacity: 0, y: 40 }}
+        style={{ y: meshY }}
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(96,165,250,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(96,165,250,0.08)_1px,transparent_1px)] bg-[size:5rem_5rem]"
+      />
+
+      <motion.div
+        style={{ y: glowY }}
+        className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-fuchsia-600/30 blur-[120px]"
+      />
+      <motion.div
+        style={{ y: secondaryGlowY }}
+        className="absolute bottom-0 right-[-8%] h-[24rem] w-[24rem] rounded-full bg-blue-500/25 blur-[140px]"
+      />
+
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.54),rgba(2,6,23,0.18)_28%,rgba(2,6,23,0.72)_78%,rgba(2,6,23,0.94))]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.16),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(244,114,182,0.12),transparent_28%)]" />
+
+      <motion.div
+        style={{ y: contentY }}
+        className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 pb-20 pt-32 sm:px-10 lg:px-8"
+      >
+        <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(26rem,58rem)] lg:gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.9, type: "spring", stiffness: 70 }}
+            className="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left"
+          >
+            <motion.h1
+              className="text-4xl font-black leading-[0.95] tracking-[-0.04em] drop-shadow-[0_12px_28px_rgba(2,6,23,0.55)] sm:text-6xl lg:text-7xl xl:text-[5.4rem]"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.35 }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.12,
+                  },
+                },
+              }}
+            >
+              <motion.span
+                className="block"
+                variants={{
+                  hidden: { opacity: 0, x: -60 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                transition={{ duration: 0.8, type: "spring", stiffness: 70 }}
+              >
+                LoveWorld
+              </motion.span>
+              <motion.span
+                className="block bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent"
+                variants={{
+                  hidden: { opacity: 0, x: 60 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                transition={{ duration: 0.8, type: "spring", stiffness: 70 }}
+              >
+                Sons of Ministry
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
+              className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200/92 sm:text-xl lg:mx-0"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.85, delay: 0.28 }}
+            >
+              Raising ministers&apos; children for the expansion of the Gospel
+              through encounters, training, and a global community of bold young
+              ministers.
+            </motion.p>
+
+            <motion.div
+              className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:items-start"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.14,
+                    delayChildren: 0.5,
+                  },
+                },
+              }}
+            >
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  onClick={handleGetStarted}
+                  size="lg"
+                  className="min-w-44 rounded-2xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-[0_22px_45px_rgba(37,99,235,0.35)] transition-all duration-300 hover:bg-blue-700"
+                >
+                  Get Started
+                </Button>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <a
+                  href="https://www.kingsch.at/p/VzhtcVA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="min-w-44 rounded-2xl border-white/30 bg-white/10 px-8 py-4 text-lg font-semibold text-white shadow-[0_20px_40px_rgba(15,23,42,0.32)] backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-slate-950"
+                  >
+                    Watch Video
+                  </Button>
+                </a>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 48 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.15,
+              type: "spring",
+              stiffness: 60,
+            }}
+            className="relative flex justify-end lg:justify-self-end"
+          >
+            <HeroHoneycombGallery />
+          </motion.div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        style={{ y: indicatorY }}
+        className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 justify-center"
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 1, delay: 2 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
       >
         <motion.button
           onClick={scrollToEvents}
-          className="text-white/80 hover:text-white text-sm tracking-wider flex items-center gap-2 transition-colors duration-300"
-          whileHover={{ scale: 1.1, color: '#fff' }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          className="flex items-center gap-3 rounded-full border border-white/10 bg-black/30 px-4 py-2 text-sm tracking-[0.24em] text-white/80 backdrop-blur-md transition-colors duration-300 hover:text-white"
         >
           <motion.span
-            className="inline-block"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+            className="text-base"
           >
             ↓
           </motion.span>
