@@ -56,7 +56,7 @@ const Events = () => {
       <Header />
 
       {/* Page Title Section */}
-      <motion.section className="bg-gradient-to-r from-blue-50 via-white to-blue-50 py-20 px-6 text-center mt-10"
+      <motion.section className="bg-gradient-to-r from-blue-50 via-white to-blue-50 py-20 px-6 text-center"
         initial={{ opacity: 0, y: 60, scale: 0.92, rotate: -4 }}
         whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
         viewport={{ once: true, amount: 0.2 }}
