@@ -4,165 +4,131 @@ import type { CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-import imageB1 from "@/assets/B1.jpg";
-import imageB2 from "@/assets/B2.jpg";
-import imagePKS1 from "@/assets/PKS1.jpg";
-import imagePKS2 from "@/assets/PKS2.jpg";
-import imageWSA2 from "@/assets/WSA2.jpg";
-import imageWSA3 from "@/assets/WSA3.jpg";
+import BASE_IMAGE_SRC from "@/assets/PCO_2.jpg";
 
-type GalleryItem = {
-  alt: string;
-  id: string;
-  src: string;
-};
-
-const HEX_CLIP =
-  "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)";
-
-const BASE_IMAGE = imagePKS1;
-
-const ITEMS: GalleryItem[] = [
-  { id: "01", src: imagePKS1, alt: "Conference audience in worship" },
-  { id: "02", src: imagePKS2, alt: "Ministering at a gathering" },
-  { id: "03", src: imageWSA2, alt: "Young ministers on stage" },
-  { id: "04", src: imageWSA3, alt: "Stage lights over the audience" },
-  { id: "05", src: imageB1, alt: "Ministry teaching moment" },
-  { id: "06", src: imageB2, alt: "Worship scene at an event" },
-  { id: "07", src: imagePKS2, alt: "Prayer session in progress" },
-];
-
-const POSITIONS = [
-  { x: 0, y: 0 },
-  { x: 50, y: 0 },
-  { x: 100, y: 0 },
-  { x: 25, y: 50 },
-  { x: 75, y: 50 },
-  { x: 0, y: 100 },
-  { x: 50, y: 100 },
-];
+const HEX_CLIP = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
 
 const TILE_LAYOUT = [
-  { left: "0px", top: "0px" },
-  { left: "calc(var(--tile-w) + var(--gap-x))", top: "0px" },
-  { left: "calc((var(--tile-w) + var(--gap-x)) * 2)", top: "0px" },
-  { left: "calc(var(--tile-w) / 2 + var(--gap-x) / 2)", top: "var(--step-y)" },
-  { left: "calc(var(--tile-w) * 1.5 + var(--gap-x) * 1.5)", top: "var(--step-y)" },
-  { left: "0px", top: "calc(var(--step-y) * 2)" },
-  { left: "calc(var(--tile-w) + var(--gap-x))", top: "calc(var(--step-y) * 2)" },
+  { id: "01", x: 1, y: 0 }, { id: "02", x: 2, y: 0 }, { id: "03", x: 3, y: 0 },
+  { id: "04", x: 0.5, y: 1 }, { id: "05", x: 1.5, y: 1 }, { id: "06", x: 2.5, y: 1 }, { id: "07", x: 3.5, y: 1 },
+  { id: "08", x: 0, y: 2 }, { id: "09", x: 1, y: 2 }, { id: "10", x: 2, y: 2 }, { id: "11", x: 3, y: 2 }, { id: "12", x: 4, y: 2 },
+  { id: "13", x: 0.5, y: 3 }, { id: "14", x: 1.5, y: 3 }, { id: "15", x: 2.5, y: 3 }, { id: "16", x: 3.5, y: 3 },
+  { id: "17", x: 1, y: 4 }, { id: "18", x: 2, y: 4 }, { id: "19", x: 3, y: 4 },
 ];
 
-const BOARD_STYLE = {
-  "--tile-w": "clamp(6rem, 9vw, 8.5rem)",
-  "--tile-h": "calc(var(--tile-w) * 1.1547)",
-  "--gap-x": "clamp(0.4rem, 0.8vw, 0.8rem)",
-  "--step-y": "calc(var(--tile-h) * 0.75)",
-} as CSSProperties;
+const MAX_X = 4;
+const MAX_Y = 4;
 
 export default function HeroHoneycombGallery() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const imageSrc = typeof BASE_IMAGE_SRC === "string" ? BASE_IMAGE_SRC : (BASE_IMAGE_SRC as any)?.src;
+
+  const BOARD_STYLE = {
+    // Increased mobile size slightly more to fill the screen width
+    "--tile-w": "clamp(4.2rem, 18vw, 9.5rem)", 
+    "--tile-h": "calc(var(--tile-w) * 1.1547)",
+    "--gap-x": "clamp(0.15rem, 0.5vw, 0.4rem)", // Slightly tighter gaps for better image continuity
+    "--step-y": "calc(var(--tile-h) * 0.75 + (var(--gap-x) * 0.5))", // Adjusted step to fix vertical gaps
+    "--board-w": "calc((var(--tile-w) * 5) + (var(--gap-x) * 4))",
+    "--board-h": "calc((var(--tile-h) * 4) + (var(--gap-x) * 2))", // Adjusted for better vertical fit
+  } as CSSProperties;
 
   return (
-    <div className="flex w-full justify-end px-4 py-8 sm:px-6 lg:px-8">
-      <div className="relative ml-auto w-full max-w-[34rem]">
-        <div
-          className="relative ml-auto"
-          style={{
-            ...BOARD_STYLE,
-            width: "calc(var(--tile-w) * 3 + var(--gap-x) * 2)",
-            height: "calc(var(--tile-h) + var(--step-y) * 2)",
-          }}
-        >
-          {ITEMS.map((item, index) => {
-            const slice = POSITIONS[index];
-            const position = TILE_LAYOUT[index];
+    <div className="flex w-full items-center justify-center lg:justify-end">
+      <div
+        className="relative"
+        style={{
+          ...BOARD_STYLE,
+          width: "var(--board-w)",
+          height: "var(--board-h)",
+        }}
+      >
+        {TILE_LAYOUT.map((position) => {
+          // Precise coordinate calculation including gaps
+          const leftOffset = `calc(${position.x} * (var(--tile-w) + var(--gap-x)))`;
+          const topOffset = `calc(${position.y} * var(--step-y))`;
 
-            return (
-              <motion.button
-                key={item.id}
-                type="button"
-                aria-label={`Open image ${item.id}`}
-                className="absolute block rounded-[0.15rem] border border-white/10 bg-transparent p-0 shadow-[0_0_2rem_rgba(0,0,0,0.18)] outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
-                style={{
-                  left: position.left,
-                  top: position.top,
-                  width: "var(--tile-w)",
-                  height: "var(--tile-h)",
-                  perspective: 1200,
-                }}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.45, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -4 }}
-                onClick={() => setOpenIndex(index)}
-              >
-                <motion.div
-                  className="relative h-full w-full"
-                  style={{ transformStyle: "preserve-3d", transform: "translateZ(0)" }}
-                  whileHover={{ rotateY: 180, scale: 1.05 }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          return (
+            <button
+              key={position.id}
+              onClick={() => setIsModalOpen(true)}
+              className="absolute block p-0 outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+              style={{
+                left: leftOffset,
+                top: topOffset,
+                width: "var(--tile-w)",
+                height: "var(--tile-h)",
+                perspective: 1200,
+              }}
+            >
+              <motion.div
+                className="relative h-full w-full cursor-pointer"
+                style={{ transformStyle: "preserve-3d" }}
+                whileHover={{ rotateY: 180, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 120, damping: 14, mass: 1 }}
+              > 
+                {/* FRONT FACE */}
+                <div
+                  className="absolute inset-0 overflow-hidden bg-slate-800"
+                  style={{
+                    clipPath: HEX_CLIP,
+                    backgroundImage: `url(${imageSrc})`,
+                    // FIX: background-size must match the TOTAL board width to align across tiles
+                    backgroundSize: "auto var(--board-h)", 
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: `calc(-1 * ${leftOffset}) calc(-1 * ${topOffset})`,
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                  }}
                 >
-                  <div
-                    className="absolute inset-0 overflow-hidden border border-white/15 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
-                    style={{
-                      clipPath: HEX_CLIP,
-                      backgroundImage: `url(${BASE_IMAGE})`,
-                      backgroundSize: "300% 300%",
-                      backgroundPosition: `${slice.x}% ${slice.y}%`,
-                      backfaceVisibility: "hidden",
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30" />
-                    <div
-                      className="absolute inset-[0.4rem] border border-white/10"
-                      style={{ clipPath: HEX_CLIP }}
-                    />
-                  </div>
+                  {/* Subtle inner border to define tiles */}
+                  <div className="absolute inset-0 border-[1px] border-white/5" style={{ clipPath: HEX_CLIP }} />
+                </div>
 
-                  <div
-                    className="absolute inset-0 flex items-center justify-center bg-slate-950/90 text-white"
-                    style={{
-                      clipPath: HEX_CLIP,
-                      transform: "rotateY(180deg)",
-                      backfaceVisibility: "hidden",
-                    }}
-                  >
-                    <span className="text-3xl font-semibold">+</span>
+                {/* BACK FACE */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-br from-sky-400 to-blue-600"
+                  style={{
+                    clipPath: HEX_CLIP,
+                    transform: "rotateY(180deg)",
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                  }}
+                >
+                  <div className="absolute inset-[2px] flex items-center justify-center bg-slate-950" style={{ clipPath: HEX_CLIP }}>
+                    <span className="text-3xl font-light text-sky-400">+</span>
                   </div>
-                </motion.div>
-              </motion.button>
-            );
-          })}
-        </div>
+                </div>
+              </motion.div>
+            </button>
+          );
+        })}
       </div>
 
-      {/* <AnimatePresence>
-        {openIndex !== null && (
+      {/* --- MODAL --- */}
+      <AnimatePresence>
+        {isModalOpen && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md px-4 py-8"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            onClick={() => setOpenIndex(null)}
+            onClick={() => setIsModalOpen(false)}
           >
             <motion.div
-              className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-[1.5rem] bg-slate-950 shadow-2xl"
-              initial={{ opacity: 0, scale: 0.92, y: 24 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(event) => event.stopPropagation()}
+              className="relative max-w-5xl overflow-hidden rounded-xl"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={ITEMS[openIndex].src}
-                alt={ITEMS[openIndex].alt}
-                className="h-full w-full max-h-[90vh] object-cover"
-              />
+              <img src={imageSrc} alt="Pastor Chris" className="max-h-[85vh] w-auto object-contain shadow-2xl" />
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
     </div>
   );
 }

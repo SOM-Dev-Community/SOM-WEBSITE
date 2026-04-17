@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
-import HeroHoneycombGallery from "./hero/HeroHoneycombGallery";
-
-const heroHighlights = ["Prayer", "Training", "Community"];
+import HeroHoneycombGallery from "./hero/HeroHoneycombGallery"; // Adjust path if needed
 
 export const Hero = () => {
   const navigate = useNavigate();
@@ -30,7 +28,6 @@ export const Hero = () => {
 
   const scrollToEvents = () => {
     const eventsSection = document.getElementById("events");
-
     if (eventsSection) {
       eventsSection.scrollIntoView({ behavior: "smooth" });
     }
@@ -75,28 +72,28 @@ export const Hero = () => {
 
       <motion.div
         style={{ y: contentY }}
-        className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 pb-20 pt-32 sm:px-10 lg:px-8"
+        // Added overflow-hidden on the Y axis contextually to prevent scrolling artifacts if scaled high
+        className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-20 pt-32 sm:px-10 lg:px-8"
       >
-        <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(26rem,58rem)] lg:gap-20">
+        {/* UPDATED: Changed to flex-col on mobile/tablet, and flex-row on lg desktop */}
+        <div className="flex w-full flex-col items-center gap-14 lg:flex-row lg:justify-between lg:gap-12">
+          
+          {/* LEFT SIDE: Text Content (50% width on desktop) */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.9, type: "spring", stiffness: 70 }}
-            className="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left"
+            className="mx-auto w-full max-w-3xl text-center lg:mx-0 lg:w-[45%] lg:text-left xl:w-1/2"
           >
             <motion.h1
-              className="text-4xl font-black leading-[0.95] tracking-[-0.04em] drop-shadow-[0_12px_28px_rgba(2,6,23,0.55)] sm:text-6xl lg:text-7xl xl:text-[5.4rem]"
+              className="text-5xl font-black leading-[0.95] tracking-[-0.04em] drop-shadow-[0_12px_28px_rgba(2,6,23,0.55)] sm:text-6xl lg:text-7xl xl:text-[5.2rem]"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.35 }}
               variants={{
                 hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.12,
-                  },
-                },
+                visible: { transition: { staggerChildren: 0.12 } },
               }}
             >
               <motion.span
@@ -107,7 +104,7 @@ export const Hero = () => {
                 }}
                 transition={{ duration: 0.8, type: "spring", stiffness: 70 }}
               >
-                LoveWorld
+                Loveworld
               </motion.span>
               <motion.span
                 className="block bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent"
@@ -122,7 +119,7 @@ export const Hero = () => {
             </motion.h1>
 
             <motion.p
-              className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200/92 sm:text-xl lg:mx-0"
+              className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-200/92 sm:text-xl lg:mx-0"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
@@ -134,18 +131,13 @@ export const Hero = () => {
             </motion.p>
 
             <motion.div
-              className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:items-start"
+              className="mt-10 flex flex-col items-center gap-4 sm:flex-row justify-center lg:justify-start"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={{
                 hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.14,
-                    delayChildren: 0.5,
-                  },
-                },
+                visible: { transition: { staggerChildren: 0.14, delayChildren: 0.5 } },
               }}
             >
               <motion.div
@@ -190,6 +182,7 @@ export const Hero = () => {
             </motion.div>
           </motion.div>
 
+          {/* RIGHT SIDE: Honeycomb Gallery (50% width on desktop) */}
           <motion.div
             initial={{ opacity: 0, x: 48 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -200,10 +193,11 @@ export const Hero = () => {
               type: "spring",
               stiffness: 60,
             }}
-            className="relative flex justify-end lg:justify-self-end"
+            className="relative flex w-full justify-center lg:w-[55%] xl:w-1/2 lg:justify-end"
           >
             <HeroHoneycombGallery />
           </motion.div>
+          
         </div>
       </motion.div>
 
