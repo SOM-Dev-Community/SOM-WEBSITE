@@ -39,9 +39,9 @@ export const Header = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrollEnabled]);
 
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   setIsMenuOpen(false);
+  // }, [location.pathname]);
 
   const isOverlayStyle = type === "default" && !isScrolled && !isMenuOpen;
 

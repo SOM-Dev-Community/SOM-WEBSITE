@@ -9,10 +9,10 @@ import React, {
   useContext,
   createContext,
 } from 'react'
-interface MousePosition {
-  x: number
-  y: number
-}
+// interface MousePosition {
+//   x: number
+//   y: number
+// }
 
 interface SpotlightProps {
   children: React.ReactNode

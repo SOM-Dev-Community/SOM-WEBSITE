@@ -3,14 +3,12 @@ import HlsVideo from "hls-video-element/react";
 import {
     MediaController,
     MediaControlBar,
-    MediaTimeDisplay,
     MediaVolumeRange,
     MediaPlayButton,
     MediaMuteButton,
     MediaFullscreenButton,
     MediaLiveButton,
     MediaLoadingIndicator,
-    MediaTimeRange,
 } from "media-chrome/react";
 import BroadcastLoaderIcon from "./broadcast_loader_icon";
 import { cn } from "@/lib/utils";

@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Newsletter } from '@/components/pages/home/sections/Newsletter';
 
-import impactImage from '../assets/PKS2.jpg';
+import impactImage from '@/assets/PKS2.jpg';
 
 export function ImpactPage() {
     return (
@@ -33,7 +33,7 @@ export function ImpactPage() {
                 {/* Content Section */}
                 <section className="max-w-4xl mx-auto bg-white py-16 px-6 -mt-16 rounded-3xl shadow-lg relative z-10">
                     <p className="italic text-[#4B2AAD] font-semibold mb-6 text-lg">
-                        "And whatsoever ye do, do it heartily, as to the Lord, and not unto men." (Colossians 3:23)
+                        &quot;And whatsoever ye do, do it heartily, as to the Lord, and not unto men&quot; (Colossians 3:23)
                     </p>
                     <p className="mb-4 text-gray-700">
                         As a believer, you are called to make a lasting impact in your world. Impact is not just about big actions, but about consistent, positive influence in the lives of those around you. Every word you speak, every act of kindness, and every step of faith can transform lives and bring glory to God.

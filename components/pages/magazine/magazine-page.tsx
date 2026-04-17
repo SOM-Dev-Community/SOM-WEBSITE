@@ -39,9 +39,9 @@ export function MagazinePage() {
                             </div>
                             <h2 className="text-2xl font-bold mb-2">SOM Magazine 2022</h2>
                             <p className="text-gray-700 mb-4 text-base">
-                                LOCATE YOURSELF IN GOD'S PURPOSE<br />
+                                LOCATE YOURSELF IN GOD&apos;S PURPOSE<br />
                                 THE LOVEWORLD SONS OF MINISTRY: WHO WE ARE<br />
-                                The Prolific PK: Inspiring stories and testimonies from Preacher's Kids. Discover how purpose and identity are shaped in Christ.
+                                The Prolific PK: Inspiring stories and testimonies from Preacher&apos;s Kids. Discover how purpose and identity are shaped in Christ.
                             </p>
                             <div className="flex gap-6 text-sm text-gray-600">
                                 <span><span className="font-semibold">Text</span> Jakob Gronberg</span>
@@ -60,7 +60,7 @@ export function MagazinePage() {
                             </div>
                             <h2 className="text-2xl font-bold mb-2">SOM Magazine 2023</h2>
                             <p className="text-gray-700 mb-4 text-base">
-                                The Word & I: An exclusive interview with PK. Explore the power of God's Word in everyday life.<br />
+                                The Word & I: An exclusive interview with PK. Explore the power of God&apos;s Word in everyday life.<br />
                                 March 2023 Issue: Real-life experiences, faith journeys, and practical wisdom for young believers.
                             </p>
                             <div className="flex gap-6 text-sm text-gray-600">

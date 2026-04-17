@@ -70,7 +70,7 @@ export function ContactPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.4, type: 'spring', bounce: 0.2 }}
                     >
-                        We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                        We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
                     </motion.p>
                 </motion.div>
             </motion.section>
