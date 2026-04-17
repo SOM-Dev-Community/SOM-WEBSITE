@@ -177,7 +177,7 @@ const About = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 1, delay: 0.5, type: 'spring', bounce: 0.5 }}
             >
-              <motion.div className="w-36 h-36 overflow-hidden shadow-xl mb-4 border-2 border-gray-300"
+              <motion.div className="w-auto h-56 overflow-hidden shadow-xl mb-4 border-2 border-gray-300"
                 initial={{ scale: 0.85, opacity: 0, rotate: 8 }}
                 whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
