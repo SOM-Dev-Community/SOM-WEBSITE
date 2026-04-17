@@ -3,3 +3,4 @@ allowBuilds:
   '@tsparticles/engine': false
   esbuild: true
   msw: true
+  sharp: false
