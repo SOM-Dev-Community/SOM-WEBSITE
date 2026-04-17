@@ -104,7 +104,7 @@ export const Footer = () => {
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.7, delay: 0.5 }}
         >
-          <em><p>© 2025 loveworld sons of ministry - All Rights Reserved.</p></em>
+          <em><p>© 2026 loveworld sons of ministry - All Rights Reserved.</p></em>
         </motion.div>
       </div>
     </motion.footer>
