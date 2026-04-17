@@ -1,5 +1,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+/* @import "tailwindcss"; */
 @import "@fontsource-variable/inter";
 @tailwind base;
 @tailwind components;
@@ -122,6 +123,49 @@ All colors MUST be HSL.
     --font-heading: var(--font-sans);
     --font-sans: 'Inter Variable', sans-serif;
   }
+  @theme inline {
+    --animate-border: border 4s linear infinite;
+    --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+    --animate-marquee: marquee var(--duration) linear infinite;
+    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+    --animate-marquee-reverse: marquee-reverse var(--duration) linear infinite;
+    --animate-marquee-vertical-reverse: marquee-vertical-reverse var(--duration) linear infinite;
+
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-reverse {
+    from {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes marquee-vertical-reverse {
+    from {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
 
   * {
     @apply border-border outline-ring/50;

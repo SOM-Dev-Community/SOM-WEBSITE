@@ -44,6 +44,8 @@
     "@react-three/fiber": "^9.6.0",
     "@shadergradient/react": "^2.4.20",
     "@tanstack/react-query": "^5.56.2",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.9.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
