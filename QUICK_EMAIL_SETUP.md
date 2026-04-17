@@ -30,7 +30,7 @@ The error "Sorry, there was an error sending the email" appears because EmailJS 
 <p>Hello {{to_name}},</p>
 <p>Thank you for subscribing to our newsletter!</p>
 <p>We're excited to share our latest insights, events, and spiritual content with you.</p>
-<p>Stay tuned for updates about our services, special programs, testimonies, and ways to grow in faith together.</p>
+<p>Stay tuned for updates about our services, special programs, testimonies, and ways to grow in faith together!</p>
 <p>Blessings,<br>Loveworld Sons of Ministry Team</p>
 ```
 
