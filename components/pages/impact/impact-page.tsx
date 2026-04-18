@@ -4,10 +4,11 @@ import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Newsletter } from '@/components/pages/home/sections/Newsletter';
-
-import impactImage from '@/assets/PKS2.jpg';
+import Image from 'next/image';
 
 export function ImpactPage() {
+
+    const impactImage = "/assets/PKS2.jpg"
     return (
         <div className="min-h-screen bg-white flex flex-col overflow-x-hidden">
             <Header />
@@ -21,7 +22,9 @@ export function ImpactPage() {
                             <p className="uppercase text-xs tracking-widest mb-6">IMPACT, INFLUENCE, TRANSFORMATION</p>
                         </div>
                         <div className="flex-1 flex justify-center">
-                            <img
+                            <Image
+                                width={300}
+                                height={300}
                                 src={impactImage}
                                 alt="Impact in Action"
                                 className="rounded-2xl shadow-2xl w-full max-w-md object-cover"

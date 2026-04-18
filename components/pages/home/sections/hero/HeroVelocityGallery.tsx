@@ -10,26 +10,21 @@ import {
   wrap,
 } from "framer-motion";
 import { useState } from "react";
-
-import imageB1 from "@/assets/B1.jpg";
-import imageB2 from "@/assets/B2.jpg";
-import imagePKS1 from "@/assets/PKS1.jpg";
-import imagePKS2 from "@/assets/PKS2.jpg";
-import imageWSA2 from "@/assets/WSA2.jpg";
-import imageWSA3 from "@/assets/WSA3.jpg";
+import Image from "next/image";
 
 type Props = {
   images?: string[];
   maxItems?: number;
 };
 
+// Use absolute paths referencing the public directory
 const FALLBACK_IMAGES = [
-  imagePKS1,
-  imagePKS2,
-  imageWSA2,
-  imageWSA3,
-  imageB1,
-  imageB2,
+  "/assets/PKS1.jpg",
+  "/assets/PKS2.jpg",
+  "/assets/WSA2.jpg",
+  "/assets/WSA3.jpg",
+  "/assets/B1.jpg",
+  "/assets/B2.jpg",
   "/assets/banner-2.jpg",
   "/assets/som.webp",
 ];
@@ -115,13 +110,7 @@ export default function HeroVelocityGallery({
         cursor: isDragging ? "grabbing" : "grab",
       }}
     >
-      <div
-        className="absolute inset-0"
-        // style={{
-        //   background:
-        //     "radial-gradient(circle at 22% 18%, rgba(255,255,255,0.08), transparent 26%), rgba(0, 0, 0, 0.94)",
-        // }}
-      />
+      <div className="absolute inset-0" />
 
       <div
         className="relative flex h-full w-full items-center justify-center overflow-hidden"
@@ -156,7 +145,7 @@ type PlaneProps = {
   index: number;
   offset: MotionValue<number>;
   velocity: MotionValue<number>;
-  src: string;
+  src: string; // Strictly strings now since we are using public paths
 };
 
 function Plane({ index, offset, velocity, src }: PlaneProps) {
@@ -171,69 +160,60 @@ function Plane({ index, offset, velocity, src }: PlaneProps) {
     wrap(-FRONT_WRAP, BACK_WRAP, index - value),
   );
 
-  const wave = useTransform(
-    [slot, velocity],
-    ([currentSlot, currentVelocity]: [number, number]) => {
-      const amplitude = Math.min(90, Math.abs(currentVelocity) * 18);
-      return Math.sin(currentSlot * 0.85) * amplitude;
-    },
-  );
+  // Modern pattern: read values via .get() to avoid TS Tuple errors
+  const wave = useTransform(() => {
+    const currentSlot = slot.get();
+    const currentVelocity = velocity.get();
+    const amplitude = Math.min(90, Math.abs(currentVelocity) * 18);
+    return Math.sin(currentSlot * 0.85) * amplitude;
+  });
 
   const x = useTransform(
     slot,
     (currentSlot) => TRACK_START.x + TRACK_STEP.x * currentSlot,
   );
-  const y = useTransform(
-    [slot, wave, hoverLift],
-    ([currentSlot, currentWave, currentHover]: [number, number, number]) => {
-      return (
-        TRACK_START.y +
-        TRACK_STEP.y * currentSlot -
-        currentWave * 0.32 -
-        currentHover * 18
-      );
-    },
-  );
-  const z = useTransform(
-    [slot, wave, hoverLift],
-    ([currentSlot, currentWave, currentHover]: [number, number, number]) => {
-      return (
-        TRACK_START.z +
-        TRACK_STEP.z * currentSlot +
-        currentWave +
-        currentHover * 170
-      );
-    },
-  );
+  
+  const y = useTransform(() => {
+    return (
+      TRACK_START.y +
+      TRACK_STEP.y * slot.get() -
+      wave.get() * 0.32 -
+      hoverLift.get() * 18
+    );
+  });
+  
+  const z = useTransform(() => {
+    return (
+      TRACK_START.z +
+      TRACK_STEP.z * slot.get() +
+      wave.get() +
+      hoverLift.get() * 170
+    );
+  });
 
-  const rotateY = useTransform(
-    [wave, hoverLift],
-    ([currentWave, currentHover]: [number, number]) => {
-      return -50 + currentWave * 0.03 + currentHover * 4;
-    },
-  );
+  const rotateY = useTransform(() => {
+    return -50 + wave.get() * 0.03 + hoverLift.get() * 4;
+  });
 
   const scale = useTransform(hoverLift, [0, 1], [1, 1.03]);
-  const brightness = useTransform(
-    [wave, hoverLift],
-    ([currentWave, currentHover]: [number, number]) => {
-      return (
-        1 + Math.min(0.18, Math.abs(currentWave) * 0.0018) + currentHover * 0.12
-      );
-    },
-  );
+  
+  const brightness = useTransform(() => {
+    return (
+      1 + Math.min(0.18, Math.abs(wave.get()) * 0.0018) + hoverLift.get() * 0.12
+    );
+  });
+  
   const filter = useTransform(brightness, (value) => `brightness(${value})`);
 
-  const boxShadow = useTransform(
-    [wave, hoverLift],
-    ([currentWave, currentHover]: [number, number]) => {
-      const blur = 50 + Math.abs(currentWave) * 0.12 + currentHover * 28;
-      const spread = -12 + currentHover * 6;
-      const alpha = 0.25 + currentHover * 0.18;
+  const boxShadow = useTransform(() => {
+    const currentWave = wave.get();
+    const currentHover = hoverLift.get();
+    const blur = 50 + Math.abs(currentWave) * 0.12 + currentHover * 28;
+    const spread = -12 + currentHover * 6;
+    const alpha = 0.25 + currentHover * 0.18;
 
-      return `0 25px ${blur}px ${spread}px rgba(0, 0, 0, ${alpha})`;
-    },
-  );
+    return `0 25px ${blur}px ${spread}px rgba(0, 0, 0, ${alpha})`;
+  });
 
   return (
     <motion.div
@@ -263,13 +243,12 @@ function Plane({ index, offset, velocity, src }: PlaneProps) {
           backgroundColor: "#000",
         }}
       >
-        <img
+        <Image
           src={src}
           alt={`Gallery plane ${index + 1}`}
+          fill
           draggable={false}
           style={{
-            width: "100%",
-            height: "100%",
             objectFit: "cover",
             display: "block",
             pointerEvents: "none",

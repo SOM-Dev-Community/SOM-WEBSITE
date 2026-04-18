@@ -248,7 +248,7 @@ export function EventsPage () {
                             },
                         }}
                     >
-                        {[image1, image2, image3, image4, image5, image6].map((img, index) => (
+                        {[image1.src, image2.src, image3.src, image4.src, image5.src, image6.src].map((imgSrc, index) => (
                             <motion.div key={index} className="overflow-hidden rounded-2xl shadow-lg"
                                 initial={{ opacity: 0, scale: 0.85, rotate: index % 2 === 0 ? -8 : 8 }}
                                 whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -257,7 +257,7 @@ export function EventsPage () {
                                 whileHover={{ scale: 1.08, rotate: index % 2 === 0 ? 4 : -4 }}
                             >
                                 <motion.img
-                                    src={img}
+                                    src={imgSrc}
                                     alt={`Event highlight ${index + 1}`}
                                     className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
                                     initial={{ opacity: 0, scale: 0.9 }}
