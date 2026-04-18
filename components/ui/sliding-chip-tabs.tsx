@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 
 type CursorPosition = {
   left: number;
+  top: number;   // 1. Add top
   width: number;
+  height: number; // 2. Add height
   opacity: number;
 };
 
@@ -44,7 +46,9 @@ export function SlidingChipTabs({
 }: SlidingChipTabsProps) {
   const [position, setPosition] = React.useState<CursorPosition>({
     left: 0,
+    top: 0,    // Initialize top
     width: 0,
+    height: 0, // Initialize height
     opacity: 0,
   });
 
@@ -69,11 +73,14 @@ export function SlidingChipTabs({
             onClick={() => onValueChange(item.value)}
             onMouseEnter={(event) => {
               const element = event.currentTarget;
-              const { width } = element.getBoundingClientRect();
+              // 3. Extract height from getBoundingClientRect
+              const { width, height } = element.getBoundingClientRect();
 
               setPosition({
                 left: element.offsetLeft,
+                top: element.offsetTop, // 4. Grab offsetTop for multiline support
                 width,
+                height,                 // 5. Set height
                 opacity: 1,
               });
             }}
@@ -97,6 +104,7 @@ export function SlidingChipTabs({
 
       <motion.span
         animate={position}
+        // Ensure you don't pass static height/top classes in cursorClassName
         className={cn("pointer-events-none absolute z-0 rounded-md", cursorClassName)}
       />
     </div>
