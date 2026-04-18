@@ -7,7 +7,7 @@ This guide will help you set up a professional email service for your newsletter
 ## 📋 Prerequisites
 
 - Node.js installed on your computer
-- A Gmail account (or other email provider)
+- A Gmail account (or other email provider(s))
 - Basic knowledge of command line
 
 ## 🛠️ Step 1: Email Provider Setup (Gmail)
@@ -30,14 +30,14 @@ This guide will help you set up a professional email service for your newsletter
 ### 2.1 Create Environment File
 1. Navigate to the `backend` folder
 2. Create a new file called `.env`
-3. Add your email credentials:
+3. Add your email credentials;
 
 ```env
 # Email Configuration
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-16-character-app-password
 
-# Server Configuration
+# Server Config
 PORT=5000
 ```
 
@@ -145,7 +145,7 @@ Update the production API URL in `src/components/Newsletter.tsx`:
 ```typescript
 const API_URL = process.env.NODE_ENV === 'production' 
   ? 'https://your-backend-domain.com' 
-  : 'http://localhost:5000';
+  : 'http://localhost:5000'
 ```
 
 ## 🔒 Step 7: Security & Best Practices
