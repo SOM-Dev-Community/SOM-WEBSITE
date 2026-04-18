@@ -23,7 +23,7 @@ This guide will help you set up a professional email service for your newsletter
 3. Click "App passwords"
 4. Select "Mail" and "Other (Custom name)"
 5. Name it "SOM Website Newsletter"
-6. Copy the generated 16-character password
+6. Copy the generated 16-characters password
 
 ## 🔧 Step 2: Backend Configuration
 
