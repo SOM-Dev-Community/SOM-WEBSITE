@@ -30,7 +30,7 @@ This guide will help you set up a professional email service for your newsletter
 ### 2.1 Create Environment File
 1. Navigate to the `backend` folder
 2. Create a new file called `.env`
-3. Add your email credentials:
+3. Add your email credentials;
 
 ```env
 # Email Configuration
