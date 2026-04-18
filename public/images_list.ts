@@ -1,0 +1,18 @@
+export const imageList ={
+    som_logo: { id: 'som_logo', src: 'https://i.postimg.cc/SQPp9f9c/logo-sm.png' },
+    banner_1: { id: 'banner_1', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533793/banner-2_fksa1n.webp' },
+    pco_1: { id: 'pco_1', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533798/PCO_1_ywnfsq.webp' },
+    pco_2: { id: 'pco_2', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533797/PCO_2_djxkqn.webp' },
+    b_1: { id: 'B_1', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533801/B1_xmte2f.webp' },
+    b_2: { id: 'B_2', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533809/B2_x5cvh3.webp' },
+    b_3: { id: 'B_3', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533814/B_3_b1dqiq.webp' },
+    b_4: { id: 'B_4', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533831/B_4_gsiood.webp' },
+    b_5: { id: 'B_5', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533805/GRP_1_tngudl.webp' },
+    wsa_1: { id: 'wsa_1', src: 'https://i.postimg.cc/Y077RYFr/WSA1.jpg' },
+    wsa_2: { id: 'wsa_2', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533803/WSA2_luulrx.webp' },
+    wsa_3: { id: 'wsa_3', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533812/WSA3_fr9tc4.webp' },
+    pks_1: { id: 'pks_1', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533784/PKS1_vaphvm.webp' },
+    pks_2: { id: 'pks_2', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533784/PKS2_z3myep.webp' },
+    pks_3: { id: 'pks_3', src: 'https://i.postimg.cc/G2y3qbSQ/PKS3.jpg' },
+    image_1: { id: 'image_1', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533808/som_ucdosi.webp' },
+};

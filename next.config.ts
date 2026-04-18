@@ -5,13 +5,23 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   images: {
     qualities:[75, 90, 100],
-    unoptimized: true,
+    // unoptimized: true,
     remotePatterns: [
+      // {
+      //   protocol: "https",
+      //   hostname: "res.cloudinary.com",
+      //   pathname: "/**",
+      // },
       {
         protocol: "https",
-        hostname: "*",
-        pathname: "/**",
+        hostname: "res.cloudinary.com",
+        pathname: "/dri0l6ps0/image/upload/**",
       },
+      {
+        protocol: "https",
+        hostname: "i.postimg.cc",
+        pathname: "/**",
+      }
     ],
   },
 };

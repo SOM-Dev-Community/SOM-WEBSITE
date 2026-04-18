@@ -8,17 +8,20 @@ import { Newsletter } from '@/components/pages/home/sections/Newsletter';
 import { Button } from '@/components/ui/button';
 import { Clock } from 'lucide-react';
 
-import image1 from '@/assets/PKS2.jpg';
-import image2 from '@/assets/WSA3.jpg';
-import image3 from '@/assets/PKS1.jpg';
-import image4 from '@/assets/WSA2.jpg';
-import image5 from '@/assets/B1.jpg';
-import image6 from '@/assets/B2.jpg';
-
 import BroadcastPlayer from '@/components/broadcast_player';
+import { imageList } from '@/public/images_list';
 
 
 export function EventsPage () {
+    const images = [
+        imageList.pks_1.src,
+        imageList.pks_2.src,
+        imageList.pks_3.src,
+        imageList.b_1.src,
+        imageList.b_2.src,
+        imageList.wsa_1.src,
+        imageList.wsa_2.src,
+    ]
     const upcomingEvents = [
         {
             title: 'Your Loveworld Specials',
@@ -248,7 +251,7 @@ export function EventsPage () {
                             },
                         }}
                     >
-                        {[image1.src, image2.src, image3.src, image4.src, image5.src, image6.src].map((imgSrc, index) => (
+                        {images.map((imgSrc, index) => (
                             <motion.div key={index} className="overflow-hidden rounded-2xl shadow-lg"
                                 initial={{ opacity: 0, scale: 0.85, rotate: index % 2 === 0 ? -8 : 8 }}
                                 whileInView={{ opacity: 1, scale: 1, rotate: 0 }}

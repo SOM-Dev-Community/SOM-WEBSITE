@@ -5,10 +5,11 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Newsletter } from '@/components/pages/home/sections/Newsletter';
 import Image from 'next/image';
+import { imageList } from '@/public/images_list';
 
 export function ImpactPage() {
 
-    const impactImage = "/assets/PKS2.jpg"
+    const impactImage = imageList.pks_2.src
     return (
         <div className="min-h-screen bg-white flex flex-col overflow-x-hidden">
             <Header />

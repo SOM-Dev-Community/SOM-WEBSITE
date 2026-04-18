@@ -6,6 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Newsletter } from '@/components/pages/home/sections/Newsletter';
 import { Button } from '@/components/ui/button';
+import { imageList } from '@/public/images_list';
 
 export function AboutPage() {
     const teamMembers = [
@@ -22,15 +23,15 @@ export function AboutPage() {
     ];
 
     const activities = [
-        'https://i.postimg.cc/G2y3qbSQ/PKS3.jpg',
-        'https://i.postimg.cc/vZ0mmqVW/PKS1.jpg',
-        'https://i.postimg.cc/1z43VGGb/PKS2.jpg',
-        'https://i.postimg.cc/pVmKMj3G/B1.jpg',
-        'https://i.postimg.cc/SxfMffzs/B2.jpg',
-        'https://i.postimg.cc/NfTT5csR/B3.jpg',
-        'https://i.postimg.cc/Y077RYFr/WSA1.jpg',
-        'https://i.postimg.cc/8P1DrdDw/WSA2.jpg',
-        'https://i.postimg.cc/CMCS1ryz/WSA3.jpg',
+        imageList.pks_3.src,
+        imageList.pks_1.src,
+        imageList.pks_2.src,
+        imageList.b_1.src,
+        imageList.b_2.src,
+        imageList.b_3.src,
+        imageList.wsa_1.src,
+        imageList.wsa_2.src,
+        imageList.wsa_3.src,
     ];
 
     return (

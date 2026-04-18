@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { imageList } from '@/public/images_list';
 
 export const Footer = () => {
   return (
@@ -38,7 +39,7 @@ export const Footer = () => {
               <Image
                 width={100}
                 height={100}
-                src="https://i.postimg.cc/SQPp9f9c/logo-sm.png" alt="SOM Logo" className="h-20 w-auhref" />
+                src={imageList.som_logo.src} alt="SOM Logo" className="h-20 w-auhref" />
             </Link>
           </motion.div>
 

@@ -2,29 +2,30 @@ import type { CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, memo, useCallback } from "react";
 import Image from "next/image";
+import { imageList } from "@/public/images_list";
 
 const HEX_CLIP = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
 const BASE_IMAGE_SRC = "/assets/PCO_2.jpg";
 
 const IMAGE_LIST = [
-  { id: "01", src: "/assets/B_2.jpg" },
-  { id: "02", src: "/assets/B_4.jpg" },
-  { id: "03", src: "/assets/B2.jpg" },
-  { id: "04", src: "/assets/PCO_2.jpg" },
-  { id: "05", src: "/assets/PKS2.jpg" },
-  { id: "06", src: "/assets/WSA3.jpg" },
-  { id: "07", src: "/assets/B_3.jpg" },
-  { id: "08", src: "/assets/B1.jpg" },
-  { id: "09", src: "/assets/GRP_1.jpg" },
-  { id: "10", src: "/assets/PCO_1.jpg" },
-  { id: "11", src: "/assets/PKS1.jpg" },
-  { id: "12", src: "/assets/WSA2.jpg" },
-  { id: "13", src: "/assets/B_2.jpg" },
-  { id: "14", src: "/assets/B_4.jpg" },
-  { id: "15", src: "/assets/B2.jpg" },
-  { id: "16", src: "/assets/PCO_2.jpg" },
-  { id: "17", src: "/assets/PKS2.jpg" },
-  { id: "18", src: "/assets/WSA3.jpg" },
+  { id: "01", src: imageList.b_1.src },
+  { id: "02", src: imageList.b_2.src },
+  { id: "03", src: imageList.b_3.src },
+  { id: "04", src: imageList.b_4.src },
+  { id: "05", src: imageList.pks_1.src },
+  { id: "06", src: imageList.pks_2.src },
+  { id: "07", src: imageList.pks_3.src },
+  { id: "08", src: imageList.b_1.src },
+  { id: "09", src: imageList.wsa_2.src },
+  { id: "10", src: imageList.pco_1.src },
+  { id: "11", src: imageList.pks_1.src },
+  { id: "12", src: imageList.wsa_2.src },
+  { id: "13", src: imageList.b_2.src },
+  { id: "14", src: imageList.b_4.src },
+  { id: "15", src: imageList.b_2.src },
+  { id: "16", src: imageList.pco_2.src },
+  { id: "17", src: imageList.pks_2.src },
+  { id: "18", src: imageList.wsa_3.src },
 ];
 
 const TILE_LAYOUT = [
@@ -36,14 +37,14 @@ const TILE_LAYOUT = [
 ];
 
 // 1. MEMOIZED TILE COMPONENT: Prevents re-rendering all 18 items when the modal opens
-const HoneycombTile = memo(({ 
-  position, 
-  index, 
-  onClick 
-}: { 
-  position: typeof TILE_LAYOUT[0], 
-  index: number, 
-  onClick: (src: string) => void 
+const HoneycombTile = memo(({
+  position,
+  index,
+  onClick
+}: {
+  position: typeof TILE_LAYOUT[0],
+  index: number,
+  onClick: (src: string) => void
 }) => {
   const leftOffset = `calc(${position.x} * (var(--tile-w) + var(--gap-x)))`;
   const topOffset = `calc(${position.y} * var(--step-y))`;
@@ -63,7 +64,7 @@ const HoneycombTile = memo(({
     >
       <motion.div
         className="relative h-full w-full cursor-pointer"
-        style={{ 
+        style={{
           transformStyle: "preserve-3d",
           willChange: "transform" // 2. GPU HINT: Hardware accelerates the animation
         }}
@@ -100,6 +101,7 @@ const HoneycombTile = memo(({
               fill
               sizes="(max-width: 768px) 30vw, 15vw"
               quality={75} // 4. PERFORMANCE: Lower quality for tiny thumbnails loads much faster
+              unoptimized // Skip Next.js optimizations for already optimized images
               className="object-cover"
             />
           </div>
@@ -139,11 +141,11 @@ export default function HeroHoneycombGallery() {
         style={{ ...BOARD_STYLE, width: "var(--board-w)", height: "var(--board-h)" }}
       >
         {TILE_LAYOUT.map((position, index) => (
-          <HoneycombTile 
-            key={position.id} 
-            position={position} 
-            index={index} 
-            onClick={handleTileClick} 
+          <HoneycombTile
+            key={position.id}
+            position={position}
+            index={index}
+            onClick={handleTileClick}
           />
         ))}
       </div>
@@ -152,13 +154,13 @@ export default function HeroHoneycombGallery() {
       <AnimatePresence>
         {isModalOpen && selectedImage && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black/50  backdrop-blur-sm"
             onClick={() => setIsModalOpen(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <motion.div 
+            <motion.div
               className="relative h-[85vh] w-[90vw] max-w-5xl"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -169,9 +171,11 @@ export default function HeroHoneycombGallery() {
                 src={selectedImage}
                 alt="Expanded view"
                 fill
+                // onClick={(e) => e.stopPropagation()}
                 sizes="(max-width: 768px) 100vw, 80vw"
                 quality={90} // Keep modal quality high
-                className="object-contain drop-shadow-2xl"
+                unoptimized // 6. PERFORMANCE: Skip Next.js optimizations for already optimized images
+                className="object-contain drop-shadow-2xl pointer-events-none"
                 priority // Modal image loads immediately
               />
             </motion.div>

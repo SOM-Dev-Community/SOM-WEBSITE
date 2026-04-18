@@ -1,5 +1,6 @@
 
 import { cn } from "@/lib/utils";
+import { imageList } from "@/public/images_list";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,7 +13,7 @@ export function HeaderBrand({ isOverlayStyle }: HeaderBrandProps) {
     <Link href="/" className="group flex min-w-0 items-center gap-3">
       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 shadow-[0_10px_24px_rgba(37,99,235,0.18)] ring-1 ring-blue-100/80 transition-transform duration-300 group-hover:scale-[1.03]">
         <Image
-          src={"https://i.postimg.cc/SQPp9f9c/logo-sm.png"}
+          src={imageList.som_logo.src}
           width={100}
           height={100}
           alt="SOM Logo"
