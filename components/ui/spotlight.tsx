@@ -23,6 +23,7 @@ interface SpotlightProps {
 }
 interface SpotlightItemProps {
   children: React.ReactNode
+  spotColor?: string
   className?: string
 }
 
@@ -63,7 +64,7 @@ export const Spotlight = ({
     </SpotLightContext.Provider>
   )
 }
-export function SpotLightItem({ children, className }: SpotlightItemProps) {
+export function SpotLightItem({ children, className, spotColor = "rgba(255, 255, 255, 0.137)" }: SpotlightItemProps) {
   const { HoverFocusSpotlight, ProximitySpotlight, CursorFlowGradient } =
     useSpotlight()
   const boxWrapper = useRef(null)
@@ -102,7 +103,7 @@ export function SpotLightItem({ children, className }: SpotlightItemProps) {
       ref={boxWrapper}
       className={cn(
         className,
-        ' relative  rounded-lg p-[2px] bg-[#ffffff15] overflow-hidden'
+        'relative p-0.5 bg-[#ffffff15] overflow-hidden'
       )}
     >
       {isHovered && (
@@ -112,7 +113,7 @@ export function SpotLightItem({ children, className }: SpotlightItemProps) {
             background: `
             radial-gradient(
               250px circle at ${overlayColor.x}px ${overlayColor.y}px,
-              rgba(255, 255, 255, 0.137),
+              ${spotColor},
               transparent 80%
             )
           `,

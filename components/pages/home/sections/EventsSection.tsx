@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { light_glassmorphism } from "@/components/layout/header/constants";
 import { SlidingChipTabs } from "@/components/ui/sliding-chip-tabs";
+import { Spotlight, SpotLightItem } from "@/components/ui/spotlight";
 
 export const EventsSection = () => {
   const [activeTab, setActiveTab] = React.useState("Upcoming");
@@ -148,54 +149,55 @@ export const EventsSection = () => {
         </motion.div>
 
         {/* Event Cards */}
+        {/* Event Cards */}
         <motion.div
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-1"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          {filteredEvents.length === 0 ? (
-            <div className="text-center text-gray-400">No events found for this category.</div>
-          ) : (
-            filteredEvents.map(({ title, desc, image, Link }, idx) => (
-              <motion.div
-                key={idx}
-                className={cn(light_glassmorphism, "flex flex-col md:flex-row bg-gray-900/40 border border-white/10 rounded-3xl overflow-hidden shadow-lg hover:shadow-blue-900/40 transition-shadow duration-300")}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.03, boxShadow: '0 0 32px 0 #3b82f6' }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.1 * idx, type: 'spring', stiffness: 120 }}
-              >
-                <div
-                  className="w-full md:w-48 h-48 md:h-auto bg-cover bg-center"
-                  style={{ backgroundImage: `url(${image})` }}
-                />
-                <div className="flex flex-col lg:flex-row justify-between p-6 flex-1">
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">{title}</h3>
-                    <p className="text-gray-300 mb-6 lg:w-2/3">{desc}</p>
-                  </div>
-                  {Link ? (
-                    <a
-                      href={Link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0 md:self-center">
-                        Learn More
-                      </Button>
-                    </a>
-                  ) : (
-                    <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0 md:self-center">
-                      Learn More
-                    </Button>
-                  )}
-                </div>
-              </motion.div>
-            ))
-          )}
+          {/* The Spotlight component acts as the container for the proximity effect */}
+          <Spotlight className="grid gap-8 md:grid-cols-2 lg:grid-cols-1">
+            {filteredEvents.length === 0 ? (
+              <div className="text-center text-gray-400">No events found for this category.</div>
+            ) : (
+              filteredEvents.map(({ title, desc, image, Link }, idx) => (
+                // SpotLightItem wraps each individual card
+                <SpotLightItem key={idx} className="rounded-3xl" spotColor="rgba(6,9,104,0.2)">
+                  <motion.div
+                    initial={{ opacity: 0, y: 60 }}
+                    className={cn(
+                      light_glassmorphism,
+                      "flex flex-col md:flex-row bg-gray-900/40  rounded-3xl overflow-hidden shadow-lg"
+                    )}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.1 * idx }}
+                  >
+                    <div
+                      className="w-full md:w-48 h-48 md:h-auto bg-cover bg-center"
+                      style={{ backgroundImage: `url(${image})` }}
+                    />
+                    <div className="flex flex-col lg:flex-row justify-between p-6 flex-1">
+                      <div>
+                        <h3 className="text-2xl font-bold mb-2">{title}</h3>
+                        <p className="text-gray-300 mb-6 lg:w-2/3">{desc}</p>
+                      </div>
+                      <a
+                        href={Link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0">
+                          Learn More
+                        </Button>
+                      </a>
+                    </div>
+                  </motion.div>
+                </SpotLightItem>
+              ))
+            )}
+          </Spotlight>
         </motion.div>
       </motion.div>
     </motion.section>
