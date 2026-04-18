@@ -37,7 +37,7 @@ This guide will help you set up a professional email service for your newsletter
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-16-character-app-password
 
-# Server Configuration
+# Server Config
 PORT=5000
 ```
 
