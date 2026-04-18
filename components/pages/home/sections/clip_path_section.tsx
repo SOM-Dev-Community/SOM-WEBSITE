@@ -1,31 +1,56 @@
 import { AnimateSvg } from "@/components/ui/animate_path";
 import ClipPathImage from "./clip_path/clip_path_image";
 import { ScrollAnimation } from "@/components/scroll-animation";
+import ScrollBaseAnimation from "@/components/ui/scroll-text-marquee";
 
 export function ClipPathSection() {
     return (
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[70vh] flex flex-col justify-center items-center bg-[radial-gradient(#0000001a_1px,#f9fafb_1px)] bg-[size:39px_39px]">
+        <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex flex-col justify-center items-center bg-[#f9fafb] bg-[radial-gradient(#d1d5db_1.5px,transparent_1.5px)] bg-[size:32px_32px]">
 
-            {/* Title Area - Centered at the top */}
-            <div className="w-full max-w-4xl mx-auto text-center z-10 mb-12 lg:mb-20">
-                <h2 className="leading-tight text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900">
-                    <ScrollAnimation
-                        viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
-                    >
-                        <span className="inline-block line-through decoration-[6px] decoration-gray-400 mb-2">
-                            Not Random
-                        </span>
-                    </ScrollAnimation>
-                    {/* <br /> */}
-                    <ScrollAnimation
-                        viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
-                    >
-                        <span className="inline-block text-black mt-2">
-                            Divinely Placed
-                        </span>
-                    </ScrollAnimation>
-                </h2>
+            {/* LEFT SIDE VERTICAL MARQUEE */}
+            <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-20 lg:opacity-40">
+                <ScrollBaseAnimation
+                    delay={500}
+                    baseVelocity={-2}
+                    clasname='font-black text-7xl lg:text-8xl tracking-tight leading-none text-[#0f172a] uppercase'
+                >
+                    Sons of ministry
+                </ScrollBaseAnimation>
             </div>
+
+            {/* RIGHT SIDE VERTICAL MARQUEE */}
+            <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-20 lg:opacity-40">
+                <ScrollBaseAnimation
+                    delay={500}
+                    baseVelocity={2}
+                    clasname='font-black text-7xl lg:text-8xl tracking-tight leading-none text-[#0f172a] uppercase'
+                >
+                    Sons of ministry
+                </ScrollBaseAnimation>
+            </div>
+
+            {/* CENTER CONTENT BLOCK */}
+            <div className="relative z-10 flex flex-col items-center">
+
+                {/* Title Area - Centered */}
+                <div className="w-full max-w-4xl mx-auto text-center mb-12 lg:mb-16">
+                    <h2 className="leading-tight text-5xl sm:text-6xl lg:text-[5.5rem] font-black text-[#0f172a]">
+                        <ScrollAnimation
+                            viewport={{ once: true, amount: 0.5 }}
+                        >
+                            <span className="inline-block line-through decoration-[8px] decoration-slate-400 mb-2">
+                                Not Random
+                            </span>
+                        </ScrollAnimation>
+                        <ScrollAnimation
+                            viewport={{ once: true, amount: 0.5 }}
+                        >
+                            <span className="inline-block text-[#0f172a]">
+                                Divinely Placed
+                            </span>
+                        </ScrollAnimation>
+                    </h2>
+                </div>
 
             {/* Content Area: SVGs + Image grouped together */}
             <div className="flex flex-row items-center justify-center w-full max-w-6xl mx-auto relative z-10 gap-4 lg:gap-12">
@@ -58,7 +83,7 @@ export function ClipPathSection() {
                 <ScrollAnimation
                     viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
                 >
-                    <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] flex items-center justify-center relative shrink-0">
+                    <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-120 lg:h-120 flex items-center justify-center relative shrink-0">
                         <ClipPathImage />
                     </div>
                 </ScrollAnimation>
@@ -85,6 +110,7 @@ export function ClipPathSection() {
                         />
                     </div>
                 </ScrollAnimation>
+                </div>
             </div>
         </section>
     );
