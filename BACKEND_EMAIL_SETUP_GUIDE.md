@@ -7,7 +7,7 @@ This guide will help you set up a professional email service for your newsletter
 ## 📋 Prerequisites
 
 - Node.js installed on your computer
-- A Gmail account (or other email provider)
+- A Gmail account (or other email provider(s))
 - Basic knowledge of command line
 
 ## 🛠️ Step 1: Email Provider Setup (Gmail)
