@@ -1,28 +1,37 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import HeroHoneycombGallery from "./hero/HeroHoneycombGallery"; // Adjust path if needed
-import { useRouter } from "next/navigation";
 
 export const Hero = () => {
   const router = useRouter();
   const heroRef = useRef<HTMLElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1.04, 1.22]);
-  const backgroundOpacity = useTransform(scrollYProgress, [0, 1], [0.95, 0.45]);
-  const meshY = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const glowY = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const secondaryGlowY = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -54]);
-  const indicatorY = useTransform(scrollYProgress, [0, 1], [0, 30]);
+  // 1. ADD SPRING SMOOTHING: This eliminates the "glitchy" stepped scrolling from mouse wheels
+  const smoothScroll = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // 2. USE THE SMOOTHED VALUE FOR TRANSFORMS
+  const backgroundY = useTransform(smoothScroll, [0, 1], [0, 180]);
+  const backgroundScale = useTransform(smoothScroll, [0, 1], [1.04, 1.22]);
+  const backgroundOpacity = useTransform(smoothScroll, [0, 1], [0.95, 0.45]);
+  const meshY = useTransform(smoothScroll, [0, 1], [0, -120]);
+  const glowY = useTransform(smoothScroll, [0, 1], [0, 90]);
+  const secondaryGlowY = useTransform(smoothScroll, [0, 1], [0, -80]);
+  const contentY = useTransform(smoothScroll, [0, 1], [0, -54]);
+  const indicatorY = useTransform(smoothScroll, [0, 1], [0, 30]);
 
   const handleGetStarted = () => {
     router.push("/Contact");
@@ -41,11 +50,13 @@ export const Hero = () => {
       id="hero"
       className="relative isolate min-h-screen overflow-hidden bg-slate-950 text-white"
     >
+      {/* 3. ADD WILL-CHANGE: Forces GPU acceleration for the heavy background layer */}
       <motion.div
         style={{
           y: backgroundY,
           scale: backgroundScale,
           opacity: backgroundOpacity,
+          willChange: "transform, opacity",
         }}
         className="absolute inset-[-8%] bg-cover bg-center"
       >
@@ -56,16 +67,16 @@ export const Hero = () => {
       </motion.div>
 
       <motion.div
-        style={{ y: meshY }}
+        style={{ y: meshY, willChange: "transform" }}
         className="absolute inset-0 bg-[linear-gradient(to_right,rgba(96,165,250,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(96,165,250,0.08)_1px,transparent_1px)] bg-[size:5rem_5rem]"
       />
 
       <motion.div
-        style={{ y: glowY }}
+        style={{ y: glowY, willChange: "transform" }}
         className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-fuchsia-600/30 blur-[120px]"
       />
       <motion.div
-        style={{ y: secondaryGlowY }}
+        style={{ y: secondaryGlowY, willChange: "transform" }}
         className="absolute bottom-0 right-[-8%] h-[24rem] w-[24rem] rounded-full bg-blue-500/25 blur-[140px]"
       />
 
@@ -73,14 +84,11 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.16),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(244,114,182,0.12),transparent_28%)]" />
 
       <motion.div
-        style={{ y: contentY }}
-        // Added overflow-hidden on the Y axis contextually to prevent scrolling artifacts if scaled high
+        style={{ y: contentY, willChange: "transform" }}
         className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-20 pt-32 sm:px-10 lg:px-8"
       >
-        {/* UPDATED: Changed to flex-col on mobile/tablet, and flex-row on lg desktop */}
         <div className="flex w-full flex-col items-center gap-14 lg:flex-row lg:justify-between lg:gap-12">
-          
-          {/* LEFT SIDE: Text Content (50% width on desktop) */}
+
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -184,7 +192,6 @@ export const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT SIDE: Honeycomb Gallery (50% width on desktop) */}
           <motion.div
             initial={{ opacity: 0, x: 48 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -204,7 +211,7 @@ export const Hero = () => {
       </motion.div>
 
       <motion.div
-        style={{ y: indicatorY }}
+        style={{ y: indicatorY, willChange: "transform" }}
         className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 justify-center"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
