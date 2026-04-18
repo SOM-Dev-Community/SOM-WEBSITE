@@ -145,7 +145,7 @@ Update the production API URL in `src/components/Newsletter.tsx`:
 ```typescript
 const API_URL = process.env.NODE_ENV === 'production' 
   ? 'https://your-backend-domain.com' 
-  : 'http://localhost:5000';
+  : 'http://localhost:5000'
 ```
 
 ## 🔒 Step 7: Security & Best Practices
