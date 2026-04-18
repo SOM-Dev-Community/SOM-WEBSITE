@@ -1,13 +1,15 @@
+"use client";
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 export const FeaturedContent = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleReadMore = () => {
-    navigate('/impact');
+    router.push('/impact');
   };
 
   return (

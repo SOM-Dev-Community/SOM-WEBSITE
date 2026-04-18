@@ -1,6 +1,9 @@
+"use client";
+
 import { useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 import { motion } from "framer-motion";
-import { NavLink, type NavLinkProps } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
@@ -53,8 +56,7 @@ export function HeaderDesktopNav({
       {navLinks.map(({ link, label }) => (
         <HeaderNavLinkTab
           key={link}
-          to={link}
-          end={link === "/"}
+          href={link}
           isOverlayStyle={isOverlayStyle}
           setPosition={setPosition}
         >
@@ -67,7 +69,7 @@ export function HeaderDesktopNav({
   );
 }
 
-type HeaderNavLinkTabProps = NavLinkProps & {
+type HeaderNavLinkTabProps = React.ComponentProps<typeof Link> & {
   children: ReactNode;
   setPosition: Dispatch<SetStateAction<Position>>;
   isOverlayStyle: boolean;
@@ -77,10 +79,18 @@ function HeaderNavLinkTab({
   children,
   setPosition,
   isOverlayStyle,
+  href,
   ...props
 }: HeaderNavLinkTabProps) {
+  const pathname = usePathname();
+
+  // Logic to determine active state:
+  // Exact match for the root "/", otherwise checks if the current pathname starts with the link's href
+  const isActive = href === "/" ? pathname === href : pathname?.startsWith(href.toString());
+
   return (
-    <NavLink
+    <Link
+      href={href}
       {...props}
       onMouseEnter={(event) => {
         const element = event.currentTarget;
@@ -92,25 +102,19 @@ function HeaderNavLinkTab({
           opacity: 1,
         });
       }}
-      className={({ isActive }) =>
-        cn(
-          HEADER_Z.item,
-          "relative rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200",
-          isActive
-            ? "text-white shadow-[0_10px_24px_rgba(37,99,235,0.32)]"
-            : isOverlayStyle
-              ? "text-white/80 hover:text-white"
-              : "text-slate-700 hover:text-blue-700"
-        )
-      }
-    >
-      {({ isActive }) => (
-        <>
-          <span className={cn(HEADER_Z.label, "relative")}>{children}</span>
-          <ActiveChip active={isActive} />
-        </>
+      className={cn(
+        HEADER_Z.item,
+        "relative rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200",
+        isActive
+          ? "text-white shadow-[0_10px_24px_rgba(37,99,235,0.32)]"
+          : isOverlayStyle
+            ? "text-white/80 hover:text-white"
+            : "text-slate-700 hover:text-blue-700"
       )}
-    </NavLink>
+    >
+      <span className={cn(HEADER_Z.label, "relative")}>{children}</span>
+      <ActiveChip active={isActive} />
+    </Link>
   );
 }
 

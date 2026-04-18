@@ -1,8 +1,9 @@
+"use client";
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Footer = () => {
   return (
@@ -33,11 +34,11 @@ export const Footer = () => {
               <strong>Loveworld SOM</strong><br></br>
               Founded by Rev. Dr. Chris Oyakhilome, uniting pastors’ children to know Christ and share the gospel.
             </p>
-            <Link to="/" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <Image
                 width={100}
                 height={100}
-                src="https://i.postimg.cc/SQPp9f9c/logo-sm.png" alt="SOM Logo" className="h-20 w-auto" />
+                src="https://i.postimg.cc/SQPp9f9c/logo-sm.png" alt="SOM Logo" className="h-20 w-auhref" />
             </Link>
           </motion.div>
 
@@ -51,27 +52,27 @@ export const Footer = () => {
             <h3 className="text-xl font-bold mb-4">QUICK LINKS</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/blog" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/blog" className="text-gray-300 hover:text-white transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/explore" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/explore" className="text-gray-300 hover:text-white transition-colors">
                   Explore
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/events" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/events" className="text-gray-300 hover:text-white transition-colors">
                   Live Events
                 </Link>
               </li>
               <li>
-                <Link to="/preachers" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/preachers" className="text-gray-300 hover:text-white transition-colors">
                   Preachers Kids Network
                 </Link>
               </li>

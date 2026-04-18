@@ -1,12 +1,14 @@
+"use client";
+
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import HeroHoneycombGallery from "./hero/HeroHoneycombGallery"; // Adjust path if needed
+import { useRouter } from "next/navigation";
 
 export const Hero = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -23,7 +25,7 @@ export const Hero = () => {
   const indicatorY = useTransform(scrollYProgress, [0, 1], [0, 30]);
 
   const handleGetStarted = () => {
-    navigate("/Contact");
+    router.push("/Contact");
   };
 
   const scrollToEvents = () => {

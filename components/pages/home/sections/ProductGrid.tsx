@@ -1,7 +1,9 @@
+"use client";
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export const ProductGrid = () => {
   const products = [
@@ -94,7 +96,7 @@ export const ProductGrid = () => {
                 </p>
                 <div className="mt-auto">
                   {product.title.toLowerCase().includes('magazine') && product.buttonText.toLowerCase().includes('learn more') ? (
-                    <Link to="/Magazine">
+                    <Link href="/Magazine">
                       <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
                         {product.buttonText}
                       </Button>

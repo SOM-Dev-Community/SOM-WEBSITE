@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+"use client";
+
 import { TvMinimalPlay } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 type HeaderWatchLiveButtonProps = {
   className?: string;
@@ -19,7 +21,7 @@ export function HeaderWatchLiveButton({
         className
       )}
     >
-      <Link to="/events">
+      <Link href="/events">
         <TvMinimalPlay className="size-4" />
         Watch Live
       </Link>
