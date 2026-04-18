@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from '@/components/layout/Header';
 import { Hero } from './sections/Hero';
 import { FeaturedContent } from './sections/FeaturedContent';

@@ -99,7 +99,7 @@ const HoneycombTile = memo(({
               alt={`Gallery tile ${position.id}`}
               fill
               sizes="(max-width: 768px) 30vw, 15vw"
-              quality={65} // 4. PERFORMANCE: Lower quality for tiny thumbnails loads much faster
+              quality={75} // 4. PERFORMANCE: Lower quality for tiny thumbnails loads much faster
               className="object-cover"
             />
           </div>
