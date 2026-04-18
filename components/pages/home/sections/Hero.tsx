@@ -209,7 +209,7 @@ export const Hero = () => {
           
         </div>
       </motion.div>
-
+{/* 
       <motion.div
         style={{ y: indicatorY, willChange: "transform" }}
         className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 justify-center"
@@ -233,7 +233,7 @@ export const Hero = () => {
           </motion.span>
           <span>Scroll to Events</span>
         </motion.button>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 };

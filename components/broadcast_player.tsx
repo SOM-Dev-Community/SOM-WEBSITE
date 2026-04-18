@@ -56,7 +56,7 @@ export default function BroadcastPlayer() {
             >
                 <BroadcastLoaderIcon />
             </MediaLoadingIndicator>
-            <MediaControlBar className={cn(dark_glassmorphism, "")} style={{ width: "100%" }} id="broadcast_controls">
+            <MediaControlBar className={cn(dark_glassmorphism, "gap-2 px-2")} style={{ width: "100%" }} id="broadcast_controls">
                 <MediaPlayButton className="bg-transparent" />
                 <MediaMuteButton className="bg-transparent" />
                 <MediaVolumeRange className="bg-transparent" />

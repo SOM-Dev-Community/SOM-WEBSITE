@@ -58,7 +58,7 @@ export function EventsPage () {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, type: 'spring', bounce: 0.5 }}
         >
-            <Header />
+            <Header type='transparent'/>
 
             {/* Page Title Section */}
             <motion.section className="bg-gradient-to-r from-blue-50 via-blue-50 to-blue-50 py-20 px-6 text-center"
@@ -85,7 +85,7 @@ export function EventsPage () {
                 </div>
             </motion.section>
 
-            <section className='py-12 border-3 max-w-6xl mx-auto px-6'>
+            <section className='py-12 max-w-6xl mx-auto px-6'>
                 <div className='w-full aspect-video rounded-2xl overflow-hidden shadow-lg'>
                     <BroadcastPlayer />
                 </div>
