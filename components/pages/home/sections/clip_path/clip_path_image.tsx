@@ -28,6 +28,7 @@ export function ClipPathImage() {
                     src={imageList.b_3.src}
                     alt="Description"
                     fill
+                    unoptimized
                     quality={75}
                     className="object-cover transition-transform duration-300 hover:scale-105"
                 />

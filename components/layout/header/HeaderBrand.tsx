@@ -16,6 +16,7 @@ export function HeaderBrand({ isOverlayStyle }: HeaderBrandProps) {
           src={imageList.som_logo.src}
           width={100}
           height={100}
+          unoptimized
           alt="SOM Logo"
           className="h-9 w-auto"
         />
