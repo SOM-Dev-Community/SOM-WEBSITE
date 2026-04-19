@@ -117,7 +117,7 @@ export const Hero = () => {
                 Loveworld
               </motion.span>
               <motion.span
-                className="block bg-gradient-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent"
+                className="block bg-linear-to-r from-white via-cyan-100 to-blue-200 bg-clip-text text-transparent"
                 variants={{
                   hidden: { opacity: 0, x: 60 },
                   visible: { opacity: 1, x: 0 },
@@ -129,7 +129,7 @@ export const Hero = () => {
             </motion.h1>
 
             <motion.p
-              className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-200/92 sm:text-xl lg:mx-0"
+              className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-200/92 sm:text-xl lg:mx-0 text-balance"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
