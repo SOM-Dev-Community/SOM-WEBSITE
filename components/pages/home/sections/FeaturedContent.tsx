@@ -4,6 +4,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { ScrollAnimation } from '@/components/scroll-animation';
 
 export const FeaturedContent = () => {
   const router = useRouter();
@@ -23,11 +24,8 @@ export const FeaturedContent = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
-          <motion.div
-            initial={{ x: -80, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.9, type: 'spring', stiffness: 60 }}
+          <ScrollAnimation
+            direction='left'
           >
             <motion.span
               className="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium tracking-wide mb-5 shadow"
@@ -101,15 +99,10 @@ export const FeaturedContent = () => {
                 Read More
               </Button>
             </motion.div>
-          </motion.div>
-
+          </ScrollAnimation>
           {/* Video Section */}
-          <motion.div
-            className="relative"
-            initial={{ x: 80, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.9, type: 'spring', stiffness: 60, delay: 0.2 }}
+          <ScrollAnimation
+            direction='right'
           >
             <motion.div
               className="relative overflow-hidden rounded-3xl shadow-2xl aspect-video flex items-center justify-center bg-black"
@@ -130,7 +123,7 @@ export const FeaturedContent = () => {
                 className="w-full h-full rounded-3xl"
               ></iframe>
             </motion.div>
-          </motion.div>
+          </ScrollAnimation>
         </div>
       </div>
     </motion.section>

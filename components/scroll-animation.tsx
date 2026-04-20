@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { cn } from '@/lib/utils';
-import { motion, HTMLMotionProps } from 'motion/react';
+import { motion } from 'motion/react';
 import React from 'react';
 
 type Direction = 'up' | 'down' | 'left' | 'right';

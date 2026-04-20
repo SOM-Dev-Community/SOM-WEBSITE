@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { imageList } from '@/public/images_list';
+import { ScrollAnimation } from '../scroll-animation';
 
 export const Footer = () => {
   return (
@@ -24,11 +25,8 @@ export const Footer = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           {/* About Us */}
-          <motion.div
-            initial={{ x: -60, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.7 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+          <ScrollAnimation
+            direction='left'
           >
             <h3 className="text-xl font-bold mb-4">Who We Are</h3>
             <p className="text-gray-300 leading-relaxed mb-4">
@@ -41,7 +39,7 @@ export const Footer = () => {
                 height={100}
                 src={imageList.som_logo.src} alt="SOM Logo" className="h-20 w-auhref" />
             </Link>
-          </motion.div>
+          </ScrollAnimation>
 
           {/* Quick Links */}
           <motion.div
@@ -81,11 +79,8 @@ export const Footer = () => {
           </motion.div>
 
           {/* Contact Us */}
-          <motion.div
-            initial={{ x: 60, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.7 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+          <ScrollAnimation
+            direction='right'
           >
             <h3 className="text-xl font-bold mb-4">CONTACT US</h3>
             <div className="space-y-2 text-gray-300">
@@ -99,7 +94,7 @@ export const Footer = () => {
                 </a>
               </p>
             </div>
-          </motion.div>
+          </ScrollAnimation>
         </motion.div>
 
         {/* Bottom Bar */}
@@ -113,6 +108,6 @@ export const Footer = () => {
           <em><p>© 2026 loveworld sons of ministry - All Rights Reserved.</p></em>
         </motion.div>
       </div>
-    </motion.footer>
+    </motion.footer >
   );
 };
