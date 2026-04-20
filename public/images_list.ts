@@ -15,4 +15,8 @@ export const imageList ={
     pks_2: { id: 'pks_2', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533784/PKS2_z3myep.webp' },
     pks_3: { id: 'pks_3', src: 'https://i.postimg.cc/G2y3qbSQ/PKS3.jpg' },
     image_1: { id: 'image_1', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776533808/som_ucdosi.webp' },
+    image_2: { id: 'image_2', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776699976/584A2132_pcheue.webp' },
+    image_3: { id: 'image_3', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776699975/584A1999_ggizy2.webp' },
+    image_4: { id: 'image_4', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776699974/584A2113_yko2ri.webp' },
+    image_5: { id: 'image_4', src: 'https://res.cloudinary.com/dri0l6ps0/image/upload/v1776699972/584A1054_v3ka7x.webp' },
 };

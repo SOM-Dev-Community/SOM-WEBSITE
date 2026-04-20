@@ -7,12 +7,16 @@ import { light_glassmorphism } from "@/components/layout/header/constants";
 import { LiquidGlassCard } from "@/components/liquid-glass";
 import { motion, AnimatePresence } from "framer-motion";
 import StatCounter from "@/components/ui/stat_counter";
+import { imageList } from "@/public/images_list";
+import { BlurVignette, BlurVignetteArticle } from "@/components/blur-vignette";
 
-const bgImages = [
-  "https://images.unsplash.com/photo-1718838541476-d04e71caa347?w=1080&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1715432362539-6ab2ab480db2?w=1080&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1718601980986-0ce75101d52d?w=1080&auto=format&fit=crop"
-];
+const images = [
+  imageList.image_2.src,
+  imageList.image_3.src,
+  imageList.image_4.src,
+  imageList.image_5.src,
+]
+
 
 export function StickyGallerySection(): React.JSX.Element {
   const [index, setIndex] = useState(0);
@@ -20,7 +24,7 @@ export function StickyGallerySection(): React.JSX.Element {
   // Slideshow timer
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % bgImages.length);
+      setIndex((prev) => (prev + 1) % images.length);
     }, 4000); // Changes image every 4 seconds
     return () => clearInterval(timer);
   }, []);
@@ -29,18 +33,31 @@ export function StickyGallerySection(): React.JSX.Element {
     <section className='text-white relative w-full bg-slate-950'>
       {/* Background Slideshow */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <AnimatePresence>
-          <motion.img
-            key={index}
-            src={bgImages[index]}
-            initial={{ opacity: 0, filter: "blur(20px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, filter: "blur(20px)" }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-slate-950/40 z-10" />
+        <BlurVignette
+          radius='24px'
+          inset='10px'
+          transitionLength='100px'
+          blur='15px'
+          className='h-full'
+        >
+          <AnimatePresence>
+            <motion.img
+              key={index}
+              src={images[index]}
+              initial={{ opacity: 0, filter: "blur(20px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, filter: "blur(20px)" }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
+          <BlurVignetteArticle />
+        </BlurVignette>
+        {/* <div className="absolute inset-0 bg-slate-950/40 z-10" /> */}
+        <div className="absolute inset-0 h-full w-full bg-[#0f172a] z-10 opacity-50 backdrop-blur-2xl">
+          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#6633ee2e_1px,transparent_1px),linear-gradient(to_bottom,#6633ee2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_45%_60%_at_50%_100%,#000_45%,transparent_115%)]"></div>
+          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,255,255,0)_40%,rgba(102,51,238,0.65)_100%)]"></div>
+        </div>
       </div>
 
       <div className='grid grid-cols-1 lg:grid-cols-2 grid-rows-[1fr] relative z-10'>
@@ -54,7 +71,7 @@ export function StickyGallerySection(): React.JSX.Element {
                   value={10}
                   className="items-center"
                   suffix="+"
-                  valueSize="5rem" 
+                  valueSize="5rem"
                   valueColor="#ffffff"
                   fontWeight={700}
                 />
@@ -78,7 +95,7 @@ export function StickyGallerySection(): React.JSX.Element {
           </LiquidGlassCard>
         </div>
         <div className="overflow-x-hidden z-10 flex justify-center w-full">
-          <StickyGallery />
+          <StickyGallery images={images} />
         </div>
       </div>
     </section>
