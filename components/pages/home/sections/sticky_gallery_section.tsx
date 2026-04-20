@@ -46,17 +46,34 @@ export function StickyGallerySection(): React.JSX.Element {
       <div className='grid grid-cols-1 lg:grid-cols-2 grid-rows-[1fr] relative z-10'>
 
         <div className='sticky top-0 h-screen flex items-center justify-center z-20 pointer-events-none px-4'>
-          <LiquidGlassCard className="overflow-hidden w-full max-w-100 shrink-0 pointer-events-auto">
-            <div className={cn(light_glassmorphism, "bg-white/10 py-6 z-1")}>
-              <h1 className='text-4xl md:text-5xl 2xl:text-7xl px-4 md:px-8 font-semibold text-center tracking-tight leading-[120%]'>
+          <LiquidGlassCard className="overflow-hidden w-full max-w-125 shrink-0 pointer-events-auto">
+            <div className={cn(light_glassmorphism, "bg-white/10 p-8 z-1 flex flex-col items-center text-center gap-2")}>
+
+              <div className="flex flex-col items-center">
                 <StatCounter
                   value={10}
-                  className="gap-0"
+                  className="items-center"
                   suffix="+"
-                  // label="years of impact"
+                  valueSize="5rem" 
+                  valueColor="#ffffff"
+                  fontWeight={700}
                 />
-                {/* <br/><span>years of impact</span> */}
-              </h1>
+                <h1 className='text-xl md:text-3xl font-bold tracking-tight leading-tight text-white'>
+                  Years of Bold Faith <br className="hidden md:block" /> & Global Impact
+                </h1>
+              </div>
+
+              <div className="w-16 h-1 bg-white/20 rounded-full" />
+
+              <p className='text-sm md:text-base text-white/80 leading-relaxed'>
+                A decade of life-transforming conferences, impactful ministry, bold innovations, and undeniable exploits.
+                Built on family, love, and friendship—united by one vision.
+              </p>
+
+              <p className="text-sm md:text-base font-semibold text-white tracking-wide uppercase">
+                Raising champions. Transforming lives. Advancing God’s purpose.
+              </p>
+
             </div>
           </LiquidGlassCard>
         </div>
