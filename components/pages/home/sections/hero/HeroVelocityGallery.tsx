@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
+import { imageList } from "@/public/images_list";
 
 type Props = {
   images?: string[];
@@ -19,14 +20,11 @@ type Props = {
 
 // Use absolute paths referencing the public directory
 const FALLBACK_IMAGES = [
-  "/assets/PKS1.jpg",
-  "/assets/PKS2.jpg",
-  "/assets/WSA2.jpg",
-  "/assets/WSA3.jpg",
-  "/assets/B1.jpg",
-  "/assets/B2.jpg",
-  "/assets/banner-2.jpg",
-  "/assets/som.webp",
+  imageList.image_1.src,
+  imageList.image_1.src,
+  imageList.image_1.src,
+  imageList.image_1.src,
+  imageList.image_1.src,
 ];
 
 const TRACK_START = {
@@ -172,7 +170,7 @@ function Plane({ index, offset, velocity, src }: PlaneProps) {
     slot,
     (currentSlot) => TRACK_START.x + TRACK_STEP.x * currentSlot,
   );
-  
+
   const y = useTransform(() => {
     return (
       TRACK_START.y +
@@ -181,7 +179,7 @@ function Plane({ index, offset, velocity, src }: PlaneProps) {
       hoverLift.get() * 18
     );
   });
-  
+
   const z = useTransform(() => {
     return (
       TRACK_START.z +
@@ -196,13 +194,13 @@ function Plane({ index, offset, velocity, src }: PlaneProps) {
   });
 
   const scale = useTransform(hoverLift, [0, 1], [1, 1.03]);
-  
+
   const brightness = useTransform(() => {
     return (
       1 + Math.min(0.18, Math.abs(wave.get()) * 0.0018) + hoverLift.get() * 0.12
     );
   });
-  
+
   const filter = useTransform(brightness, (value) => `brightness(${value})`);
 
   const boxShadow = useTransform(() => {
