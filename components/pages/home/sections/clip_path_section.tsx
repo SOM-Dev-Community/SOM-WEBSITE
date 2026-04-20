@@ -51,10 +51,12 @@ export function ClipPathSection() {
                         </ScrollAnimation>
                     </h2>
 
-                    {/* Added styling and animation to the paragraph here */}
                     <ScrollAnimation viewport={{ once: true, amount: 0.5 }}>
-                        <p className="mt-6 text-balance sm:mt-8 text-lg sm:text-xl lg:text-2xl text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed">
+                        <p className="mt-6 text-balance sm:mt-8 text-lg sm:text-xl lg:text-2xl text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed text-center">
                             And those he predestined, he also called; those he called, he also justified; those he justified, he also glorified.
+                            <span className="mt-4 block text-sm sm:text-base italic text-center text-slate-500">
+                                — Romans 8:30 (NIV)
+                            </span>
                         </p>
                     </ScrollAnimation>
                 </div>
