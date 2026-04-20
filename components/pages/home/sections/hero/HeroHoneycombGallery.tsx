@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, memo, useCallback } from "react";
 import Image from "next/image";
 import { imageList } from "@/public/images_list";
+import { XIcon } from "lucide-react";
 
 const HEX_CLIP = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
 const BASE_IMAGE_SRC = "/assets/PCO_2.jpg";
@@ -149,37 +150,63 @@ export default function HeroHoneycombGallery() {
           />
         ))}
       </div>
-
       {/* MODAL */}
-      <AnimatePresence>
+      <AnimatePresence initial={false} mode="sync">
         {isModalOpen && selectedImage && (
-          <motion.div
-            className="fixed inset-0 z-100 flex items-center justify-center bg-black/50  backdrop-blur-sm"
-            onClick={() => setIsModalOpen(false)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
+          <>
+            {/* Backdrop */}
             <motion.div
-              className="relative h-[85vh] w-[90vw] max-w-5xl"
-              initial={{ scale: 0.9, opacity: 0 }}
+              key={`backdrop-${selectedImage}`}
+              className="fixed inset-0 z-60 w-screen bg-white/80 dark:bg-black/80 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+            />
+
+            {/* Modal Wrapper (Takes full screen, centers the child modal) */}
+            <motion.div
+              key="dialog"
+              className="fixed inset-0 z-70 flex items-center justify-center pointer-events-none p-4 sm:p-6"
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
             >
-              <Image
-                src={selectedImage}
-                alt="Expanded view"
-                fill
-                // onClick={(e) => e.stopPropagation()}
-                sizes="(max-width: 768px) 100vw, 80vw"
-                quality={90} // Keep modal quality high
-                unoptimized // 6. PERFORMANCE: Skip Next.js optimizations for already optimized images
-                className="object-contain drop-shadow-2xl pointer-events-none"
-                priority // Modal image loads immediately
-              />
+              {/* Actual Modal Content Container */}
+              <motion.div
+                layoutId={`dialog-${selectedImage}`}
+                className="pointer-events-auto relative flex flex-col overflow-hidden bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 shadow-2xl rounded-3xl w-full max-w-4xl h-[80vh]"
+                tabIndex={-1}
+              >
+                <motion.div
+                  layoutId={`dialog-img-${selectedImage}`}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={selectedImage}
+                    alt="Expanded view"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    quality={90}
+                    unoptimized
+                    className="object-cover pointer-events-none"
+                    priority
+                  />
+                </motion.div>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute right-4 top-4 z-10 p-2 text-neutral-800 dark:text-neutral-200 bg-white/60 dark:bg-black/60 hover:bg-white dark:hover:bg-black backdrop-blur-md rounded-full transition-all duration-200 shadow-sm cursor-pointer"
+                  type="button"
+                  aria-label="Close dialog"
+                >
+                  <XIcon size={24} />
+                </button>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>

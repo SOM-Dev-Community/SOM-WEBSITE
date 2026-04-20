@@ -8,22 +8,22 @@ export function ClipPathSection() {
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex flex-col justify-center items-center bg-[#f9fafb] bg-[radial-gradient(#d1d5db_1.5px,transparent_1.5px)] bg-[size:32px_32px]">
 
             {/* LEFT SIDE VERTICAL MARQUEE */}
-            <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-20 lg:opacity-40">
+            <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-25 lg:opacity-50">
                 <ScrollBaseAnimation
                     delay={500}
                     baseVelocity={-2}
-                    clasname='font-black text-7xl lg:text-8xl tracking-tight leading-none text-[#0f172a] uppercase'
+                    clasname='font-black text-8xl lg:text-[10rem] tracking-tight leading-none text-[#0f172a] uppercase'
                 >
                     Sons of ministry
                 </ScrollBaseAnimation>
             </div>
 
             {/* RIGHT SIDE VERTICAL MARQUEE */}
-            <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-20 lg:opacity-40">
+            <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-25 lg:opacity-50">
                 <ScrollBaseAnimation
                     delay={500}
                     baseVelocity={2}
-                    clasname='font-black text-7xl lg:text-8xl tracking-tight leading-none text-[#0f172a] uppercase'
+                    clasname='font-black text-8xl lg:text-[10rem] tracking-tight leading-none text-[#0f172a] uppercase'
                 >
                     Sons of ministry
                 </ScrollBaseAnimation>
@@ -33,8 +33,8 @@ export function ClipPathSection() {
             <div className="relative z-10 flex flex-col items-center">
 
                 {/* Title Area - Centered */}
-                <div className="w-full max-w-4xl mx-auto text-center mb-12 lg:mb-16">
-                    <h2 className="leading-tight text-5xl sm:text-6xl lg:text-[5.5rem] font-black text-[#0f172a]">
+                <div className="w-full max-w-5xl mx-auto text-center mb-12 lg:mb-16">
+                    <h2 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-black text-[#0f172a]">
                         <ScrollAnimation
                             viewport={{ once: true, amount: 0.5 }}
                         >
@@ -50,66 +50,75 @@ export function ClipPathSection() {
                             </span>
                         </ScrollAnimation>
                     </h2>
+
+                    {/* Added styling and animation to the paragraph here */}
+                    <ScrollAnimation viewport={{ once: true, amount: 0.5 }}>
+                        <p className="mt-6 text-balance sm:mt-8 text-lg sm:text-xl lg:text-2xl text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed">
+                            And those he predestined, he also called; those he called, he also justified; those he justified, he also glorified.
+                        </p>
+                    </ScrollAnimation>
                 </div>
 
-            {/* Content Area: SVGs + Image grouped together */}
-            <div className="flex flex-row items-center justify-center w-full max-w-6xl mx-auto relative z-10 gap-4 lg:gap-12">
+                {/* Content Area: SVGs + Image grouped together */}
+                <div className="flex flex-row items-center justify-center w-full max-w-6xl mx-auto relative z-10 gap-4 lg:gap-12">
 
-                {/* Left Decorative SVG */}
-                <ScrollAnimation
-                    viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
-                >
+                    {/* Left Decorative SVG */}
+                    <ScrollAnimation
+                        viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
+                    >
 
-                    <div className="hidden lg:flex w-64 h-64 xl:w-80 xl:h-80 items-center justify-center pointer-events-none opacity-60">
-                        <AnimateSvg
-                            width="100%"
-                            height="100%"
-                            viewBox="0 0 355 162"
-                            className="my-svg-animation"
-                            path="M3 153.9C19.7648 151.422 58.3853 148.645 58.3853 123.767C58.3853 109.758 41.9931 109.583 35.4673 119.947C29.8677 128.841 29.3802 151.014 41.6212 155.385C68.0833 164.836 96.3337 155.089 121.41 146.367C158.021 133.632 195.283 106.274 215.841 72.7318C223.827 59.7017 248.721 3.98332 214.143 3.02276C159.312 1.49957 148.663 76.8016 170.111 114.748C179.098 130.649 200.663 140.818 217.963 143.29C237.073 146.02 266.527 131.63 270.271 111.035C273.351 94.0976 254.758 100.754 250.43 111.884C244.084 128.203 258.692 140.196 273.773 140.531C298.453 141.08 318.113 127.233 334.463 109.974C339.288 104.881 348.912 91.2687 350.484 84.1909C351.915 77.7539 351.661 81.7626 350.697 86.1007C349.794 90.1648 352.5 94.2726 352.5 98.5146C352.5 100.006 350.591 90.7585 350.591 88.0105C350.591 74.942 333.087 85.5908 325.763 87.0556"
-                            strokeColor="#6B7280" // Changed to a nice gray hex
-                            strokeWidth={6}       // Slightly thinner for elegance
-                            strokeLinecap="round"
-                            animationDuration={1.5}
-                            animationDelay={0}
-                            animationBounce={0.3}
-                            reverseAnimation={true}
-                            enableHoverAnimation={true}
-                        />
-                    </div>
-                </ScrollAnimation>
+                        <div className="hidden lg:flex w-64 h-64 xl:w-80 xl:h-80 items-center justify-center pointer-events-none opacity-60">
+                            <AnimateSvg
+                                width="100%"
+                                height="100%"
+                                viewBox="0 0 564 387"
+                                className="my-svg-animation"
+                                path="M561.857 302.994C532.866 315.372 507.204 316.295 476.615 308.911C471.884 309.686 478.049 313.855 479.581 315.157C493.607 326.25 516.45 326.53 534.481 325.59C490.789 350.972 435.147 372.711 384.5 367.107C325.694 361.784 264.861 319.756 258.845 257.868C295.269 244.93 332.171 222.433 350.927 187.377C370.804 139.992 321.755 116.028 282.001 144.755C249.764 168.06 232.903 208.127 231.617 247.485C78.8341 278.288 -20.747 145.596 11.2271 1.69617C11.2734 1.52067 11.2834 1.33758 11.2565 1.15808C11.2297 0.978577 11.1665 0.806432 11.0709 0.652174C10.9752 0.497917 10.8491 0.364781 10.7003 0.260904C10.5515 0.157026 10.383 0.08459 10.2052 0.0480197C10.0342 0.000869941 9.85553 -0.0117224 9.67961 0.0109693C9.50368 0.0336611 9.33404 0.0911846 9.18059 0.180183C9.02715 0.269181 8.89298 0.387864 8.78592 0.529304C8.67886 0.670743 8.60107 0.832103 8.55708 1.00395C-31.4764 150.392 73.2798 290.93 232.59 264.592C237.782 310.427 270.382 349.62 310.943 369.53C383.181 406.102 477.966 381.215 538.816 332.397C537.266 340.638 532.635 348.022 531.053 356.229C529.207 365.838 532.849 383.424 537.217 377.985C539.156 368.819 541.795 359.816 545.112 351.054C548.309 342.138 552.199 332.166 555.808 323.415L556.533 321.767L563.686 304.988C563.807 304.726 563.848 304.433 563.804 304.147C563.759 303.862 563.631 303.596 563.435 303.382C563.24 303.169 562.986 303.019 562.705 302.95C562.424 302.881 562.129 302.896 561.857 302.994ZM276.216 186.651C300.79 139.432 356.976 147.327 324.639 191.777C306.897 212.739 284.25 228.994 258.713 239.095C260.445 220.502 266.434 202.558 276.216 186.651Z"
+                                strokeColor="#6B7280"
+                                strokeWidth={6}
+                                strokeLinecap="round"
+                                animationDuration={1.5}
+                                animationDelay={0.3}
+                                animationBounce={0.3}
+                                reverseAnimation={false}
+                                enableHoverAnimation={true}
+                                hoverAnimationType="redraw"
+                            />
+                        </div>
+                    </ScrollAnimation>
 
-                {/* Center Image */}
-                <ScrollAnimation
-                    viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
-                >
-                    <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-120 lg:h-120 flex items-center justify-center relative shrink-0">
-                        <ClipPathImage />
-                    </div>
-                </ScrollAnimation>
+                    {/* Center Image */}
+                    <ScrollAnimation
+                        viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
+                    >
+                        <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-120 lg:h-120 flex items-center justify-center relative shrink-0">
+                            <ClipPathImage />
+                        </div>
+                    </ScrollAnimation>
 
-                {/* Right Decorative SVG */}
-                <ScrollAnimation
-                    viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
-                >
-                    <div className="hidden lg:flex w-64 h-64 xl:w-80 xl:h-80 items-center justify-center pointer-events-none opacity-60 scale-x-[-1]">
-                        <AnimateSvg
-                            width="100%"
-                            height="100%"
-                            viewBox="0 0 355 162"
-                            className="my-svg-animation"
-                            path="M3 153.9C19.7648 151.422 58.3853 148.645 58.3853 123.767C58.3853 109.758 41.9931 109.583 35.4673 119.947C29.8677 128.841 29.3802 151.014 41.6212 155.385C68.0833 164.836 96.3337 155.089 121.41 146.367C158.021 133.632 195.283 106.274 215.841 72.7318C223.827 59.7017 248.721 3.98332 214.143 3.02276C159.312 1.49957 148.663 76.8016 170.111 114.748C179.098 130.649 200.663 140.818 217.963 143.29C237.073 146.02 266.527 131.63 270.271 111.035C273.351 94.0976 254.758 100.754 250.43 111.884C244.084 128.203 258.692 140.196 273.773 140.531C298.453 141.08 318.113 127.233 334.463 109.974C339.288 104.881 348.912 91.2687 350.484 84.1909C351.915 77.7539 351.661 81.7626 350.697 86.1007C349.794 90.1648 352.5 94.2726 352.5 98.5146C352.5 100.006 350.591 90.7585 350.591 88.0105C350.591 74.942 333.087 85.5908 325.763 87.0556"
-                            strokeColor="#6B7280"
-                            strokeWidth={6}
-                            strokeLinecap="round"
-                            animationDuration={1.5}
-                            animationDelay={0.4}
-                            animationBounce={0.3}
-                            reverseAnimation={true}
-                            enableHoverAnimation={true}
-                        />
-                    </div>
-                </ScrollAnimation>
+                    {/* Right Decorative SVG */}
+                    <ScrollAnimation
+                        viewport={{ once: true, amount: 0.5, margin: '0px 0px 0px 0px' }}
+                    >
+                        <div className="hidden lg:flex w-64 h-64 xl:w-80 xl:h-80 items-center justify-center pointer-events-none opacity-60 scale-x-[-1]">
+                            <AnimateSvg
+                                width="100%"
+                                height="100%"
+                                viewBox="0 0 564 387"
+                                className="my-svg-animation"
+                                path="M561.857 302.994C532.866 315.372 507.204 316.295 476.615 308.911C471.884 309.686 478.049 313.855 479.581 315.157C493.607 326.25 516.45 326.53 534.481 325.59C490.789 350.972 435.147 372.711 384.5 367.107C325.694 361.784 264.861 319.756 258.845 257.868C295.269 244.93 332.171 222.433 350.927 187.377C370.804 139.992 321.755 116.028 282.001 144.755C249.764 168.06 232.903 208.127 231.617 247.485C78.8341 278.288 -20.747 145.596 11.2271 1.69617C11.2734 1.52067 11.2834 1.33758 11.2565 1.15808C11.2297 0.978577 11.1665 0.806432 11.0709 0.652174C10.9752 0.497917 10.8491 0.364781 10.7003 0.260904C10.5515 0.157026 10.383 0.08459 10.2052 0.0480197C10.0342 0.000869941 9.85553 -0.0117224 9.67961 0.0109693C9.50368 0.0336611 9.33404 0.0911846 9.18059 0.180183C9.02715 0.269181 8.89298 0.387864 8.78592 0.529304C8.67886 0.670743 8.60107 0.832103 8.55708 1.00395C-31.4764 150.392 73.2798 290.93 232.59 264.592C237.782 310.427 270.382 349.62 310.943 369.53C383.181 406.102 477.966 381.215 538.816 332.397C537.266 340.638 532.635 348.022 531.053 356.229C529.207 365.838 532.849 383.424 537.217 377.985C539.156 368.819 541.795 359.816 545.112 351.054C548.309 342.138 552.199 332.166 555.808 323.415L556.533 321.767L563.686 304.988C563.807 304.726 563.848 304.433 563.804 304.147C563.759 303.862 563.631 303.596 563.435 303.382C563.24 303.169 562.986 303.019 562.705 302.95C562.424 302.881 562.129 302.896 561.857 302.994ZM276.216 186.651C300.79 139.432 356.976 147.327 324.639 191.777C306.897 212.739 284.25 228.994 258.713 239.095C260.445 220.502 266.434 202.558 276.216 186.651Z"
+                                strokeColor="#6B7280"
+                                strokeWidth={6}
+                                strokeLinecap="round"
+                                animationDuration={1.5}
+                                animationDelay={0.3}
+                                animationBounce={0.3}
+                                reverseAnimation={false}
+                                enableHoverAnimation={true}
+                                hoverAnimationType="redraw"
+                            />
+                        </div>
+                    </ScrollAnimation>
                 </div>
             </div>
         </section>

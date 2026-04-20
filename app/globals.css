@@ -117,6 +117,7 @@ All colors MUST be HSL.
     --sidebar: oklch(0.205 0 0);
   }
 
+
   .theme {
     --font-heading: var(--font-sans);
     --font-sans: var(--font-sans);
