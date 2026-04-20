@@ -8,9 +8,11 @@ import {
     animate,
     useInView,
 } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 // --- Types ---
 export interface StatCounterProps {
+    className?: string;
     value?: number;
     startValue?: number;
     step?: number;
@@ -41,12 +43,13 @@ function applyStep(val: number, stepVal: number): number {
 
 // --- Main Component ---
 export default function StatCounter({
+    className,
     value = 40000,
     startValue = 0,
     step = 1,
     prefix = "",
     suffix = "K+",
-    label = "Campaigns",
+    label ,
     duration = 1.4,
     decimals = 0,
     valueColor = "#e5e5e5",
@@ -84,28 +87,29 @@ export default function StatCounter({
     return (
         <div
             ref={ref}
-            style={{ display: "flex", flexDirection: "column", gap: 8 }}
+            className={cn("flex flex-col gap-4", className)}
         >
             <motion.div
                 style={{
                     color: valueColor,
                     fontSize: valueSize,
                     fontWeight: fontWeight,
-                    lineHeight: 1,
                     fontVariantNumeric: "tabular-nums",
                 }}
             >
                 {display}
             </motion.div>
-            <div
-                style={{
-                    color: labelColor,
-                    fontSize: labelSize,
-                    opacity: 0.85,
-                }}
-            >
-                {label}
-            </div>
+            {label ?
+                <div
+                    style={{
+                        color: labelColor,
+                        fontSize: labelSize,
+                        opacity: 0.85,
+                    }}
+                >
+                    {label}
+                </div>
+                : null}
         </div>
     );
 }
