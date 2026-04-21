@@ -4,7 +4,7 @@
 
 import { memo, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { imageList } from "@/public/images_list";
+import { optimizedImageList } from "@/public/images_list";
 
 type HeroMarqueeBackgroundProps = {
   backgroundImages?: string[];
@@ -35,26 +35,26 @@ const TRACK_STYLE = {
 };
 
 const DEFAULT_BACKGROUND_IMAGES = [
-  imageList.b_1.src,
-  imageList.image_2.src,
-  imageList.b_4.src,
-  imageList.image_1.src,
-  imageList.b_2.src,
+  optimizedImageList.b_1.src,
+  optimizedImageList.image_2.src,
+  optimizedImageList.b_4.src,
+  optimizedImageList.image_1.src,
+  optimizedImageList.b_2.src,
 ];
 
 const DEFAULT_MARQUEE_IMAGES = [
-  imageList.b_1.src,
-  imageList.b_2.src,
-  imageList.b_3.src,
-  imageList.b_4.src,
-  imageList.b_5.src,
-  imageList.image_1.src,
-  imageList.image_2.src,
-  imageList.image_3.src,
-  imageList.image_4.src,
-  imageList.image_5.src,
-  imageList.pco_1.src,
-  imageList.pco_2.src,
+  optimizedImageList.b_1.src,
+  optimizedImageList.b_2.src,
+  optimizedImageList.b_3.src,
+  optimizedImageList.b_4.src,
+  optimizedImageList.b_5.src,
+  optimizedImageList.image_1.src,
+  optimizedImageList.image_2.src,
+  optimizedImageList.image_3.src,
+  optimizedImageList.image_4.src,
+  optimizedImageList.image_5.src,
+  optimizedImageList.pco_1.src,
+  optimizedImageList.pco_2.src,
 ];
 
 export default function HeroMarqueeBackground({
