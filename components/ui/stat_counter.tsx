@@ -48,7 +48,7 @@ export default function StatCounter({
     startValue = 0,
     step = 1,
     prefix = "",
-    suffix = "K+",
+    suffix = "",
     label ,
     duration = 1.4,
     decimals = 0,

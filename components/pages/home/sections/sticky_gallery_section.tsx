@@ -76,7 +76,6 @@ export function StickyGallerySection(): React.JSX.Element {
                 <StatCounter
                   value={10}
                   className="items-center"
-                  suffix="+"
                   valueSize="4rem" 
                   valueColor="#ffffff"
                   fontWeight={700}
