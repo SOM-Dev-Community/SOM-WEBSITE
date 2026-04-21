@@ -24,6 +24,7 @@ function FigureSkew({ index, url, className }: { index: number; url: string; cla
                 <Image
                     src={url}
                     alt=''
+                    unoptimized
                     width={600}
                     height={600}
                     className={cn(
