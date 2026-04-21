@@ -26,7 +26,6 @@ export const Footer = () => {
         >
           {/* About Us */}
           <ScrollAnimation
-            direction='left'
           >
             <h3 className="text-xl font-bold mb-4">Who We Are</h3>
             <p className="text-gray-300 leading-relaxed mb-4">
@@ -36,6 +35,7 @@ export const Footer = () => {
             <Link href="/" className="flex items-center">
               <Image
                 width={100}
+                unoptimized
                 height={100}
                 src={imageList.som_logo.src} alt="SOM Logo" className="h-20 w-auhref" />
             </Link>
@@ -80,7 +80,6 @@ export const Footer = () => {
 
           {/* Contact Us */}
           <ScrollAnimation
-            direction='right'
           >
             <h3 className="text-xl font-bold mb-4">CONTACT US</h3>
             <div className="space-y-2 text-gray-300">
