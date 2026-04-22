@@ -12,6 +12,7 @@ import { ReactLenis } from 'lenis/react'
 import { WhoAreWeSection } from './sections/who-are-we-section';
 import { MissionPurposeVisionSection } from './sections/mission-purpose-vision-section';
 import { ImageCarouselSection } from './sections/image-carousel-section';
+import { PreachersKidNetworkSection } from './sections/preachers-kid-network-section';
 
 export function AboutPage() {
     const teamMembers = [
@@ -54,11 +55,12 @@ export function AboutPage() {
                     />
                     <WhoAreWeSection />
                     <MissionPurposeVisionSection />
+                    <PreachersKidNetworkSection />
                     <ImageCarouselSection />
                 </main>
 
                 {/* Experience SOM */}
-                <motion.section className="py-20 bg-gray-50"
+                {/* <motion.section className="py-20 bg-gray-50"
                     initial={{ opacity: 0, y: 60, scale: 0.97 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, amount: 0.2 }}
@@ -76,7 +78,6 @@ export function AboutPage() {
                                 src="https://player.vimeo.com/video/1100718405?h=b886da83be"
                                 width="100%"
                                 height="100%"
-                                frameBorder="0"
                                 allow="autoplay; fullscreen; picture-in-picture"
                                 allowFullScreen
                                 title="Experience SOM Vimeo Video"
@@ -84,7 +85,7 @@ export function AboutPage() {
                             ></iframe>
                         </motion.div>
                     </div>
-                </motion.section>
+                </motion.section> */}
 
                 {/* SOM Activities */}
                 <motion.section className="py-20 bg-black"

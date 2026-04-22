@@ -12,7 +12,7 @@ export const HEADER_Z = {
 export const navLinks = [
   { link: "/", label: "Home" },
   { link: "/about", label: "About Us" },
-  { link: "/preacher-kids", label: "Preachers Network" },
+  { link: "/pkn", label: "Preachers Network" },
   { link: "/explore", label: "Explore" },
   { link: "/blog", label: "Blog" },
 ] as const;
