@@ -10,7 +10,7 @@ export function MissionBlock({
   points,
 }: MissionBlockProps) {
   return (
-    <div className="rounded-[2rem] border border-slate-200/80 bg-gradient-to-br from-white via-white to-sky-50/80 p-8 shadow-[0_20px_70px_-40px_rgba(15,23,42,0.35)] sm:p-10 lg:p-12">
+    <div className="rounded-4xl border border-slate-200/80 bg-gradient-to-br from-white via-white to-sky-50/80 p-8 shadow-[0_20px_70px_-40px_rgba(15,23,42,0.35)] sm:p-10 lg:p-12">
       <div className="max-w-3xl">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sky-700">
           Mission
@@ -18,7 +18,7 @@ export function MissionBlock({
         <h3 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
           {title}
         </h3>
-        <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg">
+        <p className="mt-5 text-base leading-8 text-slate-600 text-balance">
           {description}
         </p>
       </div>
