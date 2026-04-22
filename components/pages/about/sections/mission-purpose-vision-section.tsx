@@ -35,7 +35,7 @@ const dividerMotion = {
   whileInView: { opacity: 1, scaleX: 1 },
   viewport: { once: true, amount: 0.9 },
   transition: { duration: 0.55, ease: "easeOut" },
-};
+} as const;
 
 export function MissionPurposeVisionSection() {
   return (
