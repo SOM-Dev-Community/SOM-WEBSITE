@@ -25,6 +25,7 @@ export function WhoAreWeSection({ showButton = false }) {
                         alt="Loveworld Sons of Ministry"
                         fill
                         className="object-cover"
+                        unoptimized
                         sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     <BlurVignetteArticle />
