@@ -21,6 +21,7 @@ const HomePage = () => {
                 <StickyGallerySection />
                 <FeaturedContent />
                 <EventsSection />
+                {/* <WhoAreWeSection showButton={true} /> */}
                 <ProductGrid />
                 <Newsletter />
                 <Footer />

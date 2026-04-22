@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { imageList } from '@/public/images_list';
 import HeroMarqueeBackground from '@/components/ui/hero-marquee-background';
 import { ReactLenis } from 'lenis/react'
+import { WhoAreWeSection } from './sections/who-are-we-section';
 
 export function AboutPage() {
     const teamMembers = [
@@ -42,11 +43,16 @@ export function AboutPage() {
             <div className="min-h-screen bg-white text-gray-800 overflow-x-hidden">
                 <Header />
 
-                {/* Hero Section */}
-                <HeroMarqueeBackground 
-                    headline='God`s Trained Soldiers'
-                    subheadline='Raising ministers children for the expansion of the Gospel through encounters, training, and a global community of bold young ministers.'
-                />
+
+                <main className='bg-gray-50'>
+                    {/* Hero Section */}
+                    <HeroMarqueeBackground
+                        headline='God&lsquo;s Trained Soldiers'
+                        subheadline='Raising ministers children for the expansion of the Gospel through encounters, training, and a global community of bold young ministers.'
+                    />
+                    <WhoAreWeSection />
+
+                </main>
 
                 {/* Experience SOM */}
                 <motion.section className="py-20 bg-gray-50"
