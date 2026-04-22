@@ -44,8 +44,8 @@ export function AboutPage() {
 
                 {/* Hero Section */}
                 <HeroMarqueeBackground 
-                    headline='God Trained Soldiers'
-                    subheadline='Equipping our young believers and building truly transformational communities'
+                    headline='God`s Trained Soldiers'
+                    subheadline='Raising ministers children for the expansion of the Gospel through encounters, training, and a global community of bold young ministers.'
                 />
 
                 {/* Experience SOM */}
@@ -57,7 +57,7 @@ export function AboutPage() {
                 >
                     <div className="max-w-6xl mx-auto px-4">
                         <motion.div
-                            className="relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9] flex items-center justify-center bg-black"
+                            className="relative rounded-2xl overflow-hidden shadow-lg aspect-video flex items-center justify-center bg-black"
                             initial={{ opacity: 0, scale: 0.92, rotate: -2 }}
                             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
