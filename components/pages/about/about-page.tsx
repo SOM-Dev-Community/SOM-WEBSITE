@@ -10,6 +10,7 @@ import { imageList } from '@/public/images_list';
 import HeroMarqueeBackground from '@/components/ui/hero-marquee-background';
 import { ReactLenis } from 'lenis/react'
 import { WhoAreWeSection } from './sections/who-are-we-section';
+import { MissionPurposeVisionSection } from './sections/mission-purpose-vision-section';
 
 export function AboutPage() {
     const teamMembers = [
@@ -51,6 +52,7 @@ export function AboutPage() {
                         subheadline='Raising ministers children for the expansion of the Gospel through encounters, training, and a global community of bold young ministers.'
                     />
                     <WhoAreWeSection />
+                    <MissionPurposeVisionSection />
 
                 </main>
 
