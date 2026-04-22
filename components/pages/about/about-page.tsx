@@ -13,6 +13,7 @@ import { WhoAreWeSection } from './sections/who-are-we-section';
 import { MissionPurposeVisionSection } from './sections/mission-purpose-vision-section';
 import { ImageCarouselSection } from './sections/image-carousel-section';
 import { PreachersKidNetworkSection } from './sections/preachers-kid-network-section';
+import { ImageGallerySection } from './sections/image-gallery-section';
 
 export function AboutPage() {
     const teamMembers = [
@@ -56,7 +57,12 @@ export function AboutPage() {
                     <WhoAreWeSection />
                     <MissionPurposeVisionSection />
                     <PreachersKidNetworkSection />
-                    <ImageCarouselSection />
+                    <div className="relative h-full w-full bg-slate-950 text-slate-50 py-24 sm:py-28 lg:py-32 space-y-4 sm:space-y-6 md:space-y-8">
+                        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#260bca2e_1px,transparent_1px),linear-gradient(to_bottom,#260bca2e_1px,transparent_1px)] bg-size-[14px_24px] mask-[radial-gradient(ellipse_55%_75%_at_50%_100%,#000_75%,transparent_80%)]"></div>
+                        <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(130%_125%_at_50%_10%,rgba(255,255,255,0)_40%,rgba(28,15,179,1)_100%)]"></div>
+                        <ImageCarouselSection />
+                        <ImageGallerySection />
+                    </div>
                 </main>
 
                 {/* Experience SOM */}
@@ -88,7 +94,7 @@ export function AboutPage() {
                 </motion.section> */}
 
                 {/* SOM Activities */}
-                <motion.section className="py-20 bg-black"
+                {/* <motion.section className="py-20 bg-black"
                     initial={{ opacity: 0, y: 60, scale: 0.97 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, amount: 0.2 }}
@@ -119,7 +125,7 @@ export function AboutPage() {
                             ))}
                         </div>
                     </div>
-                </motion.section>
+                </motion.section> */}
 
                 {/* Leadership Team */}
                 <motion.section className="py-20 bg-white"
