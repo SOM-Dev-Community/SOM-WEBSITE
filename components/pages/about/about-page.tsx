@@ -11,6 +11,7 @@ import HeroMarqueeBackground from '@/components/ui/hero-marquee-background';
 import { ReactLenis } from 'lenis/react'
 import { WhoAreWeSection } from './sections/who-are-we-section';
 import { MissionPurposeVisionSection } from './sections/mission-purpose-vision-section';
+import { ImageCarouselSection } from './sections/image-carousel-section';
 
 export function AboutPage() {
     const teamMembers = [
@@ -53,7 +54,7 @@ export function AboutPage() {
                     />
                     <WhoAreWeSection />
                     <MissionPurposeVisionSection />
-
+                    <ImageCarouselSection />
                 </main>
 
                 {/* Experience SOM */}
