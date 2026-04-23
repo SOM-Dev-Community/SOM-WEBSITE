@@ -48,7 +48,8 @@ export const LiquidGlassCard = ({
     };
 
     const blurClasses = {
-        sm: 'backdrop-blur-xs',
+        xs: 'backdrop-blur-xs',
+        sm: 'backdrop-blur-sm',
         md: 'backdrop-blur-md',
         lg: 'backdrop-blur-lg',
         xl: 'backdrop-blur-xl',
@@ -129,7 +130,7 @@ export const LiquidGlassCard = ({
 
     return (
         <>
-            {/* Hidden SVG Filter */}
+            {/* Hidden SVG Filter
             <svg className='hidden'>
                 <defs>
                     <filter
@@ -155,20 +156,23 @@ export const LiquidGlassCard = ({
                         />
                     </filter>
                 </defs>
-            </svg>
+            </svg> */}
             <MotionComponent
                 className={cn(
-                    `relative ${draggable ? 'cursor-grab active:cursor-grabbing' : ''} ${expandable ? 'cursor-pointer' : ''}`,
+                    `relative overflow-hidden ${draggable ? 'cursor-grab active:cursor-grabbing' : ''} ${expandable ? 'cursor-pointer' : ''}`,
                     className
                 )}
                 style={{
                     borderRadius,
                     ...(width && !expandable && { width }),
                     ...(height && !expandable && { height }),
+                    transform: 'translateZ(0)',
+                    willChange: 'transform'
                 }}
-                {...motionProps}
+                {...motionProps} 
                 {...props}
             >
+                
                 {/* Bend Layer (Backdrop blur with distortion) */}
                 <div
                     className={`absolute inset-0 ${blurClasses[blurIntensity]} z-0`}

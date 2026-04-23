@@ -7,7 +7,7 @@ import { light_glassmorphism } from "@/components/layout/header/constants";
 import { LiquidGlassCard } from "@/components/liquid-glass";
 import { motion, AnimatePresence } from "framer-motion";
 import StatCounter from "@/components/ui/stat_counter";
-import { imageList } from "@/public/images_list";
+import { imageList, optimizedImageList } from "@/public/images_list";
 import { BlurVignette, BlurVignetteArticle } from "@/components/blur-vignette";
 
 const images = [
@@ -16,6 +16,12 @@ const images = [
   imageList.image_4.src,
   imageList.image_5.src,
 ];
+const optimizedImages = [
+  optimizedImageList.image_2.src,
+  optimizedImageList.image_3.src,
+  optimizedImageList.image_4.src,
+  optimizedImageList.image_5.src,
+];
 
 function BackgroundSlideshow({ images }: { images: string[] }) {
   const [index, setIndex] = useState(0);
@@ -23,7 +29,7 @@ function BackgroundSlideshow({ images }: { images: string[] }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 10000);
     return () => clearInterval(timer);
   }, [images.length]);
 
@@ -32,9 +38,9 @@ function BackgroundSlideshow({ images }: { images: string[] }) {
       <motion.img
         key={index}
         src={images[index]}
-        initial={{ opacity: 0, filter: "blur(4px)" }}
-        animate={{ opacity: 1, filter: "blur(0px)" }}
-        exit={{ opacity: 0, filter: "blur(4px)" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0}}
         transition={{ duration: 1.2, ease: "easeInOut" }}
         style={{ willChange: "opacity, filter" }}
         className="absolute inset-0 w-full h-full object-cover"
@@ -100,7 +106,7 @@ export function StickyGallerySection(): React.JSX.Element {
         </div>
 
         <div className="overflow-x-hidden z-10 flex justify-center w-full py-10 lg:py-0">
-          <StickyGallery images={images} />
+          <StickyGallery images={optimizedImages} />
         </div>
       </div>
     </section>
