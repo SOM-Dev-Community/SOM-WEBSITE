@@ -10,6 +10,8 @@ import { Footer } from '@/components/layout/Footer';
 import { ClipPathSection } from './sections/clip_path_section';
 import { StickyGallerySection } from './sections/sticky_gallery_section';
 import { ReactLenis } from 'lenis/react'
+import { WhoAreWeSection } from '../about/sections/who-are-we-section';
+import { PreachersKidNetworkSection } from '../about/sections/preachers-kid-network-section';
 
 const HomePage = () => {
     return (
@@ -19,9 +21,10 @@ const HomePage = () => {
                 <Hero />
                 <ClipPathSection />
                 <StickyGallerySection />
+                <WhoAreWeSection showButton={true} />
                 <FeaturedContent />
+                <PreachersKidNetworkSection />
                 <EventsSection />
-                {/* <WhoAreWeSection showButton={true} /> */}
                 <ProductGrid />
                 <Newsletter />
                 <Footer />

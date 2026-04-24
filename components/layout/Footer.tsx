@@ -37,7 +37,7 @@ export const Footer = () => {
                 width={100}
                 unoptimized
                 height={100}
-                src={imageList.som_logo.src} alt="SOM Logo" className="h-20 w-auhref" />
+                src={imageList.som_logo.src} alt="SOM Logo" className="h-20 w-auto" />
             </Link>
           </ScrollAnimation>
 

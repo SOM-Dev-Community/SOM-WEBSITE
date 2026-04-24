@@ -5,8 +5,9 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { cn } from "@/lib/utils";
+import { Suspense } from "react";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,13 +34,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <QueryProvider>
-          <TooltipProvider>
-            <ScrollToTop />
-            {children}
-        </TooltipProvider>
-      </QueryProvider>
-    </body>
+        <Suspense>
+          <QueryProvider>
+            <TooltipProvider>
+              <ScrollToTop />
+              {children}
+            </TooltipProvider>
+          </QueryProvider>
+        </Suspense>
+      </body>
     </html >
   );
 }
