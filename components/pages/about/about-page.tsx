@@ -18,12 +18,12 @@ import { ImageGallerySection } from './sections/image-gallery-section';
 export function AboutPage() {
     const teamMembers = [
         {
-            name: 'Pastor Chris Oyakhilome',
+            name: 'Rev. Chris Oyakhilome DSc. DSc. DD',
             role: 'President of Loveworld Nation',
             image: 'https://i.postimg.cc/gkDzMS4f/President.jpg',
         },
         {
-            name: 'Pastor Sandra Oyakhilome Meduteni',
+            name: 'Pastor Sandra Meduteni',
             role: 'SOM Co-Ordinator',
             image: 'https://i.postimg.cc/Cxg88Q5X/Director.jpg',
         },
