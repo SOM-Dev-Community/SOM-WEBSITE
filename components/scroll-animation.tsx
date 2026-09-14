@@ -69,8 +69,11 @@ export function ScrollAnimation({
   delay = 0,
   direction = 'down',
   as: Component = 'div',
+  style,
+  onAnimationComplete,
   ...props
 }: ScrollElementProps) {
+  const elementRef = React.useRef<HTMLDivElement>(null);
   const baseVariants = variants || generateVariants(direction);
   const modifiedVariants = {
     hidden: baseVariants.hidden,
@@ -87,11 +90,21 @@ export function ScrollAnimation({
 
   return (
     <MotionComponent
+      ref={elementRef}
       whileInView='visible'
       initial='hidden'
       variants={modifiedVariants}
       viewport={viewport as any}
       className={cn(className)}
+      // The blur reveal is expensive to repaint on large text/images; give it its own GPU layer
+      // while it runs, then release the layer so revealed content doesn't hold GPU memory.
+      style={{ willChange: 'transform, opacity, filter', ...style }}
+      onAnimationComplete={(definition: any) => {
+        if (definition === 'visible' && elementRef.current) {
+          elementRef.current.style.willChange = 'auto';
+        }
+        onAnimationComplete?.(definition);
+      }}
       {...props}
     >
       {children}

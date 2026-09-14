@@ -24,6 +24,12 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  async redirects() {
+    return [
+      // "Learn More" links point at SOM's products, which live on the Explore page.
+      { source: "/learn-more", destination: "/explore", permanent: false },
+    ];
+  },
 };
 
 export default nextConfig;

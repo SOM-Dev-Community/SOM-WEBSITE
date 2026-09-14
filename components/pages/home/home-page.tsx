@@ -17,7 +17,7 @@ const HomePage = () => {
     return (
         <ReactLenis root>
             <div className="min-h-screen bg-white ">
-                <Header position='absolute' scrollEnabled={false} />
+                <Header position='absolute' />
                 <Hero />
                 <ClipPathSection />
                 <StickyGallerySection />

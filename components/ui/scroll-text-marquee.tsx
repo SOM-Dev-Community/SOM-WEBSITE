@@ -8,6 +8,7 @@ import {
     useVelocity,
     useAnimationFrame,
     useMotionValue,
+    useInView,
 } from 'motion/react';
 import { wrap } from '@motionone/utils';
 import { cn } from '@/lib/utils';
@@ -27,6 +28,11 @@ export default function ScrollBaseAnimation({
     scrollDependent = false, // Default to false
     delay = 0, // Default delay is 0 (no delay)
 }: ParallaxProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
+    // Only run the per-frame loop while the marquee is on (or near) the screen.
+    const isInView = useInView(containerRef, { margin: '200px' });
+    const isInViewRef = useRef(false);
+
     const baseX = useMotionValue(0);
     const { scrollY } = useScroll();
     const scrollVelocity = useVelocity(scrollY);
@@ -44,6 +50,10 @@ export default function ScrollBaseAnimation({
     const hasStarted = useRef(false); // Track animation start status
 
     useEffect(() => {
+        isInViewRef.current = isInView;
+    }, [isInView]);
+
+    useEffect(() => {
         const timer = setTimeout(() => {
             hasStarted.current = true; // Start animation after the delay
         }, delay);
@@ -52,7 +62,7 @@ export default function ScrollBaseAnimation({
     }, [delay]);
 
     useAnimationFrame((t, delta) => {
-        if (!hasStarted.current) return; // Skip if delay hasn't passed
+        if (!hasStarted.current || !isInViewRef.current) return; // Skip before the delay or while off screen
 
         let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
@@ -71,10 +81,11 @@ export default function ScrollBaseAnimation({
     });
 
     return (
-        <div className='overflow-hidden whitespace-nowrap flex flex-nowrap'>
+        <div ref={containerRef} className='overflow-hidden whitespace-nowrap flex flex-nowrap'>
             <motion.div
                 className='flex whitespace-nowrap gap-10 flex-nowrap'
-                style={{ x }}
+                // Keep the moving text on its own GPU layer so each frame is a cheap composite, not a repaint.
+                style={{ x, willChange: 'transform' }}
             >
                 <span className={cn(`block sm:text-[8vw] text-[11vw]`, clasname)}>
                     {children}

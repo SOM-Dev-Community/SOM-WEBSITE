@@ -1,27 +1,36 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryProvider } from "@/components/providers/query-provider";
+import { MotionProvider } from "@/components/providers/motion-provider";
 import { cn } from "@/lib/utils";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import { Suspense } from "react";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Sons Of Ministry",
-  description: "SOM Website",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Sons Of Ministry",
+    template: "%s | Sons Of Ministry",
+  },
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    siteName,
+    title: siteName,
+    description: siteDescription,
+    images: [{ url: "/assets/banner-2.jpg", width: 1920, height: 1080, alt: siteName }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+    images: ["/assets/banner-2.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -30,19 +39,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", inter.variable)}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    // suppressHydrationWarning: browser extensions (e.g. "crxlauncher") inject attributes onto <html>
+    // before React hydrates. This only ignores attribute differences on this one element.
+    <html lang="en" className={cn("font-sans", inter.variable)} suppressHydrationWarning>
+      <body className="antialiased">
         <Suspense>
           <QueryProvider>
             <TooltipProvider>
-              <ScrollToTop />
-              {children}
+              <MotionProvider>
+                <ScrollToTop />
+                {children}
+              </MotionProvider>
             </TooltipProvider>
           </QueryProvider>
         </Suspense>
       </body>
-    </html >
+    </html>
   );
 }

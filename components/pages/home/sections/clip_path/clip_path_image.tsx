@@ -22,14 +22,15 @@ export function ClipPathImage() {
             {/* Container MUST be relative and have dimensions when using fill */}
             <figure
                 style={{ clipPath: 'url(#clip-squiggle)' }}
-                className="relative w-full h-full sh max-w-full overflow-hidden"
+                className="relative w-full h-full max-w-full overflow-hidden"
             >
+                {/* Optimized (not the full-size original): the frame is at most 30rem wide */}
                 <Image
                     src={imageList.b_3.src}
-                    alt="Description"
+                    alt="Sons of Ministry hosts on stage"
                     fill
-                    unoptimized
                     quality={75}
+                    sizes="(max-width: 640px) 18rem, (max-width: 1024px) 20rem, 30rem"
                     className="object-cover transition-transform duration-300 hover:scale-105"
                 />
             </figure>

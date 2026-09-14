@@ -76,7 +76,7 @@ export const ProductsSection = () => {
                   asChild
                   className={`w-full ${product.buttonColor} text-white py-3 rounded-full font-semibold shadow-md hover:shadow-lg transition-all group`}
                 >
-                  <a href="/LearnMore" target="_blank" rel="noopener noreferrer">
+                  <a href="/learn-more" target="_blank" rel="noopener noreferrer">
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </a>

@@ -2,7 +2,7 @@
 @import "shadcn/tailwind.css";
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
-@tailwind utilities;
+/* @tailwind utilities; */
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -173,9 +173,7 @@ All colors MUST be HSL.
   }
 }
 
-.blur-vignette {
-
-
+/* .blur-vignette {
   position: absolute;
   inset: 0;
   border-radius: var(--radius);
@@ -203,5 +201,5 @@ All colors MUST be HSL.
   -webkit-mask-position: 0 var(--fill-farther-position), var(--fill-farther-position) 0,
     0 0, 100% 0, 100% 100%, 0 100%;
   -webkit-mask-repeat: no-repeat;
-}
+} */
   

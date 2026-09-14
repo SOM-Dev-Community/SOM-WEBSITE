@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import HeroHoneycombGallery from "./hero/HeroHoneycombGallery"; // Adjust path if needed
@@ -16,14 +17,11 @@ export const Hero = () => {
     offset: ["start start", "end start"],
   });
 
-  // 1. ADD SPRING SMOOTHING: This eliminates the "glitchy" stepped scrolling from mouse wheels
-  const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
+  // Lenis (ReactLenis in home-page.tsx) already smooths wheel scrolling, so the parallax reads
+  // scroll progress directly. A spring on top of Lenis double-smoothed it and made the hero trail the page.
+  const smoothScroll = scrollYProgress;
 
-  // 2. USE THE SMOOTHED VALUE FOR TRANSFORMS
+  // Transforms driven by the (Lenis-smoothed) scroll progress
   const backgroundY = useTransform(smoothScroll, [0, 1], [0, 180]);
   const backgroundScale = useTransform(smoothScroll, [0, 1], [1.04, 1.22]);
   const backgroundOpacity = useTransform(smoothScroll, [0, 1], [0.95, 0.45]);
@@ -34,7 +32,7 @@ export const Hero = () => {
   const indicatorY = useTransform(smoothScroll, [0, 1], [0, 30]);
 
   const handleGetStarted = () => {
-    router.push("/Contact");
+    router.push("/contact");
   };
 
   const scrollToEvents = () => {
@@ -60,10 +58,17 @@ export const Hero = () => {
         }}
         className="absolute inset-[-8%] bg-cover bg-center"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url("/assets/banner-2.jpg")' }}
-        />
+        <div className="absolute inset-0">
+          <Image
+            src="/assets/banner-2.jpg"
+            alt=""
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
       </motion.div>
 
       <motion.div

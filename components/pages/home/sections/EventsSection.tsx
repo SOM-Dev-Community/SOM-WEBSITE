@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { light_glassmorphism } from "@/components/layout/header/constants";
 import { SlidingChipTabs } from "@/components/ui/sliding-chip-tabs";
 import { Spotlight, SpotLightItem } from "@/components/ui/spotlight";
+import { ArrowIcon, gradientButtonClass } from "@/components/pages/shared/section-primitives";
 
 export const EventsSection = () => {
   const [activeTab, setActiveTab] = React.useState("Upcoming");
@@ -89,38 +90,22 @@ export const EventsSection = () => {
         transition={{ duration: 0.9, type: 'spring', stiffness: 60 }}
       >
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 flex flex-col items-center"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.p
-            className="text-gray-200 text-base font-semibold mb-6"
-            initial={{ x: -40, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.7 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          > Events</motion.p>
-          <motion.h2
-            className="text-4xl sm:text-5xl font-extrabold tracking-wide"
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.7 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
+          <div className="mb-6 inline-flex items-center rounded-full border border-white/15 bg-white/8 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.24em] text-white/75 backdrop-blur-sm">
+            Events
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
             Upcoming Events
-          </motion.h2>
-          <motion.p
-            className="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-gray-300"
-            initial={{ y: 40, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true, amount: 0.7 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
+          </h2>
+          <p className="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-slate-300">
             Mark your calendars! Don’t miss these powerful gatherings designed
             to equip and inspire.
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Filter Buttons */}
@@ -138,17 +123,16 @@ export const EventsSection = () => {
             }))}
             value={activeTab}
             onValueChange={setActiveTab}
-            className="gap-4"
-            tabClassName="px-6 py-2 font-semibold duration-300"
+            className="flex-wrap justify-center gap-2 sm:gap-4"
+            tabClassName="rounded-full px-5 py-2 font-semibold duration-300"
             activeTabClassName="text-white"
-            inactiveTabClassName="bg-transparent text-white hover:bg-gray-800"
-            cursorClassName="h-full bg-gray-800"
+            inactiveTabClassName="bg-transparent text-white/80 hover:text-white"
+            cursorClassName="h-full rounded-full bg-white/10"
             chipLayoutId="events-active-chip"
-            chipClassName="bg-blue-600 shadow-[inset_3px_4px_5px_0px_rgba(84,0,120,0.1),inset_-2px_-2px_5px_0px_rgba(0,0,0,0.45)]"
+            chipClassName="rounded-full bg-gradient-to-r from-indigo-600 to-[#8A7DFF] shadow-lg shadow-indigo-500/30"
           />
         </motion.div>
 
-        {/* Event Cards */}
         {/* Event Cards */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -159,11 +143,11 @@ export const EventsSection = () => {
           {/* The Spotlight component acts as the container for the proximity effect */}
           <Spotlight className="grid gap-8 md:grid-cols-2 lg:grid-cols-1">
             {filteredEvents.length === 0 ? (
-              <div className="text-center text-gray-400">No events found for this category.</div>
+              <div className="text-center text-slate-400">No events found for this category.</div>
             ) : (
               filteredEvents.map(({ title, desc, image, Link }, idx) => (
                 // SpotLightItem wraps each individual card
-                <SpotLightItem key={idx} className="rounded-3xl" spotColor="rgba(6,9,104,0.2)">
+                <SpotLightItem key={title} className="rounded-3xl" spotColor="rgba(6,9,104,0.2)">
                   <motion.div
                     initial={{ opacity: 0, y: 60 }}
                     className={cn(
@@ -178,20 +162,23 @@ export const EventsSection = () => {
                       className="w-full md:w-48 h-48 md:h-auto bg-cover bg-center"
                       style={{ backgroundImage: `url(${image})` }}
                     />
-                    <div className="flex flex-col lg:flex-row justify-between p-6 flex-1">
+                    <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 p-6 flex-1">
                       <div>
                         <h3 className="text-2xl font-bold mb-2">{title}</h3>
-                        <p className="text-gray-300 mb-6 lg:w-2/3">{desc}</p>
+                        <p className="text-slate-300 lg:w-2/3">{desc}</p>
                       </div>
-                      <a
-                        href={Link || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button className="w-full md:w-fit bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-transform duration-300 hover:scale-105 mt-2 md:mt-0">
-                          Learn More
+                      {Link ? (
+                        <Button asChild className={`${gradientButtonClass} shrink-0 py-5 px-6 text-sm`}>
+                          <a href={Link} target="_blank" rel="noopener noreferrer">
+                            <span>Learn More</span>
+                            <ArrowIcon />
+                          </a>
                         </Button>
-                      </a>
+                      ) : (
+                        <span className="inline-flex h-fit w-fit shrink-0 items-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-white/60">
+                          Coming soon
+                        </span>
+                      )}
                     </div>
                   </motion.div>
                 </SpotLightItem>

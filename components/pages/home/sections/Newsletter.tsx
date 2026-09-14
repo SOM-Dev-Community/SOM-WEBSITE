@@ -38,12 +38,8 @@ export const Newsletter = () => {
     setMessage('');
 
     try {
-      // API endpoint - change this to your backend URL
-      const API_URL = process.env.NODE_ENV === 'production' 
-        ? 'https://your-backend-domain.com' 
-        : 'http://localhost:5001';
-
-      const response = await fetch(`${API_URL}/api/newsletter/subscribe`, {
+      // Served by app/api/newsletter/subscribe/route.ts
+      const response = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +50,7 @@ export const Newsletter = () => {
         })
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (response.ok && data.success) {
         setSubmitStatus('success');
@@ -85,6 +81,7 @@ export const Newsletter = () => {
 
   return (
     <motion.section
+      data-nav-theme="dark"
       className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}

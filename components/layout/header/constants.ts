@@ -1,5 +1,6 @@
 export const HEADER_Z = {
-  scrim: "z-40",
+  // Sits behind the header's own content (menu panel, bar) but above the page, so only the page is dimmed.
+  scrim: "-z-10",
   shell: "z-50",
   panel: "z-10",
   background: "z-0",

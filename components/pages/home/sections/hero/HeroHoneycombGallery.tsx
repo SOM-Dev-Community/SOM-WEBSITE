@@ -1,32 +1,47 @@
 import type { CSSProperties } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useState, memo, useCallback } from "react";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { useState, useEffect, memo, useCallback } from "react";
 import Image from "next/image";
-import { imageList } from "@/public/images_list";
+import { imageList, optimizedImageList } from "@/public/images_list";
 import { XIcon } from "lucide-react";
 
 const HEX_CLIP = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
+
+const FLIP_SPRING = { type: "spring", stiffness: 120, damping: 15 } as const; // Slightly tighter spring for snappiness
+
+const TILE_VARIANTS: Variants = {
+  rest: { rotateY: 0, scale: 1, transition: FLIP_SPRING },
+  flipped: { rotateY: 180, scale: 1.05, transition: FLIP_SPRING },
+};
+
+// The back-face photo can't be seen until the tile turns past 90° anyway. Keeping it at opacity 0 while the
+// tile rests stops browsers from reporting a hidden photo as the page's Largest Contentful Paint (LCP).
+const BACK_IMAGE_VARIANTS: Variants = {
+  rest: { opacity: 0, transition: { duration: 0, delay: 0.6 } },
+  flipped: { opacity: 1, transition: { duration: 0 } },
+};
 const BASE_IMAGE_SRC = "/assets/PCO_2.jpg";
 
+// `thumb` is Cloudinary's resized copy for the small flipped tile; `full` is only loaded in the modal.
 const IMAGE_LIST = [
-  { id: "01", src: imageList.b_1.src },
-  { id: "02", src: imageList.b_2.src },
-  { id: "03", src: imageList.b_3.src },
-  { id: "04", src: imageList.b_4.src },
-  { id: "05", src: imageList.pks_1.src },
-  { id: "06", src: imageList.pks_2.src },
-  { id: "07", src: imageList.pks_3.src },
-  { id: "08", src: imageList.b_1.src },
-  { id: "09", src: imageList.wsa_2.src },
-  { id: "10", src: imageList.pco_1.src },
-  { id: "11", src: imageList.pks_1.src },
-  { id: "12", src: imageList.wsa_2.src },
-  { id: "13", src: imageList.b_2.src },
-  { id: "14", src: imageList.b_4.src },
-  { id: "15", src: imageList.b_2.src },
-  { id: "16", src: imageList.pco_2.src },
-  { id: "17", src: imageList.pks_2.src },
-  { id: "18", src: imageList.wsa_3.src },
+  { id: "01", thumb: optimizedImageList.b_1.src, full: imageList.b_1.src },
+  { id: "02", thumb: optimizedImageList.b_2.src, full: imageList.b_2.src },
+  { id: "03", thumb: optimizedImageList.b_3.src, full: imageList.b_3.src },
+  { id: "04", thumb: optimizedImageList.b_4.src, full: imageList.b_4.src },
+  { id: "05", thumb: optimizedImageList.pks_1.src, full: imageList.pks_1.src },
+  { id: "06", thumb: optimizedImageList.pks_2.src, full: imageList.pks_2.src },
+  { id: "07", thumb: optimizedImageList.pks_3.src, full: imageList.pks_3.src },
+  { id: "08", thumb: optimizedImageList.b_1.src, full: imageList.b_1.src },
+  { id: "09", thumb: optimizedImageList.wsa_2.src, full: imageList.wsa_2.src },
+  { id: "10", thumb: optimizedImageList.pco_1.src, full: imageList.pco_1.src },
+  { id: "11", thumb: optimizedImageList.pks_1.src, full: imageList.pks_1.src },
+  { id: "12", thumb: optimizedImageList.wsa_2.src, full: imageList.wsa_2.src },
+  { id: "13", thumb: optimizedImageList.b_2.src, full: imageList.b_2.src },
+  { id: "14", thumb: optimizedImageList.b_4.src, full: imageList.b_4.src },
+  { id: "15", thumb: optimizedImageList.b_2.src, full: imageList.b_2.src },
+  { id: "16", thumb: optimizedImageList.pco_2.src, full: imageList.pco_2.src },
+  { id: "17", thumb: optimizedImageList.pks_2.src, full: imageList.pks_2.src },
+  { id: "18", thumb: optimizedImageList.wsa_3.src, full: imageList.wsa_3.src },
 ];
 
 const TILE_LAYOUT = [
@@ -41,19 +56,26 @@ const TILE_LAYOUT = [
 const HoneycombTile = memo(({
   position,
   index,
+  loadBackImage,
   onClick
 }: {
   position: typeof TILE_LAYOUT[0],
   index: number,
+  loadBackImage: boolean,
   onClick: (src: string) => void
 }) => {
   const leftOffset = `calc(${position.x} * (var(--tile-w) + var(--gap-x)))`;
   const topOffset = `calc(${position.y} * var(--step-y))`;
-  const tileImageSrc = IMAGE_LIST[index].src;
+  const tile = IMAGE_LIST[index];
+  // The back face is hidden until the tile flips, so its image waits until the page is idle or the tile is hovered.
+  const [isPrimed, setIsPrimed] = useState(false);
+  const showBackImage = loadBackImage || isPrimed;
 
   return (
     <button
-      onClick={() => onClick(tileImageSrc)}
+      onClick={() => onClick(tile.full)}
+      onPointerEnter={() => setIsPrimed(true)}
+      onFocus={() => setIsPrimed(true)}
       className="absolute block p-0 outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
       style={{
         left: leftOffset,
@@ -63,14 +85,15 @@ const HoneycombTile = memo(({
         perspective: "1000px", // Adds 3D depth to the rotation
       }}
     >
+      {/* No permanent will-change: Framer Motion promotes the tile only while it is flipping,
+          instead of keeping 18 GPU layers alive for the whole visit. */}
       <motion.div
         className="relative h-full w-full cursor-pointer"
-        style={{
-          transformStyle: "preserve-3d",
-          willChange: "transform" // 2. GPU HINT: Hardware accelerates the animation
-        }}
-        whileHover={{ rotateY: 180, scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 120, damping: 15 }} // Slightly tighter spring for snappiness
+        style={{ transformStyle: "preserve-3d" }}
+        variants={TILE_VARIANTS}
+        initial="rest"
+        animate="rest"
+        whileHover="flipped"
       >
         {/* FRONT FACE: Mosaic Background */}
         <div
@@ -95,17 +118,22 @@ const HoneycombTile = memo(({
             WebkitBackfaceVisibility: "hidden", // 3. SAFARI FIX
           }}
         >
-          <div className="relative h-[95%] w-[95%] overflow-hidden" style={{ clipPath: HEX_CLIP }}>
-            <Image
-              src={tileImageSrc}
-              alt={`Gallery tile ${position.id}`}
-              fill
-              sizes="(max-width: 768px) 30vw, 15vw"
-              quality={75} // 4. PERFORMANCE: Lower quality for tiny thumbnails loads much faster
-              unoptimized // Skip Next.js optimizations for already optimized images
-              className="object-cover"
-            />
-          </div>
+          <motion.div
+            variants={BACK_IMAGE_VARIANTS}
+            className="relative h-[95%] w-[95%] overflow-hidden"
+            style={{ clipPath: HEX_CLIP }}
+          >
+            {showBackImage && (
+              <Image
+                src={tile.thumb}
+                alt={`Gallery tile ${position.id}`}
+                fill
+                sizes="(max-width: 768px) 30vw, 15vw"
+                unoptimized // Cloudinary already serves a resized, compressed copy
+                className="object-cover"
+              />
+            )}
+          </motion.div>
         </div>
       </motion.div>
     </button>
@@ -119,6 +147,25 @@ HoneycombTile.displayName = "HoneycombTile";
 export default function HeroHoneycombGallery() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [loadBackImages, setLoadBackImages] = useState(false);
+
+  // Fetch the hidden back-face images once the hero has loaded and the browser is idle,
+  // so they never compete with the first paint.
+  useEffect(() => {
+    let idleId: number | undefined;
+    const timeoutId = window.setTimeout(() => {
+      if ("requestIdleCallback" in window) {
+        idleId = window.requestIdleCallback(() => setLoadBackImages(true), { timeout: 3000 });
+      } else {
+        setLoadBackImages(true);
+      }
+    }, 1500);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (idleId !== undefined && "cancelIdleCallback" in window) window.cancelIdleCallback(idleId);
+    };
+  }, []);
 
   // 5. CACHED HANDLER: Prevents the memoized tiles from thinking the function changed on re-render
   const handleTileClick = useCallback((src: string) => {
@@ -146,6 +193,7 @@ export default function HeroHoneycombGallery() {
             key={position.id}
             position={position}
             index={index}
+            loadBackImage={loadBackImages}
             onClick={handleTileClick}
           />
         ))}

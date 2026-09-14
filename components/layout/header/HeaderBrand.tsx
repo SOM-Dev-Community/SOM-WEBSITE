@@ -25,7 +25,7 @@ export function HeaderBrand({ isOverlayStyle }: HeaderBrandProps) {
       <div className="hidden min-w-0 sm:block">
         <p
           className={cn(
-            "text-[0.65rem] font-semibold uppercase tracking-[0.28em]",
+            "text-[0.65rem] font-semibold uppercase tracking-[0.28em] transition-colors duration-300",
             isOverlayStyle ? "text-white/70" : "text-blue-600/75"
           )}
         >
@@ -33,7 +33,7 @@ export function HeaderBrand({ isOverlayStyle }: HeaderBrandProps) {
         </p>
         <p
           className={cn(
-            "truncate text-sm font-semibold",
+            "truncate text-sm font-semibold transition-colors duration-300",
             isOverlayStyle ? "text-white" : "text-slate-900"
           )}
         >

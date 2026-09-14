@@ -7,8 +7,8 @@ export function ClipPathSection() {
     return (
         <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex flex-col justify-center items-center bg-[#f9fafb] bg-[radial-gradient(#d1d5db_1.5px,transparent_1.5px)] bg-[size:32px_32px]">
 
-            {/* LEFT SIDE VERTICAL MARQUEE */}
-            <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-25 lg:opacity-50">
+            {/* LEFT SIDE VERTICAL MARQUEE: centred ~4rem from the edge so it never runs through the headline */}
+            <div className="absolute left-[calc(-50vh+4rem)] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-15 lg:opacity-25">
                 <ScrollBaseAnimation
                     delay={500}
                     baseVelocity={-2}
@@ -19,7 +19,7 @@ export function ClipPathSection() {
             </div>
 
             {/* RIGHT SIDE VERTICAL MARQUEE */}
-            <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-25 lg:opacity-50">
+            <div className="absolute right-[calc(-50vh+4rem)] top-1/2 -translate-y-1/2 rotate-90 w-[100vh] z-0 pointer-events-none opacity-15 lg:opacity-25">
                 <ScrollBaseAnimation
                     delay={500}
                     baseVelocity={2}

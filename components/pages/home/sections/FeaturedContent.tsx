@@ -1,18 +1,18 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 import { ScrollAnimation } from '@/components/scroll-animation';
+import {
+  ArrowIcon,
+  gradientButtonClass,
+  lightCardClass,
+} from '@/components/pages/shared/section-primitives';
 
 export const FeaturedContent = () => {
-  const router = useRouter();
-
-  const handleReadMore = () => {
-    router.push('/impact');
-  };
-
   return (
     <motion.section
       className="py-24 bg-gradient-to-b from-gray-50 to-white"
@@ -27,102 +27,61 @@ export const FeaturedContent = () => {
           <ScrollAnimation
             direction='left'
           >
-            <motion.span
-              className="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium tracking-wide mb-5 shadow"
-              initial={{ y: -20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
+            <div className="mb-6 inline-flex items-center rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.24em] text-indigo-700">
               Latest Feature
-            </motion.span>
+            </div>
 
-            <motion.h2
-              className="text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6"
-              initial={{ y: 40, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
+            <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
               Discover Our Latest Insights <br />
-              <span className="text-blue-600">and Stories</span>
-            </motion.h2>
+              <span className="text-indigo-600">and Stories</span>
+            </h2>
 
-            <motion.p
-              className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl"
-              initial={{ y: 40, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
+            <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
               Stay updated with Preachers Kids Magazines as we explore deep spiritual truths, life-changing testimonies, and powerful articles that shape our ministry journey.
-            </motion.p>
+            </p>
 
             {/* Featured Article Card */}
-            <motion.div
-              className="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 mb-8 transition-all duration-300 hover:shadow-xl hover:border-blue-200"
-              initial={{ scale: 0.85, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              whileHover={{ scale: 1.03, boxShadow: '0 8px 32px 0 #3b82f6' }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ duration: 0.7, delay: 0.7, type: 'spring', stiffness: 120 }}
-            >
+            <div className={cn("p-6 mb-8 max-w-xl", lightCardClass)}>
               <div className="flex flex-col space-y-4">
-                <span className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full w-max shadow">
+                <span className="w-max rounded-full bg-gradient-to-r from-indigo-600 to-[#8A7DFF] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
                   Featured Post
                 </span>
 
-                <h3 className="text-xl font-semibold text-gray-800 leading-snug">
+                <h3 className="text-xl font-semibold text-slate-900 leading-snug">
                   Be About Soulwinning
                 </h3>
 
-                <div className="text-sm text-gray-500 flex items-center space-x-2">
+                <div className="text-sm text-slate-500 flex items-center space-x-2">
                   <span>Evangelism</span>
-                  <span>•</span>
+                  <span aria-hidden="true">•</span>
                   <span>5 min read</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              whileHover={{ scale: 1.08, boxShadow: '0 0 24px 0 #3b82f6' }}
-              transition={{ type: 'spring', stiffness: 300, duration: 0.7, delay: 1.1 }}
-              style={{ display: 'inline-block' }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.7 }}
-            >
-              <Button
-                onClick={handleReadMore}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold shadow transition hover:scale-105"
-              >
-                Read More
-              </Button>
-            </motion.div>
+            <Button asChild className={`${gradientButtonClass} py-6 px-8`}>
+              <Link href="/impact">
+                <span>Read More</span>
+                <ArrowIcon />
+              </Link>
+            </Button>
           </ScrollAnimation>
+
           {/* Video Section */}
           <ScrollAnimation
             direction='right'
           >
-            <motion.div
-              className="relative overflow-hidden rounded-3xl shadow-2xl aspect-video flex items-center justify-center bg-black"
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              whileHover={{ scale: 1.03, boxShadow: '0 0 32px 0 #3b82f6' }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ duration: 0.8, delay: 0.5, type: 'spring', stiffness: 120 }}
-            >
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl shadow-indigo-600/30 aspect-video flex items-center justify-center bg-black">
               <iframe
                 src="https://player.vimeo.com/video/1100719005?h=1a533c78b1"
                 width="100%"
                 height="100%"
-                frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 title="SOM Vimeo Video"
                 className="w-full h-full rounded-3xl"
               ></iframe>
-            </motion.div>
+            </div>
           </ScrollAnimation>
         </div>
       </div>

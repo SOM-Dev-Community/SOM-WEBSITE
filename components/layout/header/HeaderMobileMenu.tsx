@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,10 +19,10 @@ type MenuLinkItemProps = {
 
 function MenuScrim({ onClose }: { onClose: () => void }) {
   return (
-    <Button
+    <button
       type="button"
       aria-label="Close menu overlay"
-      className={cn("fixed inset-0 lg:hidden", HEADER_Z.scrim)}
+      className={cn("fixed inset-0 cursor-default bg-slate-950/30 backdrop-blur-[2px] lg:hidden", HEADER_Z.scrim)}
       onClick={onClose}
     />
   );

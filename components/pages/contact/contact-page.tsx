@@ -2,20 +2,30 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ReactLenis } from 'lenis/react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Newsletter } from '@/components/pages/home/sections/Newsletter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { SectionWrapper } from '@/components/pages/about/sections/foundation/SectionWrapper';
+import { SectionHeading, gradientButtonClass, revealUp } from '@/components/pages/shared/section-primitives';
+
+const emptyForm = {
+    fullName: '',
+    email: '',
+    subject: '',
+    message: ''
+};
+
+const inputClass =
+    'w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent';
 
 export function ContactPage() {
-    const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
-        subject: '',
-        message: ''
-    });
+    const [formData, setFormData] = useState(emptyForm);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
@@ -24,175 +34,158 @@ export function ContactPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Contact form submitted:', formData);
-        // Reset form
-        setFormData({
-            fullName: '',
-            email: '',
-            subject: '',
-            message: ''
-        });
+        setIsSubmitting(true);
+        setStatus(null);
+
+        try {
+            // Served by app/api/contact/route.ts
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || 'Sorry, your message could not be sent. Please try again.');
+            }
+
+            setStatus({ type: 'success', message: data.message });
+            setFormData(emptyForm);
+        } catch (error) {
+            setStatus({
+                type: 'error',
+                message: error instanceof Error ? error.message : 'Network error. Please check your connection and try again.'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
-        <div className="min-h-screen bg-white overflow-x-hidden">
-            <Header />
+        <ReactLenis root>
+            <div className="min-h-screen bg-white text-gray-800 overflow-x-hidden">
+                <Header />
 
-            {/* Hero Section */}
-            <motion.section
-                className="relative py-32"
-                style={{
-                    backgroundImage: 'url("https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                }}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.1, type: 'spring', bounce: 0.2 }}
-            >
-                <motion.div className="absolute inset-0 bg-black/50"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.1 }}
-                />
-                <motion.div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.2, type: 'spring', bounce: 0.2 }}
-                >
-                    <motion.h1 className="text-5xl lg:text-6xl font-bold text-white mb-6"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.3, type: 'spring', bounce: 0.2 }}
-                    >Get In Touch</motion.h1>
-                    <motion.p className="text-xl text-gray-200 max-w-3xl mx-auto"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.4, type: 'spring', bounce: 0.2 }}
+                <main>
+                    {/* Hero Section */}
+                    <section
+                        data-nav-theme="dark"
+                        className="relative isolate overflow-hidden bg-slate-950 pt-40 pb-28 text-white"
                     >
-                        We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
-                    </motion.p>
-                </motion.div>
-            </motion.section>
+                        <div
+                            aria-hidden="true"
+                            className="absolute inset-0 -z-20 bg-cover bg-center"
+                            style={{
+                                backgroundImage: 'url("https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")'
+                            }}
+                        />
+                        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-slate-950/65" />
 
-            {/* Contact Form */}
-            <motion.section className="py-20 bg-white"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 1, type: 'spring', bounce: 0.1 }}
-            >
-                <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.form onSubmit={handleSubmit} className="space-y-6"
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                            hidden: {},
-                            visible: {
-                                transition: {
-                                    staggerChildren: 0.12,
-                                    delayChildren: 0.2,
-                                },
-                            },
-                        }}
-                    >
-                        <motion.div
-                            initial={{ opacity: 0, x: -320, scale: 0.85 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            transition={{ duration: 1.3, type: 'spring', bounce: 0.55 }}
-                        >
-                            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                                Full Name
-                            </label>
-                            <Input
-                                type="text"
-                                id="fullName"
-                                name="fullName"
-                                placeholder="John Doe"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                required
-                            />
+                        <motion.div {...revealUp} className="mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
+                            <SectionHeading as="h1" badge="Contact" title="Get In Touch" tone="dark" align="center" />
+                            <p className="mt-8 text-base leading-relaxed text-slate-200 sm:text-lg">
+                                We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
+                            </p>
                         </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 320, scale: 0.85 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            transition={{ duration: 1.3, type: 'spring', bounce: 0.55 }}
+                    </section>
+
+                    {/* Contact Form */}
+                    <SectionWrapper>
+                        <motion.form
+                            {...revealUp}
+                            onSubmit={handleSubmit}
+                            className="mx-auto w-full max-w-2xl space-y-6 rounded-4xl border border-slate-200/80 bg-white p-8 shadow-[0_20px_70px_-40px_rgba(15,23,42,0.35)] sm:p-10"
                         >
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                                Email Address
-                            </label>
-                            <Input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="john@example.com"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                required
-                            />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: -320, scale: 0.85 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            transition={{ duration: 1.3, type: 'spring', bounce: 0.55 }}
-                        >
-                            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                                Subject
-                            </label>
-                            <Input
-                                type="text"
-                                id="subject"
-                                name="subject"
-                                placeholder="How can we help?"
-                                value={formData.subject}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                required
-                            />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 320, scale: 0.85 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            transition={{ duration: 1.3, type: 'spring', bounce: 0.55 }}
-                        >
-                            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                                Message
-                            </label>
-                            <Textarea
-                                id="message"
-                                name="message"
-                                placeholder="Your message here..."
-                                value={formData.message}
-                                onChange={handleChange}
-                                rows={6}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                                required
-                            />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, type: 'spring', bounce: 0.1 }}
-                            whileHover={{ scale: 1.03 }}
-                        >
+                            <div>
+                                <label htmlFor="fullName" className="block text-sm font-medium text-slate-700 mb-2">
+                                    Full Name
+                                </label>
+                                <Input
+                                    type="text"
+                                    id="fullName"
+                                    name="fullName"
+                                    placeholder="John Doe"
+                                    value={formData.fullName}
+                                    onChange={handleChange}
+                                    className={inputClass}
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                                    Email Address
+                                </label>
+                                <Input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="john@example.com"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className={inputClass}
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
+                                    Subject
+                                </label>
+                                <Input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    placeholder="How can we help?"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    className={inputClass}
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                                    Message
+                                </label>
+                                <Textarea
+                                    id="message"
+                                    name="message"
+                                    placeholder="Your message here..."
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows={6}
+                                    className={`${inputClass} resize-none`}
+                                    required
+                                />
+                            </div>
+
                             <Button
                                 type="submit"
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-semibold text-lg"
+                                disabled={isSubmitting}
+                                className={`${gradientButtonClass} w-full justify-center py-6`}
                             >
-                                Send Message
+                                {isSubmitting ? 'Sending...' : 'Send Message'}
                             </Button>
-                        </motion.div>
-                    </motion.form>
-                </div>
-            </motion.section>
 
-            <Newsletter />
-            <Footer />
-        </div>
+                            {status && (
+                                <p
+                                    role="status"
+                                    className={`text-center text-sm ${status.type === 'success' ? 'text-green-600' : 'text-red-600'}`}
+                                >
+                                    {status.message}
+                                </p>
+                            )}
+                        </motion.form>
+                    </SectionWrapper>
+                </main>
+
+                <Newsletter />
+                <Footer />
+            </div>
+        </ReactLenis>
     );
 };
