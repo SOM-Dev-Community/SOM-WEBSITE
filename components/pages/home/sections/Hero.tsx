@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import HeroHoneycombGallery from "./hero/HeroHoneycombGallery"; // Adjust path if needed
+import { optimizedImageList } from "@/public/images_list";
 
 export const Hero = () => {
   const router = useRouter();
@@ -60,7 +61,7 @@ export const Hero = () => {
       >
         <div className="absolute inset-0">
           <Image
-            src="/assets/banner-2.jpg"
+            src={optimizedImageList.banner_1.src}
             alt=""
             fill
             priority
@@ -93,7 +94,6 @@ export const Hero = () => {
         className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pb-20 pt-32 sm:px-10 lg:px-8"
       >
         <div className="flex w-full flex-col items-center gap-14 lg:flex-row lg:justify-between lg:gap-12">
-
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +152,9 @@ export const Hero = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: 0.14, delayChildren: 0.5 } },
+                visible: {
+                  transition: { staggerChildren: 0.14, delayChildren: 0.5 },
+                },
               }}
             >
               <motion.div
@@ -211,10 +213,9 @@ export const Hero = () => {
           >
             <HeroHoneycombGallery />
           </motion.div>
-          
         </div>
       </motion.div>
-{/* 
+      {/* 
       <motion.div
         style={{ y: indicatorY, willChange: "transform" }}
         className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 justify-center"
