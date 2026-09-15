@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { SectionIntro } from "@/components/pages/about/sections/foundation/SectionIntro";
 import { SectionWrapper } from "@/components/pages/about/sections/foundation/SectionWrapper";
 import { gradientButtonClass, revealUp } from "./shared";
+import { apiUrl } from "@/lib/api";
 
 const emptyForm = { fullName: "", email: "", message: "" };
 
@@ -26,11 +27,10 @@ export function QuestionsSection() {
     setStatus(null);
 
     try {
-      // Served by app/api/contact/route.ts
-      const response = await fetch("/api/contact", {
+      const response = await fetch(apiUrl("/contact"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, subject: "Preachers Kids Network question" }),
+        body: JSON.stringify({ ...formData, subject: "Preachers Kids Network question", source: "pkn-questions" }),
       });
       const data = await response.json().catch(() => ({}));
 

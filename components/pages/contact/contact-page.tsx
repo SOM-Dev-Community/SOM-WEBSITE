@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { SectionWrapper } from '@/components/pages/about/sections/foundation/SectionWrapper';
 import { SectionHeading, gradientButtonClass, revealUp } from '@/components/pages/shared/section-primitives';
+import { apiUrl } from '@/lib/api';
 
 const emptyForm = {
     fullName: '',
@@ -40,11 +41,10 @@ export function ContactPage() {
         setStatus(null);
 
         try {
-            // Served by app/api/contact/route.ts
-            const response = await fetch('/api/contact', {
+            const response = await fetch(apiUrl('/contact'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({ ...formData, source: 'contact-page' })
             });
             const data = await response.json().catch(() => ({}));
 

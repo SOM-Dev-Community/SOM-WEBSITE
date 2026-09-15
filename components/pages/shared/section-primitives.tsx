@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import Image from "next/image";
+import { isVideoFile } from "@/lib/content";
 import { Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -147,26 +147,30 @@ export function ArrowIcon() {
 
 type VideoThumbnailProps = {
   title: string;
-  thumbnail: string;
+  thumbnail?: string | null;
+  /** Embeddable player link, or an uploaded video file (played natively). */
   embedUrl: string;
-  sizes: string;
   className?: string;
 };
 
 // Shows the thumbnail with a play button; swaps in the video player on click.
-export function VideoThumbnail({ title, thumbnail, embedUrl, sizes, className }: VideoThumbnailProps) {
+export function VideoThumbnail({ title, thumbnail, embedUrl, className }: VideoThumbnailProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div className={cn("relative aspect-video overflow-hidden bg-black", className)}>
       {isPlaying ? (
-        <iframe
-          src={`${embedUrl}${embedUrl.includes("?") ? "&" : "?"}autoplay=1`}
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          title={title}
-          className="absolute inset-0 h-full w-full"
-        ></iframe>
+        isVideoFile(embedUrl) ? (
+          <video src={embedUrl} autoPlay controls playsInline aria-label={title} className="absolute inset-0 h-full w-full object-contain" />
+        ) : (
+          <iframe
+            src={`${embedUrl}${embedUrl.includes("?") ? "&" : "?"}autoplay=1`}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title={title}
+            className="absolute inset-0 h-full w-full"
+          ></iframe>
+        )
       ) : (
         <button
           type="button"
@@ -174,13 +178,16 @@ export function VideoThumbnail({ title, thumbnail, embedUrl, sizes, className }:
           className="group absolute inset-0 cursor-pointer"
           aria-label={`Play ${title}`}
         >
-          <Image
-            src={thumbnail}
-            alt=""
-            fill
-            sizes={sizes}
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {thumbnail && (
+            // Plain img: thumbnails come from the CMS and can be hosted anywhere, including API uploads.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={thumbnail}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
           <span className="absolute inset-0 bg-slate-950/25 transition-colors duration-300 group-hover:bg-slate-950/40" />
           <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-indigo-600 shadow-xl shadow-indigo-900/30 transition-transform duration-300 group-hover:scale-110">
             <Play className="ml-0.5 h-6 w-6 fill-current" />

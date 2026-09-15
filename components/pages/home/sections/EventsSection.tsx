@@ -8,66 +8,26 @@ import { light_glassmorphism } from "@/components/layout/header/constants";
 import { SlidingChipTabs } from "@/components/ui/sliding-chip-tabs";
 import { Spotlight, SpotLightItem } from "@/components/ui/spotlight";
 import { ArrowIcon, gradientButtonClass } from "@/components/pages/shared/section-primitives";
+import { formatEventTime, useEvents, type EventsQuery } from "@/lib/content";
+
+const TABS: { label: string; query: EventsQuery }[] = [
+  { label: "View All", query: {} },
+  { label: "Upcoming", query: { status: ["live", "upcoming"] } },
+  { label: "On-Demand", query: { status: ["on-demand", "past"] } },
+  { label: "Workshops", query: { category: "WORKSHOP" } },
+  { label: "Premium", query: { category: "PREMIUM" } },
+];
+
+const UPCOMING = TABS[1];
 
 export const EventsSection = () => {
-  const [activeTab, setActiveTab] = React.useState("Upcoming");
-  const eventData = [
+  const [pickedTab, setPickedTab] = React.useState<string | null>(null);
 
-    {
-      title: "August Global Communion Service",
-      desc: "A divine moment to fellowship in the Spirit and partake in communion together.",
-      image: "https://i.postimg.cc/HnbxsTwx/images.jpg",
-      category: "Upcoming",
-      Link: "https://ceflix.org/videos/watch/1885810/august-global-communion-service-with-pastor-chris-[full-rebroadcast]"
-    },
-    {
-      title: "Healing Streams Live Healing Service",
-      desc: "Experience miracles and divine healing with Pastor Chris — invite others too.",
-      image: "https://i.postimg.cc/76Fhk5Td/HSLHS.jpg",
-      category: "Upcoming",
-      Link: "https://healingstreams.tv/live"
-    }, {
-      title: "SOMC 2025",
-      desc: "Join us for a powerful evening with God's word and fellowship.",
-      image: "https://i.postimg.cc/SQPp9f9c/logo-sm.png",
-      category: "On-Demand",
-      Link: "https://www.kingsch.at/p/cUJHTzd"
-    },
-    {
-      title: "Preachers Kids Summit",
-      desc: "A special event for the children of ministers to grow in faith and fellowship.",
-      image: "https://i.postimg.cc/vZ0mmqVW/PKS1.jpg",
-      category: "On-Demand"
-    },
-    {
-      title: "Fortify Conference",
-      desc: "A transformative event focused on spiritual growth and faith building for ministers children.",
-      image: "https://i.postimg.cc/1z43VGGb/PKS2.jpg",
-      category: "On-Demand",
-    },
-    {
-      title: "Leadership Workshop 2025",
-      desc: "Sharpen your leadership skills with hands-on activities and expert speakers.",
-      image: "https://i.postimg.cc/CMCS1ryz/WSA3.jpg",
-      category: "Workshops",
-    },
-    {
-      title: "Creative Ministry Workshop",
-      desc: "Explore new ways to engage your ministry through creativity and innovation.",
-      image: "https://i.postimg.cc/8P1DrdDw/WSA2.jpg",
-      category: "Workshops",
-    },
-    {
-      title: "SOMLA",
-      desc: "Join us in the Sons of Ministry Leadership Academy to enhance your leadership skills.",
-      image: "https://i.postimg.cc/nVqcmcmV/SOMLA.jpg",
-      category: "Premium",
-      Link: "https://somla.loveworldsonsofministry.org/"
-    }
-  ];
-
-  const tabs = ["View All", "Upcoming", "On-Demand", "Workshops", "Premium"];
-  const filteredEvents = activeTab === "View All" ? eventData : eventData.filter(e => e.category === activeTab);
+  // Open on "Upcoming", but fall back to everything when nothing is scheduled rather than show an empty list.
+  const upcoming = useEvents(UPCOMING.query);
+  const activeTab = pickedTab ?? (upcoming.data?.length === 0 ? "View All" : UPCOMING.label);
+  const tab = TABS.find((t) => t.label === activeTab) ?? UPCOMING;
+  const { data: events, isPending, isError } = useEvents(tab.query);
 
   return (
     <motion.section
@@ -117,12 +77,12 @@ export const EventsSection = () => {
           transition={{ duration: 0.7, delay: 0.6 }}
         >
           <SlidingChipTabs
-            items={tabs.map((tab) => ({
-              value: tab,
-              label: tab,
+            items={TABS.map(({ label }) => ({
+              value: label,
+              label,
             }))}
             value={activeTab}
-            onValueChange={setActiveTab}
+            onValueChange={setPickedTab}
             className="flex-wrap justify-center gap-2 sm:gap-4"
             tabClassName="rounded-full px-5 py-2 font-semibold duration-300"
             activeTabClassName="text-white"
@@ -142,12 +102,16 @@ export const EventsSection = () => {
         >
           {/* The Spotlight component acts as the container for the proximity effect */}
           <Spotlight className="grid gap-8 md:grid-cols-2 lg:grid-cols-1">
-            {filteredEvents.length === 0 ? (
+            {isPending ? (
+              <div className="text-center text-slate-400">Loading events…</div>
+            ) : isError ? (
+              <div className="text-center text-slate-400">Events couldn’t be loaded. Please try again later.</div>
+            ) : events.length === 0 ? (
               <div className="text-center text-slate-400">No events found for this category.</div>
             ) : (
-              filteredEvents.map(({ title, desc, image, Link }, idx) => (
+              events.map((event, idx) => (
                 // SpotLightItem wraps each individual card
-                <SpotLightItem key={title} className="rounded-3xl" spotColor="rgba(6,9,104,0.2)">
+                <SpotLightItem key={event.id} className="rounded-3xl" spotColor="rgba(6,9,104,0.2)">
                   <motion.div
                     initial={{ opacity: 0, y: 60 }}
                     className={cn(
@@ -159,17 +123,27 @@ export const EventsSection = () => {
                     transition={{ duration: 0.7, delay: 0.1 * idx }}
                   >
                     <div
-                      className="w-full md:w-48 h-48 md:h-auto bg-cover bg-center"
-                      style={{ backgroundImage: `url(${image})` }}
+                      className="w-full md:w-48 h-48 md:h-auto bg-cover bg-center bg-slate-900"
+                      style={event.imageUrl ? { backgroundImage: `url(${event.imageUrl})` } : undefined}
                     />
                     <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 p-6 flex-1">
                       <div>
-                        <h3 className="text-2xl font-bold mb-2">{title}</h3>
-                        <p className="text-slate-300 lg:w-2/3">{desc}</p>
+                        {(event.status === "live" || event.status === "upcoming") && (
+                          <p
+                            className={cn(
+                              "mb-2 text-xs font-semibold uppercase tracking-[0.2em]",
+                              event.status === "live" ? "text-red-400" : "text-indigo-300"
+                            )}
+                          >
+                            {event.status === "live" ? "Live now" : formatEventTime(event)}
+                          </p>
+                        )}
+                        <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
+                        <p className="text-slate-300 lg:w-2/3">{event.description}</p>
                       </div>
-                      {Link ? (
+                      {event.externalUrl ? (
                         <Button asChild className={`${gradientButtonClass} shrink-0 py-5 px-6 text-sm`}>
-                          <a href={Link} target="_blank" rel="noopener noreferrer">
+                          <a href={event.externalUrl} target="_blank" rel="noopener noreferrer">
                             <span>Learn More</span>
                             <ArrowIcon />
                           </a>

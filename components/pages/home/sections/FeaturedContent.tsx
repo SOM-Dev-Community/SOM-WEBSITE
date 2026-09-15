@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -11,8 +13,12 @@ import {
   gradientButtonClass,
   lightCardClass,
 } from '@/components/pages/shared/section-primitives';
+import { useFeaturedPost } from '@/lib/content';
+import { PostVideo } from '@/components/pages/shared/post-video';
 
 export const FeaturedContent = () => {
+  const { data: post } = useFeaturedPost();
+
   return (
     <motion.section
       className="py-24 bg-gradient-to-b from-gray-50 to-white"
@@ -40,31 +46,35 @@ export const FeaturedContent = () => {
               Stay updated with Preachers Kids Magazines as we explore deep spiritual truths, life-changing testimonies, and powerful articles that shape our ministry journey.
             </p>
 
-            {/* Featured Article Card */}
-            <div className={cn("p-6 mb-8 max-w-xl", lightCardClass)}>
-              <div className="flex flex-col space-y-4">
-                <span className="w-max rounded-full bg-gradient-to-r from-indigo-600 to-[#8A7DFF] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
-                  Featured Post
-                </span>
+            {post && (
+              <>
+                {/* Featured Article Card */}
+                <div className={cn("p-6 mb-8 max-w-xl", lightCardClass)}>
+                  <div className="flex flex-col space-y-4">
+                    <span className="w-max rounded-full bg-gradient-to-r from-indigo-600 to-[#8A7DFF] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                      Featured Post
+                    </span>
 
-                <h3 className="text-xl font-semibold text-slate-900 leading-snug">
-                  Be About Soulwinning
-                </h3>
+                    <h3 className="text-xl font-semibold text-slate-900 leading-snug">
+                      {post.title}
+                    </h3>
 
-                <div className="text-sm text-slate-500 flex items-center space-x-2">
-                  <span>Evangelism</span>
-                  <span aria-hidden="true">•</span>
-                  <span>5 min read</span>
+                    <div className="text-sm text-slate-500 flex items-center space-x-2">
+                      {post.category && <span>{post.category.name}</span>}
+                      {post.category && post.readingMinutes && <span aria-hidden="true">•</span>}
+                      {post.readingMinutes && <span>{post.readingMinutes} min read</span>}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <Button asChild className={`${gradientButtonClass} py-6 px-8`}>
-              <Link href="/impact">
-                <span>Read More</span>
-                <ArrowIcon />
-              </Link>
-            </Button>
+                <Button asChild className={`${gradientButtonClass} py-6 px-8`}>
+                  <Link href={`/blog/${post.slug}`}>
+                    <span>Read More</span>
+                    <ArrowIcon />
+                  </Link>
+                </Button>
+              </>
+            )}
           </ScrollAnimation>
 
           {/* Video Section */}
@@ -72,15 +82,11 @@ export const FeaturedContent = () => {
             direction='right'
           >
             <div className="relative overflow-hidden rounded-3xl shadow-2xl shadow-indigo-600/30 aspect-video flex items-center justify-center bg-black">
-              <iframe
-                src="https://player.vimeo.com/video/1100719005?h=1a533c78b1"
-                width="100%"
-                height="100%"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="SOM Vimeo Video"
-                className="w-full h-full rounded-3xl"
-              ></iframe>
+              {post?.videoUrl ? (
+                <PostVideo url={post.videoUrl} title={post.title} poster={post.coverImageUrl} className="rounded-3xl" />
+              ) : post?.coverImageUrl ? (
+                <img src={post.coverImageUrl} alt="" className="h-full w-full object-cover" />
+              ) : null}
             </div>
           </ScrollAnimation>
         </div>

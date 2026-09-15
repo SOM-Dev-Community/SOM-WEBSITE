@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail, CheckCircle, AlertCircle, User } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { apiUrl } from '@/lib/api';
 
 export const Newsletter = () => {
   const [formData, setFormData] = useState({
@@ -38,8 +39,7 @@ export const Newsletter = () => {
     setMessage('');
 
     try {
-      // Served by app/api/newsletter/subscribe/route.ts
-      const response = await fetch('/api/newsletter/subscribe', {
+      const response = await fetch(apiUrl('/newsletter/subscribe'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

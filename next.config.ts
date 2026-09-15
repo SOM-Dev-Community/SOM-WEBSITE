@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
     return [
       // "Learn More" links point at SOM's products, which live on the Explore page.
       { source: "/learn-more", destination: "/explore", permanent: false },
+      // The Impact page's article now lives in the blog, served by the API.
+      { source: "/impact", destination: "/blog/be-about-impact", permanent: true },
     ];
   },
 };
